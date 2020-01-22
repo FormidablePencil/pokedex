@@ -16,24 +16,31 @@ export const globalStyles = StyleSheet.create({
     alignItems: 'center',
   },
   rowStats: {
-    height: 600
+    height: 600,
   },
  
   transparent: {
     backgroundColor: 'transparent'
   },
   pokemonGif: {
-    height: 170,
+    height: 250,
     width: 500,
     position: 'absolute',
-    top: -130
+    top: -200,
   },
   tabs: {
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
+    backgroundColor: 'white'
+
   },
   imageInInput: {
     height: 30,
     width: 30,
     marginRight: 5,
+  },
+  blueButton: {
+    backgroundColor: 'green',
+    margin: 5,
+    color: 'pink'
   }
 })

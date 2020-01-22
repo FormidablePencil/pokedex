@@ -16,12 +16,17 @@ import Tab1About from './components/tabs/Tab1About';
 
 export default class App extends Component {
   state = {
-    // onCall: true,
-    pokemon: '',
-    pokeSearch: "pikachu",
-    // allData: {},
-    // data: {},
-    isReady: ''
+    isReady: true,
+    pokemon: '001Bulbasaur',
+    isReady: '',
+    images: [],
+    linkUri: './assets/Pokémon/1stGeneration/002Ivysaur.png'
+    // images: [hi = {hey}]
+  }
+
+  whosThatPokemon = () => {
+    const images = imageLoader();
+    this.setState({ images:images });
   }
 
   async componentDidMount() {
@@ -33,25 +38,27 @@ export default class App extends Component {
     this.setState({ isReady: true });
   }
 
-  whosThatPokemon = () => {
-    let pokemonFinal = this.state.pokemon.toLowerCase();
-    this.setState({ pokeSearch: pokemonFinal })
-  }
-
   render() {
     if (!this.state.isReady) {
       return <AppLoading />;
     }
-    let Image_Http_URL = { uri: 'http://play.pokemonshowdown.com/sprites/xyani/' + this.state.pokeSearch + '.gif' };
+    
+    // console.log(images.Ivysaur);
+    let dd = require("./assets/Pokémon/1stGeneration/002Ivysaur.png") 
+    // const initialArr = images;
+        // console.log(imageLoader[0].require)
+    // let image = './assets/Pokémon/1stGeneration/' + this.state.pokemon + '.png';
+
+    let hellow = 4;
 
     return (
       <Container style={globalStyles.mainContainer}>
         <Image style={globalStyles.backgroundImage} source={require('./assets/nativePokemonPaper.png')} />
-        
+
         <Header transparent span searchBar rounded>
           <Item>
             <Icon active name="search" />
-            <Input placeholder="Search" onChangeText={(pokeSearch) => this.setState({ pokeSearch })} />
+            {/* <Input placeholder="Search" onChangeText={this.whosThatPokemon()} /> */}
 
             <Image style={globalStyles.imageInInput} source={require('./assets/pngkey.com-pokeball-png-249653.png')} />
             {/* <Icon active name="people" /> */}
@@ -67,7 +74,10 @@ export default class App extends Component {
               </Row>
               <Row style={globalStyles.rowStats}>
                 <Container style={globalStyles.stats} >
-                  <Image style={globalStyles.pokemonGif} resizeMode="contain" source={Image_Http_URL} />
+                  
+                  <Image style={globalStyles.pokemonGif} resizeMode="contain" source={{ uri: `https://pokeres.bastionbot.org/images/pokemon/${hellow}.png`}} />
+                  
+             
                   <Tabs style={globalStyles.tabs}>
                     <Tab heading="testing">
                       <Tab1About />
@@ -80,7 +90,9 @@ export default class App extends Component {
                     </Tab>
                     <Tab heading="health">
                       <Text>100</Text>
+                      <Button success onPress={this.whosThatPokemon}><Text>hello</Text></Button>
                     </Tab>
+
                   </Tabs>
                 </Container>
               </Row>
@@ -89,14 +101,6 @@ export default class App extends Component {
         </Content>
       </Container>
 
-      // <View style={styles.container}>
-
-      //   <Button onPress={this.whosThatPokemon}>
-      //     <Text>Search</Text>
-      //     <Button onPress={this.saveToAsyncStorage('pikatchu')}><Text>Here</Text></Button>
-      //     <Button onPress={this.displayData}><Text>displayData</Text></Button>
-      //   </Button>
-      // </View>
 
     );
   }
