@@ -1,6 +1,22 @@
 import { StyleSheet } from 'react-native';
 
 export const globalStyles = StyleSheet.create({
+  centerEverything: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textColor: {
+    color: 'purple',
+    paddingLeft:15
+  },
+  flexCol: {
+    flexDirection:'row',
+  }
+})
+
+export const globalStyles2 = StyleSheet.create({
+ 
   backgroundImage: {
     width: '100%',
     height: '100%',
@@ -42,5 +58,9 @@ export const globalStyles = StyleSheet.create({
     backgroundColor: 'green',
     margin: 5,
     color: 'pink'
-  }
+  },
+  noteToSelf: {
+    backgroundColor: 'yellow',
+    color: 'grey'
+  },
 })
