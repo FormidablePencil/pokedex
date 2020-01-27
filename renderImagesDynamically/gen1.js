@@ -151,7 +151,7 @@ let gen1 = [
   '149Dragonite.png',
   '150Mewtwo.png',
   // '150Mewtwo-Mega_X.png',
-  // '150Mewtwo-Mega_Y.png',
+  // '150Mewtwo-Mega_Y.png',  
   '151Mew.png',
 ];
 

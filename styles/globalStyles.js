@@ -6,9 +6,14 @@ export const globalStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  textColor: {
-    color: 'purple',
-    paddingLeft:15
+  textColor1: {
+    color: 'red',
+  },
+  textColor2: {
+    color: 'blue',
+  },
+  textColor3: {
+    color: 'green',
   },
   flexCol: {
     flexDirection:'row',

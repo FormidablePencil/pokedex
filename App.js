@@ -1,57 +1,105 @@
 import React, { Component } from 'react'
-import { globalStyle, globalStyles } from './styles/globalStyles'
-import { CheckBox, Text, View } from 'native-base'
+import * as Font from 'expo-font'
+import { Ionicons } from '@expo/vector-icons'
+import AppLoading from './components/AppLoading'
+import { View, Text, Header, Left, Right, Body, Container, Button } from 'native-base'
+import { globalStyles } from './styles/globalStyles'
+import gen1 from './renderImagesDynamically/gen1'
+import { Dimensions } from 'react-native'
+import Search from './components/Search'
+import RenderSuggestions from './components/RenderSuggestions'
+
+const deviceWidth = Dimensions.get("window").width;
+
+//~ we need to create a new screen to display the pokemon
 
 export default class App extends Component {
   state = {
-    checkbox1: true,
-    checkbox2: false,
-    checkbox3: false,
-    checkbox4: false,
-    checkbox5: false,
-    checkbox6: false,
-    checkbox7: false,
+    isReady: false,
+    pokemonData: [],
+    pokemonName: [],
+    suggestions: '',
+    inputValue: '',
+    btnSearchById: false,
+    updateFetchedPokemonStatsApi: []
   }
-  
+
+  async componentDidMount() {
+    // const searchPokemonByName = gen1.map(item => (item.substr(3, item.indexOf('.png') - 3))).map(item => (item.replace('_', '')))
+    const searchPokemonByName = gen1
+    //@ We are going tp covert /\ to regex and it'll test for either number or name. We'll just truncate() the .png Learn RegExp
+    this.setState({ pokemonName: searchPokemonByName })
+
+    const searchPokemonByName2 = gen1.map(item => (item.substr(3, item.indexOf('.png') - 3))).map(item => (item.replace('_', '')))
+    this.setState({ suggestions: searchPokemonByName2 })
+
+    const response = await fetch('https://pokeapi.co/api/v2/pokemon')
+    const pokemonData = await response.json()
+    this.setState({ pokemonData })
+
+    await Font.loadAsync({
+      Roboto: require('native-base/Fonts/Roboto.ttf'),
+      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+      ...Ionicons.font,
+    });
+    this.setState({ isReady: true });
+  }
+
+  updateSuggestions = (suggestions, inputValue) => {
+    this.setState({ suggestions: suggestions, inputValue: inputValue })
+  }
+
+  updateBtnSearchById = (value) => {
+    const regex2 = new RegExp('^[0-9]*$'); //passed if text is an integer
+    if(regex2.test(value)) {
+      this.setState({ btnSearchById: true })
+    }
+    this.setState({ btnSearchById: true })
+  }
+
+  updateFetchedPokemonStatsApi = (data) => {
+    this.setState({ fetchedPokemonStatsApi: data })
+  }
+
   render() {
+    if (!this.state.isReady) {
+      return <AppLoading />
+    }
     return (
-      <View style={globalStyles.centerEverything}>
-        <Text>Learn the navigation</Text>
-        <Text>Watch those CS50 videos</Text>
-        <Text>The goal is to learn the differences between React and React-Native</Text>
-        <Text>Learn what I can and cannot do with Native so I know it wasn't actually me, react or libraries doing wrong but aactually it's just done differently</Text>
-        <Text>I hope to get the videos done my today</Text>
-        <Text>12hrs 6-12 vids left</Text>
-        <View style={globalStyles.flexCol}>
-          <CheckBox checked={this.state.checkbox1} />
-          <Text style={globalStyles.textColor}>12 left | 6th vid</Text>
+      <Container>
+        <Header style={{ marginTop: 30 }} searchBar>
+          <Left />
+          <Body>
+            <Search
+              inputValue={this.state.inputValue}
+              pokemonName={this.state.pokemonName}
+              updateSuggestions={this.updateSuggestions}
+              updatePokemonName={this.updatePokemonName}
+              updateBtnSearchById={this.updateBtnSearchById}
+              updateFetchedPokemonStatsApi={this.updateFetchedPokemonStatsApi}
+            />
+          </Body>
+          <Right />
+        </Header>
+        <View>
+          <RenderSuggestions
+            suggestions={this.state.suggestions}
+            updateFetchedPokemonStatsApi={this.updateFetchedPokemonStatsApi}
+          />
+          {this.state.btnSearchById ? (
+
+            <Button warning>
+              <Text>
+                Find
+              </Text>
+            </Button>
+          ) : (
+            null
+            )}
+
         </View>
-        <View style={globalStyles.flexCol}>
-          <CheckBox checked={this.state.checkbox2} />
-          <Text style={globalStyles.textColor}>10:25 left | 7th vid</Text>
-        </View>
-        <View style={globalStyles.flexCol}>
-          <CheckBox checked={this.state.checkbox3} />
-          <Text style={globalStyles.textColor}>8:45 left | 8th vid</Text>
-        </View>
-        <View style={globalStyles.flexCol}>
-          <CheckBox checked={this.state.checkbox4} />
-          <Text style={globalStyles.textColor}>7:00 left | 9th vid</Text>
-        </View>
-        <View style={globalStyles.flexCol}>
-          <CheckBox checked={this.state.checkbox5} />
-          <Text style={globalStyles.textColor}>5:00 left | 10th vid</Text>
-        </View>
-        <View style={globalStyles.flexCol}>
-          <CheckBox checked={this.state.checkbox6} />
-          <Text style={globalStyles.textColor}>3:20 left | 11th vid</Text>
-        </View>
-        <View style={globalStyles.flexCol}>
-          <CheckBox checked={this.state.checkbox7} />
-          <Text style={globalStyles.textColor}>1:40 left | 12th vid</Text>
-        </View>
-       
-      </View>
+      </Container>
     )
   }
 }
+//https://pokeapi.co/api/v2/pokemon/${search}/`
