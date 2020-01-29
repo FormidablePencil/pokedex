@@ -23,7 +23,7 @@ export function Search(props) {
 
   return (
     <Input
-      style={{ color: 'white', backgroundColor: 'white', borderRadius: 10, marginVertical: 10, width: 200, color: 'black' }}
+      style={{ height: 20, color: 'white', backgroundColor: 'white', color: 'black' }}
       value={props.inputValue}
       onChangeText={inputedValue => onChangeHandler(inputedValue)}
       placeholder='search' />
