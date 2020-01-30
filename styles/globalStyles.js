@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-
 export const globalStyles = StyleSheet.create({
   centerEverything: {
     flex: 1,
@@ -14,6 +13,7 @@ export const globalStyles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
     height: 350,
+    
   },
   simpleView: {
     backgroundColor: 'white',

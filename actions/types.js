@@ -1,0 +1,3 @@
+export const FETCH_POST = 'FETCH_POST'
+export const NEW_POKEMON = 'NEW_POKEMON'
+export const SELECTED_POKEMON = 'SELECTED_POKEMON'
