@@ -1,6 +1,8 @@
 import {combineReducers} from 'redux'
 import pokemonRelatedReducer from './pokemonRelatedReducer' 
+import pokemonTypesReducer from './pokeTypesReducer'
 
 export default combineReducers({
-  pokemonRelated: pokemonRelatedReducer
+  pokemonRelated: pokemonRelatedReducer,
+  pokemonTheme: pokemonTypesReducer
 })

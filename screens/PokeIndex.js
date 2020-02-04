@@ -6,16 +6,15 @@ import { Icon, View, Header, Container, Item } from 'native-base'
 import Search from '../components/Search'
 import RenderSuggestions from '../components/RenderSuggestions'
 import { connect } from 'react-redux'
-import { experimentingRedux } from '../actions/postActions'
+import { experimentingRedux, reduxUpdateValueTyped } from '../actions/pokemonRelatedActions'
 
 export class PokeIndex extends Component {
   static navigationOptions = {
     header: false,
   };
 
-  //most should be deleted and moved from state
   state = {
-    isReady: false, //keep
+    isReady: false,
   }
 
   async componentDidMount() {
@@ -23,8 +22,12 @@ export class PokeIndex extends Component {
       Roboto: require('native-base/Fonts/Roboto.ttf'),
       Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
       ...Ionicons.font,
-    });
+    })
     this.setState({ isReady: true });
+  }
+
+  goToPokeStatsScreen = () => {
+    this.props.navigation.navigate('PokeStats')
   }
 
   render() {
@@ -33,16 +36,18 @@ export class PokeIndex extends Component {
     }
     return (
       <Container>
-        <View style={{ backgroundColor: 'gray' }} />
         <Header searchBar>
           <Item>
             <Icon active name='search' />
-            <Search />
+            <Search
+              localPokemonList={this.props.localPokemonList}
+              reduxUpdateValueTyped={this.props.reduxUpdateValueTyped}
+            />
             <Icon active name='people' />
           </Item>
         </Header>
         <View>
-          <RenderSuggestions />
+          <RenderSuggestions goToPokeStatsScreen={this.goToPokeStatsScreen} />
         </View>
       </Container>
     )
@@ -50,7 +55,7 @@ export class PokeIndex extends Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state.pokemonRelated.items
+  localPokemonList: state.pokemonRelated.localPokemonList
 })
 
-export default connect(mapStateToProps, { experimentingRedux })(PokeIndex);
+export default connect(mapStateToProps, { experimentingRedux, reduxUpdateValueTyped })(PokeIndex);

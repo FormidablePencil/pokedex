@@ -1,53 +1,54 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Text, View } from 'react-native'
-import { globalStyles } from '../styles/globalStyles'
+import {
+  StatsContainer,
+  StatsText,
+  ResultForStats,
+  HeaderContainer,
+  BoldHeader,
+  GlitchWithFramwork,
+  TextGreen
+} from '../styles/stylesTabs'
 
-
-export default Tab1 = ({pokemonId, type}) => {
+export default Tab1 = ({ pokemonId, type }) => {
   return (
     <View>
-      <View>
-        <Text style={{ color: 'green' }}>{pokemonId}</Text>
-        <View style={globalStyles.statsContainer}>
-          <Text style={globalStyles.statsText}>Species</Text>
-          <Text style={globalStyles.resultForStats}>ghjf</Text>
-        </View>
-        <View style={globalStyles.statsContainer}>
-          <Text style={globalStyles.statsText}>Height</Text>
-          <Text style={globalStyles.resultForStats}>dfvb</Text>
-        </View>
-        <View style={globalStyles.statsContainer}>
-          <Text style={globalStyles.statsText}>Weight</Text>
-          <Text style={globalStyles.resultForStats}>Sed</Text>
-        </View>
-        <View style={globalStyles.statsContainer}>
-          <Text style={globalStyles.statsText}>Abilities </Text>
-          <Text style={globalStyles.resultForStats}>sesd</Text>
-        </View>
+      <TextGreen>{pokemonId}</TextGreen>
+      <StatsContainer>
+        <StatsText>Species</StatsText>
+        <ResultForStats>ghjf</ResultForStats>
+      </StatsContainer>
+      <StatsContainer>
+        <StatsText>Height</StatsText>
+        <ResultForStats>dfvb</ResultForStats>
+      </StatsContainer>
+      <StatsContainer>
+        <StatsText>Weight</StatsText>
+        <ResultForStats>Sed</ResultForStats>
+      </StatsContainer>
+      <StatsContainer>
+        <StatsText>Abilities</StatsText>
+        <ResultForStats>sesd</ResultForStats>
+      </StatsContainer>
 
-      </View>
-        <View style={{ ...globalStyles.statsContainer, ...globalStyles.paddingBottom }}>
-          <Text style={globalStyles.boldHeader}>Breeding</Text>
-        </View>
-      <View>
-        <View style={globalStyles.statsContainer}>
-          <Text style={globalStyles.statsText}>gender</Text>
-          <Text style={globalStyles.resultForStats}>boy girl 10%</Text>
-        </View>
-        <View style={globalStyles.statsContainer}>
-          <Text style={globalStyles.statsText}>Egg Groups</Text>
-          <Text style={globalStyles.resultForStats}>MonsteR</Text>
-        </View>
-        <View style={globalStyles.statsContainer}>
-          <Text style={globalStyles.statsText}>Egg Cycle</Text>
-          <Text style={globalStyles.resultForStats}>Grasz</Text>
-        </View>
+      <HeaderContainer>
+        <BoldHeader>Breeding</BoldHeader>
+      </HeaderContainer>
 
+      <StatsContainer>
+        <StatsText>gender</StatsText>
+        <ResultForStats>boy girl 10%</ResultForStats>
+      </StatsContainer>
+      <StatsContainer>
+        <StatsText>Egg Groups</StatsText>
+        <ResultForStats>MonsteR</ResultForStats>
+      </StatsContainer>
+      <StatsContainer>
+        <StatsText>Egg Cycle</StatsText>
+        <ResultForStats>Grasz</ResultForStats>
+      </StatsContainer>
 
-
-        <View style={globalStyles.glitchWithFramwork}></View>
-
-      </View>
+      <GlitchWithFramwork></GlitchWithFramwork>
     </View>
   )
 }

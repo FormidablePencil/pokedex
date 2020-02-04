@@ -1,27 +1,52 @@
-import { FETCH_POST, NEW_POKEMON, SELECTED_POKEMON } from '../actions/types'
+import { UPDATE_SUGGESTIONS, UPDATE_VALUE_TYPED, GENERATING_LOCAL_POKEMONLIST, EXPER_REDUX, NEW_POKEMON, SELECTED_POKEMON, POKETYPE_OF_SELECTED_POKEMON, NOT_READY_POKESTATS, IS_READY_POKESTATS } from '../actions/types'
 
 const initialState = {
-  items: [],
+  fetchedPokemonData: [],
   myPokemonThatIveCreated: [],
-  selectedPokemon: ''
+  selectedPokemon: '',
+  localPokemonList: '',
+  valueTyped: 'inital',
+  suggestions: [],
+  pokeTypes: [],
+  isReady: 'false'
 }
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case FETCH_POST:
-      return {
-        ...state,
-        items: action.payload
-      }
-    case NEW_POKEMON:
-      return {
-        ...state,
-        myPokemonThatIveCreated: action.payload
-      }
     case SELECTED_POKEMON:
       return {
         ...state,
-        selectedPokemon: action.selectedPokemon
+        selectedPokemon: action.payload
+      }
+    case GENERATING_LOCAL_POKEMONLIST:
+      return {
+        ...state,
+        localPokemonList: action.payload
+      }
+    case UPDATE_VALUE_TYPED:
+      return {
+        ...state,
+        valueTyped: action.payload
+      }
+    case UPDATE_SUGGESTIONS:
+      return {
+        ...state,
+        suggestions: action.payload
+      }
+    case POKETYPE_OF_SELECTED_POKEMON:
+      return {
+        ...state,
+        pokeTypes: action.payload,
+      }
+    case NOT_READY_POKESTATS:
+      return {
+        ...state,
+        isReady: false
+      }
+    case IS_READY_POKESTATS:
+      return {
+        ...state,
+        isReady: true
       }
     default:
       return state;

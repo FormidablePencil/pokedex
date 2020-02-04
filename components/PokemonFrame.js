@@ -1,16 +1,25 @@
-import React, { Component } from 'react'
-import { globalStyles } from '../styles/globalStyles'
-import { Text, View } from 'native-base'
-import { Image, ImageBackground } from 'react-native'
+import React from 'react'
+import styled from 'styled-components'
 
-//~ test to see if redxu works for fucntional components
-
-export const PokemonFrame = ({number}) => {
+export const PokemonFrame = ({ pokemonNumber }) => {
   return (
-    <View style={{ ...globalStyles.pokemonContainer, }}>
-      <Image source={{uri: `https://pokeres.bastionbot.org/images/pokemon/${number}.png`}} style={{ width: 200, height: 200 }} />
-    </View>
+    <PokemonImageContainer>
+      <PokemonImage
+        source={{ uri: `https://pokeres.bastionbot.org/images/pokemon/${pokemonNumber}.png` }}
+      />
+    </PokemonImageContainer>
   )
 }
+const PokemonImageContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  height: 350px;
+`
+const PokemonImage = styled.Image`
+  width: 200px;
+  height: 200px;
+  bottom: -20px;
+`
 
 export default PokemonFrame
