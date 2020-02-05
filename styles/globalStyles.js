@@ -13,11 +13,6 @@ export const SimpleView = styled.View`
   width: 100%;
   height: 30px;
   `
-  // export const ContainerThemed = styled.View`
-  // background-color: ${props => props.theme.color};
-  // width: 20px;
-  // height: 20px;
-  // `
 export const globalStyles = StyleSheet.create({
   flexCol: {
     flexDirection: 'row',

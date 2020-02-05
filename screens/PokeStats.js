@@ -40,17 +40,18 @@ export class PokeStats extends Component {
     }
 
     this.props.navigation.setParams({ themeColor: this.props.theme.color }) //you must only pass props into setPrams one at a time. Objects don't see to load on time. 
-
-
   }
 
   render() {
+    console.log(this.props.theme.backgroundImage)
     return (
       <Content>
         <View style={{ height: 400 }}>
-          <ImageBackground resizeMethod={'auto'} style={{ position: 'absolute', height: '100%', width: '100%' }} source={require('../assets/images/itl.cat_gri-wallpaper_1396871.png')}>
+          <ImageBackground
+            resizeMethod={'auto'} style={{ position: 'absolute', height: '100%', width: '100%' }}
+            source={this.props.theme.backgroundImage}>
             <PokemonFrame pokemonNumber={Object.keys(this.props.selectedPokemon.item)[0]} />
-            <SimpleView></SimpleView>
+          <SimpleView></SimpleView>
           </ImageBackground>
         </View>
         <View>
@@ -65,7 +66,7 @@ const mapStateToProps = state => ({
   selectedPokemon: state.pokemonRelated.selectedPokemon,
   pokeTypes: state.pokemonRelated.pokeTypes,
   isReady: state.pokemonRelated.isReady,
-  theme: state.pokemonTheme
+  theme: state.pokemonRelated.theme
 })
 
 export default connect(mapStateToProps, { pokeStatsIsReadyNo })(PokeStats)

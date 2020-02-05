@@ -7,9 +7,11 @@ import {
   GENERATING_LOCAL_POKEMONLIST,
   POKETYPE_OF_SELECTED_POKEMON,
   IS_READY_POKESTATS,
-  NOT_READY_POKESTATS
+  NOT_READY_POKESTATS,
+  UPDATE_THEME_POKE_TYPE
 } from './types'
 import gen1 from '../renderImagesDynamically/gen1'
+import { determineThemeByType } from '../theming/themingLogic'
 
 export const reduxPokemonSelected = (selectedPokemon) => dispatch => {
   dispatch({
@@ -71,5 +73,15 @@ export const pokeStatsIsReadyNo = () => dispatch => {
 export const pokeStatsIsReadyYes = () => dispatch => {
   dispatch({
     type: IS_READY_POKESTATS
+  })
+}
+
+export const setThemeByPokeType = (type) => dispatch => {
+    const randomNum = Math.floor(Math.random() * 2) + 0;
+  const theme = determineThemeByType(type[randomNum])
+  console.log(theme)
+  dispatch({
+    type: UPDATE_THEME_POKE_TYPE,
+    payload: theme
   })
 }

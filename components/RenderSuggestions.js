@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { View, Text } from 'native-base'
 import { FlatList, TouchableOpacity } from 'react-native'
+import { SuggestionsContainer } from '../styles/stylesTabs'
 
 import { connect } from 'react-redux'
-import { setThemeByPokeType } from '../actions/pokeTypesActions'
 import {
   generateLocalpokemonList,
   reduxPokemonSelected,
   updateSuggestions,
-  fetchPokemonResources
+  fetchPokemonResources,
+  setThemeByPokeType
 } from '../actions/pokemonRelatedActions'
 
 export class RenderSuggestions extends Component {
@@ -18,8 +19,9 @@ export class RenderSuggestions extends Component {
     const regexTestForNum = new RegExp('^[0-9]*$') //check if integer
     const autoSuggestionList = []
 
+    //Implement search by pokemon types. I already have the json file, all I have to do is compaure all pokemon by the type searched.
     if (valueTyped.length > 0 && regexTestForNum.test(valueTyped)) { //If number
-      console.log('Search by numbers don\'t work yet')
+      //If number then test all pokemon that pass the RegEx test of being a number 
 
     } else if (valueTyped.length > 0) { //else if letter 
 
@@ -58,7 +60,8 @@ export class RenderSuggestions extends Component {
   onPressHandler = async (selectedPokemon) => { //
     this.props.reduxPokemonSelected(selectedPokemon)
     await this.props.fetchPokemonResources(Object.values(selectedPokemon.item)[0]) //Learn to cache this this to local storage.
-    // this.props.setThemeByPokeType(this.props.pokeTypes)
+    this.props.setThemeByPokeType(this.props.pokeTypes)
+
     this.props.goToPokeStatsScreen()
   }
 
@@ -66,13 +69,14 @@ export class RenderSuggestions extends Component {
     return (
       <View>
         <FlatList
+          numColumns={2}
           data={this.props.suggestions}
           renderItem={({ item }) => (
-            <TouchableOpacity
+            <SuggestionsContainer
               onPress={() => this.onPressHandler({ item })}
             >
               <Text>{Object.values(item)}</Text>
-            </TouchableOpacity>
+            </SuggestionsContainer>
           )} keyExtractor={(item, index) => index.toString()} />
       </View>
     )

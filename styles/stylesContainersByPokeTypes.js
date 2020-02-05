@@ -2,9 +2,12 @@ import styled from 'styled-components'
 
 export const FireTypeContainer = styled.View`
   background: red;
-  `
+`
 export const WaterTypeContainer = styled.View`
   background: blue;
+`
+export const TextPokemonTypes = styled.Text`
+  color: white;
 `
 
 export const PokemonTypes = styled.View`
@@ -73,8 +76,4 @@ export const PokemonTypes = styled.View`
         return 'black'
     }
   }}
-  `
-  
-export const TextPokemonTypes = styled.Text`
-  color: white
   `

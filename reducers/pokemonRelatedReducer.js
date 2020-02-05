@@ -1,14 +1,23 @@
-import { UPDATE_SUGGESTIONS, UPDATE_VALUE_TYPED, GENERATING_LOCAL_POKEMONLIST, EXPER_REDUX, NEW_POKEMON, SELECTED_POKEMON, POKETYPE_OF_SELECTED_POKEMON, NOT_READY_POKESTATS, IS_READY_POKESTATS } from '../actions/types'
+import {
+  UPDATE_SUGGESTIONS,
+  UPDATE_VALUE_TYPED,
+  GENERATING_LOCAL_POKEMONLIST,
+  SELECTED_POKEMON,
+  POKETYPE_OF_SELECTED_POKEMON,
+  NOT_READY_POKESTATS,
+  IS_READY_POKESTATS,
+  UPDATE_THEME_POKE_TYPE
+} from '../actions/types'
 
 const initialState = {
   fetchedPokemonData: [],
-  myPokemonThatIveCreated: [],
   selectedPokemon: '',
   localPokemonList: '',
   valueTyped: 'inital',
   suggestions: [],
   pokeTypes: [],
-  isReady: 'false'
+  isReady: 'false',
+  theme: []
 }
 
 export default function (state = initialState, action) {
@@ -18,6 +27,7 @@ export default function (state = initialState, action) {
         ...state,
         selectedPokemon: action.payload
       }
+
     case GENERATING_LOCAL_POKEMONLIST:
       return {
         ...state,
@@ -47,6 +57,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isReady: true
+      }
+    case UPDATE_THEME_POKE_TYPE:
+      return {
+        ...state,
+        theme: action.payload
       }
     default:
       return state;
