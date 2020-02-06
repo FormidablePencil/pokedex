@@ -9,7 +9,7 @@ import {
   reduxPokemonSelected,
   updateSuggestions,
   fetchPokemonResources,
-  setThemeByPokeType
+  setThemeByPokeType,
 } from '../actions/pokemonRelatedActions'
 
 export class RenderSuggestions extends Component {
@@ -57,11 +57,10 @@ export class RenderSuggestions extends Component {
     reduxPokemonSelected(pokemonSelected)
   }
 
-  onPressHandler = async (selectedPokemon) => { //
+  onPressHandler = async (selectedPokemon) => {
     this.props.reduxPokemonSelected(selectedPokemon)
-    await this.props.fetchPokemonResources(Object.values(selectedPokemon.item)[0]) //Learn to cache this this to local storage.
+    await this.props.fetchPokemonResources(selectedPokemon) //Learn to cache this this to local storage.
     this.props.setThemeByPokeType(this.props.pokeTypes)
-
     this.props.goToPokeStatsScreen()
   }
 
@@ -89,7 +88,13 @@ const mapStateToProps = state => ({
   suggestions: state.pokemonRelated.suggestions,
   selectedPokemon: state.pokemonRelated.selectedPokemon,
   pokeTypes: state.pokemonRelated.pokeTypes,
-  theme: state.pokemonTheme
+  theme: state.pokemonTheme,
 })
 
-export default connect(mapStateToProps, { generateLocalpokemonList, reduxPokemonSelected, updateSuggestions, fetchPokemonResources, setThemeByPokeType })(RenderSuggestions)
+export default connect(mapStateToProps, {
+  generateLocalpokemonList,
+  reduxPokemonSelected,
+  updateSuggestions,
+  fetchPokemonResources,
+  setThemeByPokeType,
+})(RenderSuggestions)

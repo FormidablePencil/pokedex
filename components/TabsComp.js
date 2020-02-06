@@ -3,9 +3,12 @@ import { View, Text, Tabs, Tab, TabHeading, Icon } from 'native-base'
 import { globalStyles } from '../styles/globalStyles'
 import { StyleSheet } from 'react-native'
 import Tab1 from './Tab1'
+import TabEvolution from './TabEvolution'
+import TabMoves from './TabMoves'
 import {
   TextWhite,
 } from '../styles/stylesTabs' //@ TextWhite is more of a tab component
+import Tab2 from './Tab2'
 
 const styles = StyleSheet.create({
   tabBarUnderlineStyle: {
@@ -19,7 +22,7 @@ const styles = StyleSheet.create({
   }
 })
 
-const TabsComp = ({ tabColor, pokemonId, type }) => {
+const TabsComp = ({ tabColor, pokeData, pokemonStats }) => {
   return (
     <View style={styles.outerContainer}>
       <Tabs tabBarUnderlineStyle={styles.tabBarUnderlineStyle}>
@@ -29,7 +32,16 @@ const TabsComp = ({ tabColor, pokemonId, type }) => {
           </View>
         }>
 
-          <Tab1 pokemonId={pokemonId} type={type} />
+          <Tab1
+            height={pokeData.height}
+            weight={pokeData.weight}
+          // species={}
+          // abilities={}
+          // gender={}~
+          // eggGroups={}
+          // eggCycle={}
+          // hp={}
+          />
 
         </Tab>
         <Tab heading={
@@ -37,8 +49,18 @@ const TabsComp = ({ tabColor, pokemonId, type }) => {
             <TextWhite>Base Stats</TextWhite>
           </View>
         }>
+          {pokemonStats ?
 
-          {/* <Tab2 /> */}
+            <Tab2
+              baseAttack={pokemonStats.base_attack}
+              baseDefense={pokemonStats.base_defense}
+              baseStamina={pokemonStats.base_stamina}
+            /> :
+            <View style={{ flex: 1, justifyContent: 'center', alignContent: 'center' }}>
+
+              <Text style={{ textAlign: 'center' }}>Base stats are not availiable for this pokemon</Text>
+            </View>
+          }
 
         </Tab>
         <Tab heading={
@@ -47,7 +69,9 @@ const TabsComp = ({ tabColor, pokemonId, type }) => {
           </View>
         }>
 
-          {/* <Tab3 /> */}
+          <TabEvolution
+            evolution={'we want the pokemons evolutions. Evolution-chain api endpoint'}
+          />
 
         </Tab>
         <Tab heading={
@@ -56,7 +80,7 @@ const TabsComp = ({ tabColor, pokemonId, type }) => {
           </View>
         }>
 
-          {/* <Tab3 /> */}
+          <TabMoves />
 
         </Tab>
       </Tabs>

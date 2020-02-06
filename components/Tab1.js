@@ -10,25 +10,26 @@ import {
   TextGreen
 } from '../styles/stylesTabs'
 
-export default Tab1 = ({ pokemonId, type }) => {
+export default Tab1 = ({ species, height, weight, abilities, gender, eggGroups, eggCycle }) => {
+  const heightCm = height
+  const weightKg = weight
   return (
     <View>
-      <TextGreen>{pokemonId}</TextGreen>
       <StatsContainer>
         <StatsText>Species</StatsText>
-        <ResultForStats>ghjf</ResultForStats>
+        <ResultForStats>{species}</ResultForStats>
       </StatsContainer>
       <StatsContainer>
         <StatsText>Height</StatsText>
-        <ResultForStats>dfvb</ResultForStats>
+        <ResultForStats>{height}</ResultForStats>
       </StatsContainer>
       <StatsContainer>
         <StatsText>Weight</StatsText>
-        <ResultForStats>Sed</ResultForStats>
+        <ResultForStats>{weight}</ResultForStats>
       </StatsContainer>
       <StatsContainer>
         <StatsText>Abilities</StatsText>
-        <ResultForStats>sesd</ResultForStats>
+        <ResultForStats>{abilities}</ResultForStats>
       </StatsContainer>
 
       <HeaderContainer>
@@ -36,16 +37,16 @@ export default Tab1 = ({ pokemonId, type }) => {
       </HeaderContainer>
 
       <StatsContainer>
-        <StatsText>gender</StatsText>
-        <ResultForStats>boy girl 10%</ResultForStats>
+        <StatsText>Gender</StatsText>
+        <ResultForStats>{gender}</ResultForStats>
       </StatsContainer>
       <StatsContainer>
         <StatsText>Egg Groups</StatsText>
-        <ResultForStats>MonsteR</ResultForStats>
+        <ResultForStats>{eggGroups}</ResultForStats>
       </StatsContainer>
       <StatsContainer>
         <StatsText>Egg Cycle</StatsText>
-        <ResultForStats>Grasz</ResultForStats>
+        <ResultForStats>{eggCycle}</ResultForStats>
       </StatsContainer>
 
       <GlitchWithFramwork></GlitchWithFramwork>

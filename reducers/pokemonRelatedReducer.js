@@ -6,12 +6,13 @@ import {
   POKETYPE_OF_SELECTED_POKEMON,
   NOT_READY_POKESTATS,
   IS_READY_POKESTATS,
-  UPDATE_THEME_POKE_TYPE
+  UPDATE_THEME_POKE_TYPE,
+  EXTENSIVE_INFO_POKEMON_SELECTED,
 } from '../actions/types'
 
 const initialState = {
-  fetchedPokemonData: [],
   selectedPokemon: '',
+  pokeData: [],
   localPokemonList: '',
   valueTyped: 'inital',
   suggestions: [],
@@ -27,7 +28,6 @@ export default function (state = initialState, action) {
         ...state,
         selectedPokemon: action.payload
       }
-
     case GENERATING_LOCAL_POKEMONLIST:
       return {
         ...state,
@@ -62,6 +62,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         theme: action.payload
+      }
+    case EXTENSIVE_INFO_POKEMON_SELECTED:
+      return {
+        ...state,
+        pokeData: action.payload 
       }
     default:
       return state;

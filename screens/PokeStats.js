@@ -38,12 +38,11 @@ export class PokeStats extends Component {
       const result = typeBoxColorSwitch(types[i])
       themeCulor.push(result)
     }
-
+    
     this.props.navigation.setParams({ themeColor: this.props.theme.color }) //you must only pass props into setPrams one at a time. Objects don't see to load on time. 
   }
 
   render() {
-    console.log(this.props.theme.backgroundImage)
     return (
       <Content>
         <View style={{ height: 400 }}>
@@ -55,7 +54,9 @@ export class PokeStats extends Component {
           </ImageBackground>
         </View>
         <View>
-          <TabsComp />
+          <TabsComp 
+          pokeData={this.props.pokeData} 
+          />
         </View>
       </Content>
     )
@@ -66,7 +67,8 @@ const mapStateToProps = state => ({
   selectedPokemon: state.pokemonRelated.selectedPokemon,
   pokeTypes: state.pokemonRelated.pokeTypes,
   isReady: state.pokemonRelated.isReady,
-  theme: state.pokemonRelated.theme
+  theme: state.pokemonRelated.theme,
+  pokeData: state.pokemonRelated.pokeData,
 })
 
 export default connect(mapStateToProps, { pokeStatsIsReadyNo })(PokeStats)

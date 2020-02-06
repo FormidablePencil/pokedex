@@ -55,7 +55,7 @@ export class PokeIndex extends Component {
 }
 
 const mapStateToProps = state => ({
-  localPokemonList: state.pokemonRelated.localPokemonList
+  localPokemonList: state.pokemonRelated.localPokemonList,
 })
 
 export default connect(mapStateToProps, { experimentingRedux, reduxUpdateValueTyped })(PokeIndex);
