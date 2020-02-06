@@ -10,7 +10,7 @@ import { typeBoxColorSwitch } from '../logic/themingLogic'
 import styled, { ThemeProvider } from "styled-components";
 
 import { connect } from 'react-redux'
-import { pokeStatsIsReadyNo } from '../actions/pokemonRelatedActions' // this is the funciton that make the dominos of redux tumble down
+import { pokeStatsIsReadyNo, setThemeByPokeType } from '../actions/pokemonRelatedActions' // this is the funciton that make the dominos of redux tumble down
 
 export class PokeStats extends Component {
 
@@ -27,18 +27,28 @@ export class PokeStats extends Component {
     }
   }
 
+  UNSAFE_componentWillMount = async () => {
+    await this.props.setThemeByPokeType(this.props.pokeTypes) //! this isn't working on time. 
+  }
+  
   componentDidMount = () => {
     this.props.navigation.setParams({ pokeTypes: this.props.pokeTypes })
     this.props.navigation.setParams({ pokemonSelected: Object.values(this.props.selectedPokemon.item)[0] })
     this.props.navigation.setParams({ pokeNumber: Object.keys(this.props.selectedPokemon.item)[0] })
 
     const types = this.props.pokeTypes
+
     let themeCulor = [];
     for (let i = 0; i < types.length; i++) {
       const result = typeBoxColorSwitch(types[i])
       themeCulor.push(result)
+      console.log('_--------gee-------------------')
+      console.log(this.props.pokemonSelectedDescription)
+      console.log(this.props.pokemonSelectedEvolution)
+      console.log('_-----------------------------')
+
     }
-    
+
     this.props.navigation.setParams({ themeColor: this.props.theme.color }) //you must only pass props into setPrams one at a time. Objects don't see to load on time. 
   }
 
@@ -50,12 +60,12 @@ export class PokeStats extends Component {
             resizeMethod={'auto'} style={{ position: 'absolute', height: '100%', width: '100%' }}
             source={this.props.theme.backgroundImage}>
             <PokemonFrame pokemonNumber={Object.keys(this.props.selectedPokemon.item)[0]} />
-          <SimpleView></SimpleView>
+            <SimpleView></SimpleView>
           </ImageBackground>
         </View>
         <View>
-          <TabsComp 
-          pokeData={this.props.pokeData} 
+          <TabsComp
+            pokeData={this.props.pokeData}
           />
         </View>
       </Content>
@@ -69,6 +79,8 @@ const mapStateToProps = state => ({
   isReady: state.pokemonRelated.isReady,
   theme: state.pokemonRelated.theme,
   pokeData: state.pokemonRelated.pokeData,
+  pokemonSelectedEvolution: state.pokemonRelated.pokemonSelectedEvolution,
+  pokemonSelectedDescription: state.pokemonRelated.pokemonSelectedDescription
 })
 
-export default connect(mapStateToProps, { pokeStatsIsReadyNo })(PokeStats)
+export default connect(mapStateToProps, { pokeStatsIsReadyNo, setThemeByPokeType })(PokeStats)

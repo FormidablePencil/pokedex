@@ -58,10 +58,10 @@ export class RenderSuggestions extends Component {
   }
 
   onPressHandler = async (selectedPokemon) => {
-    this.props.reduxPokemonSelected(selectedPokemon)
+    await this.props.reduxPokemonSelected(selectedPokemon)
     await this.props.fetchPokemonResources(selectedPokemon) //Learn to cache this this to local storage.
-    this.props.setThemeByPokeType(this.props.pokeTypes)
-    this.props.goToPokeStatsScreen()
+    await this.props.goToPokeStatsScreen()
+
   }
 
   render() {

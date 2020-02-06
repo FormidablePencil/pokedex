@@ -8,6 +8,9 @@ import {
   IS_READY_POKESTATS,
   UPDATE_THEME_POKE_TYPE,
   EXTENSIVE_INFO_POKEMON_SELECTED,
+  POKEMON_SELECTED_EVOLUTION,
+  POKEMON_SELECTED_DESCRIPTION,
+  COUNTER_POKEMON_TYPES
 } from '../actions/types'
 
 const initialState = {
@@ -18,7 +21,10 @@ const initialState = {
   suggestions: [],
   pokeTypes: [],
   isReady: 'false',
-  theme: []
+  theme: [],
+  pokemonSelectedEvolution: [],
+  pokemonSelectedDescription: []
+
 }
 
 export default function (state = initialState, action) {
@@ -48,6 +54,16 @@ export default function (state = initialState, action) {
         ...state,
         pokeTypes: action.payload,
       }
+    case POKEMON_SELECTED_EVOLUTION:
+      return {
+        ...state,
+        pokemonSelectedEvolution: action.payload,
+      }
+    case POKEMON_SELECTED_DESCRIPTION:
+      return {
+        ...state,
+        pokemonSelectedDescription: action.payload,
+      }
     case NOT_READY_POKESTATS:
       return {
         ...state,
@@ -68,6 +84,10 @@ export default function (state = initialState, action) {
         ...state,
         pokeData: action.payload 
       }
+      case COUNTER_POKEMON_TYPES:
+        return {
+          theme: action.payload
+        }
     default:
       return state;
   }

@@ -35,6 +35,7 @@ export const determineThemeByType = (pokeType) => {
       array.push(dragon)
       break
     case 'Electric':
+      console.log('???')
       array.push(electric)
       break
     case 'Fairy':
@@ -45,7 +46,6 @@ export const determineThemeByType = (pokeType) => {
       break
     case 'Fire':
       array.push(fire)
-      console.log('okkk')
       break
     case 'Flying':
       array.push(flying)
@@ -83,7 +83,5 @@ export const determineThemeByType = (pokeType) => {
     default:
       array.push(default_)
   }
-  console.log(array[0])
   return array[0]
-
 }
