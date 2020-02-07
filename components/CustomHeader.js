@@ -2,7 +2,6 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import { HeaderTitleContainer, NameId, HeaderTitle, HeaderPokeNumber, PokeTypesContainer } from '../styles/stylesCustomHeader';
 import { PokemonTypes, TextPokemonTypes } from '../styles/stylesContainersByPokeTypes'
-import { } from '../logic/themingLogic'
 import { StyleSheet } from 'react-native'
 
 

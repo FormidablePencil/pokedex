@@ -2,18 +2,17 @@ import {
   UPDATE_SUGGESTIONS,
   UPDATE_VALUE_TYPED,
   GENERATING_LOCAL_POKEMONLIST,
-  SELECTED_POKEMON,
+  SELECTED_POKEMON_NAME_AND_TYPE,
   NOT_READY_POKESTATS,
   IS_READY_POKESTATS,
   UPDATE_THEME_POKE_TYPE,
   DATA_SPECIFIC_POKEMON,
   COUNTER_POKEMON_TYPES,
-  GET_SPECIFIC_POKEMON_TYPE,
   GET_LIST_POKEMON_TYPE
 } from '../actions/types'
 
 const initialState = {
-  selectedPokemon: '',
+  selectedPokemonNameAndType: '',
   pokemonTypeList: '',
   specificPokeType: [],
   dataSpecificPokemon: [],
@@ -26,21 +25,16 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case SELECTED_POKEMON:
+    case SELECTED_POKEMON_NAME_AND_TYPE:
       return {
         ...state,
-        selectedPokemon: action.payload
+        selectedPokemonNameAndType: action.payload
       }
       case GET_LIST_POKEMON_TYPE:
         return {
           ...state,
           pokemonTypeList: action.payload
         } 
-    case GET_SPECIFIC_POKEMON_TYPE:
-      return {
-        ...state,
-        specificPokeType: action.payload
-      }
     case GENERATING_LOCAL_POKEMONLIST:
       return {
         ...state,

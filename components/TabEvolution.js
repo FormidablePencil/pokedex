@@ -10,12 +10,17 @@ import {
   TextGreen
 } from '../styles/stylesTabs'
 
-const TabEvolution = ({ evolution }) => {
+const TabEvolution = ({ evolutions }) => {
+  console.log('ppsssss')
+  console.log(evolutions)
   return (
     <View>
       <StatsContainer>
-        <StatsText>evolution</StatsText>
-        <ResultForStats>{evolution}</ResultForStats>
+        <StatsText>evolutions</StatsText>
+        <ResultForStats>{evolutions.basic}</ResultForStats>
+        <ResultForStats>{evolutions.stage1}</ResultForStats>
+        <ResultForStats>{evolutions.stage2}</ResultForStats>
+        <Text>get the type and id of pokemon evolutions</Text>
       </StatsContainer>
     </View>
   )

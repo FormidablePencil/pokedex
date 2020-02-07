@@ -1,18 +1,20 @@
 import React, { Component } from 'react'
 import { View, Text } from 'native-base'
-import { FlatList, TouchableOpacity } from 'react-native'
-import { SuggestionsContainer } from '../styles/stylesTabs'
+import { FlatList, TouchableOpacity, Image } from 'react-native'
+import { WrappingView, SuggestionsContainer, IndexPokemonImage, IndexContainer, TextNum, TextName, ViewForText } from '../styles/stylesTabs'
+import { getSelectedPokemonType, sliceOffDigits } from '../logic/logic'
 
 import { connect } from 'react-redux'
 import {
   generateLocalpokemonList,
-  reduxPokemonSelected,
+  updateSelectedPokemonAndType,
   updateSuggestions,
   fetchSpecificPokemonResources,
   setThemeByPokeType,
   getListOfPokemonTypes,
   getTypeOfSelectPokemon
 } from '../actions/pokemonRelatedActions'
+import { globalStyles } from '../styles/globalStyles'
 
 export class RenderSuggestions extends Component {
   autoSuggestionFunctionality = (valueTyped) => {
@@ -44,6 +46,7 @@ export class RenderSuggestions extends Component {
 
   componentDidMount = async () => {
     await this.props.generateLocalpokemonList()
+    await this.props.getListOfPokemonTypes()
     this.props.updateSuggestions(this.props.localPokemonList)
   }
 
@@ -56,43 +59,48 @@ export class RenderSuggestions extends Component {
 
   spacificPokemonSelected = (selected) => {
     const pokemonSelected = selected.item.toLowerCase()
-    reduxPokemonSelected(pokemonSelected)
+    updateSelectedPokemonAndType(pokemonSelected)
   }
 
   onPressHandler = async (selectedPokemon) => {
-    await this.props.reduxPokemonSelected(selectedPokemon)
-    if (!this.props.pokemonTypeList) {
-      await this.props.getListOfPokemonTypes()
-      await this.props.getTypeOfSelectPokemon(selectedPokemon, this.props.pokemonTypeList)
-    } else {
-      await this.props.getTypeOfSelectPokemon(selectedPokemon, this.props.pokemonTypeList)
-    }
+    const pokeType = await getSelectedPokemonType(selectedPokemon, this.props.pokemonTypeList)
+    await this.props.updateSelectedPokemonAndType(selectedPokemon, pokeType)
     this.props.fetchSpecificPokemonResources(selectedPokemon)
-    this.props.setThemeByPokeType(this.props.specificPokeType)
+    this.props.setThemeByPokeType(this.props.selectedPokemonNameAndType.type)
     this.props.goToPokeStatsScreen()
-
   }
 
   render() {
+    // console.log(this.props.selectedPokemonNameAndType)
     return (
-      <View>
+      <WrappingView>
+
         <FlatList
           numColumns={2}
-          data={this.props.suggestions}
-          renderItem={({ item }) => (
-            <SuggestionsContainer
-              onPress={() => this.onPressHandler({ item })}
-            >
-              <Text>{Object.values(item)}</Text>
-            </SuggestionsContainer>
-          )} keyExtractor={(item, index) => index.toString()} />
-      </View>
+          data={this.props.suggestions} //@ it would be easy to add an array of pokemonTypes to suggestions. Come back to it later 
+          renderItem={({ item }) => {
+            const pokemonNum = Object.keys(item)[0]
+            const pokemonName = Object.values(item)[0]
+            const searchByNum = sliceOffDigits(pokemonNum)
+
+            return (
+              <SuggestionsContainer onPress={() => this.onPressHandler({ item })}>
+                <IndexPokemonImage source={{ uri: `https://pokeres.bastionbot.org/images/pokemon/${searchByNum}.png` }} />
+                <ViewForText>
+                  <TextNum>{pokemonNum}</TextNum>
+                  <TextName>{pokemonName}</TextName>
+                </ViewForText>
+              </SuggestionsContainer>
+            )
+          }} keyExtractor={(item, index) => index.toString()} />
+      </WrappingView>
     )
   }
 }
 
 const mapStateToProps = state => ({
   localPokemonList: state.pokemonRelated.localPokemonList,
+  selectedPokemonNameAndType: state.pokemonRelated.selectedPokemonNameAndType,
   valueTyped: state.pokemonRelated.valueTyped,
   suggestions: state.pokemonRelated.suggestions,
   selectedPokemon: state.pokemonRelated.selectedPokemon,
@@ -104,7 +112,7 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   generateLocalpokemonList,
-  reduxPokemonSelected,
+  updateSelectedPokemonAndType,
   updateSuggestions,
   fetchSpecificPokemonResources,
   setThemeByPokeType,
