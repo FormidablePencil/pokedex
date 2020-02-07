@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   }
 })
 
-const TabsComp = ({ tabColor, pokeData, pokemonStats }) => {
+const TabsComp = ({ tabColor, pokemonStats }) => {
   return (
     <View style={styles.outerContainer}>
       <Tabs tabBarUnderlineStyle={styles.tabBarUnderlineStyle}>
@@ -33,8 +33,8 @@ const TabsComp = ({ tabColor, pokeData, pokemonStats }) => {
         }>
 
           <Tab1
-            height={pokeData.height}
-            weight={pokeData.weight}
+            // height={}
+            // weight={}
           // species={}
           // abilities={}
           // gender={}~

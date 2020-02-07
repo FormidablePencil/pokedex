@@ -23,7 +23,6 @@ import {
 
 export const determineThemeByType = (pokeType) => {
   let array = []
-  console.log(pokeType)
   switch (pokeType) {
     case 'Bug':
       array.push(bug)
@@ -35,7 +34,6 @@ export const determineThemeByType = (pokeType) => {
       array.push(dragon)
       break
     case 'Electric':
-      console.log('???')
       array.push(electric)
       break
     case 'Fairy':

@@ -8,8 +8,10 @@ import {
   generateLocalpokemonList,
   reduxPokemonSelected,
   updateSuggestions,
-  fetchPokemonResources,
+  fetchSpecificPokemonResources,
   setThemeByPokeType,
+  getListOfPokemonTypes,
+  getTypeOfSelectPokemon
 } from '../actions/pokemonRelatedActions'
 
 export class RenderSuggestions extends Component {
@@ -59,8 +61,15 @@ export class RenderSuggestions extends Component {
 
   onPressHandler = async (selectedPokemon) => {
     await this.props.reduxPokemonSelected(selectedPokemon)
-    await this.props.fetchPokemonResources(selectedPokemon) //Learn to cache this this to local storage.
-    await this.props.goToPokeStatsScreen()
+    if (!this.props.pokemonTypeList) {
+      await this.props.getListOfPokemonTypes()
+      await this.props.getTypeOfSelectPokemon(selectedPokemon, this.props.pokemonTypeList)
+    } else {
+      await this.props.getTypeOfSelectPokemon(selectedPokemon, this.props.pokemonTypeList)
+    }
+    this.props.fetchSpecificPokemonResources(selectedPokemon)
+    this.props.setThemeByPokeType(this.props.specificPokeType)
+    this.props.goToPokeStatsScreen()
 
   }
 
@@ -89,12 +98,16 @@ const mapStateToProps = state => ({
   selectedPokemon: state.pokemonRelated.selectedPokemon,
   pokeTypes: state.pokemonRelated.pokeTypes,
   theme: state.pokemonTheme,
+  specificPokeType: state.pokemonRelated.specificPokeType,
+  pokemonTypeList: state.pokemonRelated.pokemonTypeList
 })
 
 export default connect(mapStateToProps, {
   generateLocalpokemonList,
   reduxPokemonSelected,
   updateSuggestions,
-  fetchPokemonResources,
+  fetchSpecificPokemonResources,
   setThemeByPokeType,
+  getListOfPokemonTypes,
+  getTypeOfSelectPokemon
 })(RenderSuggestions)

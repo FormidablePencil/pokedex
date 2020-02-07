@@ -3,28 +3,25 @@ import {
   UPDATE_VALUE_TYPED,
   GENERATING_LOCAL_POKEMONLIST,
   SELECTED_POKEMON,
-  POKETYPE_OF_SELECTED_POKEMON,
   NOT_READY_POKESTATS,
   IS_READY_POKESTATS,
   UPDATE_THEME_POKE_TYPE,
-  EXTENSIVE_INFO_POKEMON_SELECTED,
-  POKEMON_SELECTED_EVOLUTION,
-  POKEMON_SELECTED_DESCRIPTION,
-  COUNTER_POKEMON_TYPES
+  DATA_SPECIFIC_POKEMON,
+  COUNTER_POKEMON_TYPES,
+  GET_SPECIFIC_POKEMON_TYPE,
+  GET_LIST_POKEMON_TYPE
 } from '../actions/types'
 
 const initialState = {
   selectedPokemon: '',
-  pokeData: [],
+  pokemonTypeList: '',
+  specificPokeType: [],
+  dataSpecificPokemon: [],
   localPokemonList: '',
   valueTyped: 'inital',
   suggestions: [],
-  pokeTypes: [],
   isReady: 'false',
   theme: [],
-  pokemonSelectedEvolution: [],
-  pokemonSelectedDescription: []
-
 }
 
 export default function (state = initialState, action) {
@@ -33,6 +30,16 @@ export default function (state = initialState, action) {
       return {
         ...state,
         selectedPokemon: action.payload
+      }
+      case GET_LIST_POKEMON_TYPE:
+        return {
+          ...state,
+          pokemonTypeList: action.payload
+        } 
+    case GET_SPECIFIC_POKEMON_TYPE:
+      return {
+        ...state,
+        specificPokeType: action.payload
       }
     case GENERATING_LOCAL_POKEMONLIST:
       return {
@@ -49,20 +56,10 @@ export default function (state = initialState, action) {
         ...state,
         suggestions: action.payload
       }
-    case POKETYPE_OF_SELECTED_POKEMON:
+    case DATA_SPECIFIC_POKEMON:
       return {
         ...state,
-        pokeTypes: action.payload,
-      }
-    case POKEMON_SELECTED_EVOLUTION:
-      return {
-        ...state,
-        pokemonSelectedEvolution: action.payload,
-      }
-    case POKEMON_SELECTED_DESCRIPTION:
-      return {
-        ...state,
-        pokemonSelectedDescription: action.payload,
+        dataSpecificPokemon: action.payload,
       }
     case NOT_READY_POKESTATS:
       return {
@@ -78,11 +75,6 @@ export default function (state = initialState, action) {
       return {
         ...state,
         theme: action.payload
-      }
-    case EXTENSIVE_INFO_POKEMON_SELECTED:
-      return {
-        ...state,
-        pokeData: action.payload 
       }
       case COUNTER_POKEMON_TYPES:
         return {

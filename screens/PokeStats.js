@@ -27,26 +27,18 @@ export class PokeStats extends Component {
     }
   }
 
-  UNSAFE_componentWillMount = async () => {
-    await this.props.setThemeByPokeType(this.props.pokeTypes) //! this isn't working on time. 
-  }
   
   componentDidMount = () => {
-    this.props.navigation.setParams({ pokeTypes: this.props.pokeTypes })
+    this.props.navigation.setParams({ pokeTypes: this.props.specificPokeType })
     this.props.navigation.setParams({ pokemonSelected: Object.values(this.props.selectedPokemon.item)[0] })
-    this.props.navigation.setParams({ pokeNumber: Object.keys(this.props.selectedPokemon.item)[0] })
+    this.props.navigation.setParams({ pokeNumber: Object.keys(this.props.selectedPokemon.item)[0] }) 
 
-    const types = this.props.pokeTypes
+    const types = this.props.specificPokeType
 
     let themeCulor = [];
     for (let i = 0; i < types.length; i++) {
       const result = typeBoxColorSwitch(types[i])
       themeCulor.push(result)
-      console.log('_--------gee-------------------')
-      console.log(this.props.pokemonSelectedDescription)
-      console.log(this.props.pokemonSelectedEvolution)
-      console.log('_-----------------------------')
-
     }
 
     this.props.navigation.setParams({ themeColor: this.props.theme.color }) //you must only pass props into setPrams one at a time. Objects don't see to load on time. 
@@ -65,7 +57,7 @@ export class PokeStats extends Component {
         </View>
         <View>
           <TabsComp
-            pokeData={this.props.pokeData}
+            pokeData={{}}
           />
         </View>
       </Content>
@@ -80,7 +72,9 @@ const mapStateToProps = state => ({
   theme: state.pokemonRelated.theme,
   pokeData: state.pokemonRelated.pokeData,
   pokemonSelectedEvolution: state.pokemonRelated.pokemonSelectedEvolution,
-  pokemonSelectedDescription: state.pokemonRelated.pokemonSelectedDescription
+  pokemonSelectedDescription: state.pokemonRelated.pokemonSelectedDescription,
+  dataSpecificPokemon: state.pokemonRelated.dataSpecificPokemon,
+  specificPokeType: state.pokemonRelated.specificPokeType
 })
 
 export default connect(mapStateToProps, { pokeStatsIsReadyNo, setThemeByPokeType })(PokeStats)
