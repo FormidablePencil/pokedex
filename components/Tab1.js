@@ -7,14 +7,40 @@ import {
   HeaderContainer,
   BoldHeader,
   GlitchWithFramwork,
-  TextGreen
+  TextGreen,
+  AboutContainer,
+  AboutText,
+  AboutTextResults
 } from '../styles/stylesTabs'
 
-export default Tab1 = ({ species, height, weight, abilities, gender, eggGroups, eggCycle }) => {
+export default Tab1 = ({ description, abilitiesAndDescriptions, species, height, weight }) => {
   const heightCm = height
   const weightKg = weight
   return (
     <View>
+      {abilitiesAndDescriptions ? abilitiesAndDescriptions.map(item => {
+        return (
+          <View>
+            <AboutContainer>
+              <AboutText>Pokemon description</AboutText>
+              <AboutTextResults>{description}</AboutTextResults>
+            </AboutContainer>
+            <AboutContainer>
+              <AboutText>ability</AboutText>
+              <ResultForStats>{item.nameOfAbility}</ResultForStats>
+            </AboutContainer>
+            <AboutContainer>
+              <AboutText>ability description</AboutText>
+              <ResultForStats>{item.description}</ResultForStats>
+            </AboutContainer>
+          </View>
+        )
+      }) :
+      <Text>Failed</Text>
+      }
+      <HeaderContainer>
+        <BoldHeader>Title</BoldHeader>
+      </HeaderContainer>
       <StatsContainer>
         <StatsText>Species</StatsText>
         <ResultForStats>{species}</ResultForStats>
@@ -27,29 +53,9 @@ export default Tab1 = ({ species, height, weight, abilities, gender, eggGroups, 
         <StatsText>Weight</StatsText>
         <ResultForStats>{weight}</ResultForStats>
       </StatsContainer>
-      <StatsContainer>
-        <StatsText>Abilities</StatsText>
-        <ResultForStats>{abilities}</ResultForStats>
-      </StatsContainer>
 
-      <HeaderContainer>
-        <BoldHeader>Breeding</BoldHeader>
-      </HeaderContainer>
-
-      <StatsContainer>
-        <StatsText>Gender</StatsText>
-        <ResultForStats>{gender}</ResultForStats>
-      </StatsContainer>
-      <StatsContainer>
-        <StatsText>Egg Groups</StatsText>
-        <ResultForStats>{eggGroups}</ResultForStats>
-      </StatsContainer>
-      <StatsContainer>
-        <StatsText>Egg Cycle</StatsText>
-        <ResultForStats>{eggCycle}</ResultForStats>
-      </StatsContainer>
 
       <GlitchWithFramwork></GlitchWithFramwork>
-    </View>
+    </View >
   )
 }

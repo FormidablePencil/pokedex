@@ -10,6 +10,7 @@ export const TextPokemonTypes = styled.Text`
   color: white;
 `
 
+//make case for pokemonIndexIndividual container
 export const PokemonTypes = styled.View`
   border-radius: 20px;
   padding-horizontal: 10px;
@@ -17,6 +18,7 @@ export const PokemonTypes = styled.View`
   width: 70px;
   align-items: center;
   background-color: ${props => {
+    console.log(props.theme)
     switch (props.theme) {
       case 'Bug':
         return 'black'
@@ -37,16 +39,16 @@ export const PokemonTypes = styled.View`
         return 'black'
         break
       case 'Fire':
-        return 'black'
+        return 'red'
         break
       case 'Flying':
-        return 'black'
+        return 'grey'
         break
       case 'Ghost':
         return 'black'
         break
       case 'Grass':
-        return 'black'
+        return 'green'
         break
       case 'Ground':
         return 'black'

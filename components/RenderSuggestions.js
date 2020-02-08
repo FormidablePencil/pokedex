@@ -6,6 +6,7 @@ import { getSelectedPokemonType, sliceOffDigits } from '../logic/logic'
 
 import { connect } from 'react-redux'
 import {
+  pokeStatsIsReadyYes,
   generateLocalpokemonList,
   updateSelectedPokemonAndType,
   updateSuggestions,
@@ -63,11 +64,12 @@ export class RenderSuggestions extends Component {
   }
 
   onPressHandler = async (selectedPokemon) => {
-    const pokeType = await getSelectedPokemonType(selectedPokemon, this.props.pokemonTypeList)
+    const pokeType = await getSelectedPokemonType(Object.values(selectedPokemon.item)[0], this.props.pokemonTypeList)
     await this.props.updateSelectedPokemonAndType(selectedPokemon, pokeType)
     this.props.fetchSpecificPokemonResources(selectedPokemon)
     this.props.setThemeByPokeType(this.props.selectedPokemonNameAndType.type)
     this.props.goToPokeStatsScreen()
+    this.props.pokeStatsIsReadyYes()
   }
 
   render() {
@@ -111,6 +113,7 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps, {
+  pokeStatsIsReadyYes,
   generateLocalpokemonList,
   updateSelectedPokemonAndType,
   updateSuggestions,

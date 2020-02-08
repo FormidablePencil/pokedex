@@ -1,17 +1,24 @@
-import { StyleSheet } from 'react-native';
-import styled from "styled-components";
+import { StyleSheet } from 'react-native'
+import styled from "styled-components"
 
 export const CenterEverything = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
+  flex: 1
+  justify-content: center
+  align-content: center
+  align-items: center
+
 `
+export const CenterAbsolutelyEverything = styled(CenterEverything)`
+  height: 300;
+`
+
+
 export const SimpleView = styled.View`
-  background-color: white;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
-  width: 100%;
-  height: 30px;
+  background-color: white
+  border-top-left-radius: 30px
+  border-top-right-radius: 30px
+  width: 100%
+  height: 30px
   `
 export const globalStyles = StyleSheet.create({
   flexCol: {

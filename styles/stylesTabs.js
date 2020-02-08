@@ -1,5 +1,19 @@
 import styled from 'styled-components'
 
+export const AboutContainer = styled.View`
+  flex-direction: column
+  margin-horizontal: 30px
+`
+export const AboutText = styled.Text`
+  color: grey
+  margin-vertical: 6px
+`
+export const AboutTextResults = styled.Text`
+  margin-left: 50px
+  margin-vertical: 6px
+  flex-wrap: wrap
+
+`
 export const StatsContainer = styled.View`
   flex-direction: row
   margin-horizontal: 30px
@@ -16,8 +30,9 @@ export const StatsText = styled.Text`
 export const ResultForStats = styled.Text`
   margin-left: 50px
   margin-vertical: 6px
+  flex-wrap: wrap
+  width: 200
 `
-import { TouchableOpacity } from 'react-native'
 export const BoldHeader = styled.Text`
   font-weight: bold
   font-size: 20px
@@ -57,15 +72,15 @@ export const TextName = styled.Text`
   width: 300px
   font-weight: bold
   `
-  export const TextNum = styled.Text`
+export const TextNum = styled.Text`
   font-size: 25px
   top: -10px
   `
-  export const ViewForText = styled.View`
+export const ViewForText = styled.View`
   flex: 1
   justifyContent: center
   `
-  export const IndexPokemonImage = styled.Image`
+export const IndexPokemonImage = styled.Image`
   width: 100px
   height: 100px
   left: -10px

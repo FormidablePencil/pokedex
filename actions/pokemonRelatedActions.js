@@ -82,15 +82,16 @@ export const fetchSpecificPokemonResources = (pokemonSelected, retroMode) => asy
   evolutions.stage1 = resultEvolution.chain.evolves_to[0].species.name
   evolutions.stage2 = resultEvolution.chain.evolves_to[0].evolves_to[0].species.name
   //Getting pokemon's abilities and thier descriptions
-  const abilitiesAndDescriptions = {}
+  const abilitiesAndDescriptions = [] //~
+  const abilityDescription = {}
   for (let i = 0; i < dataPokemon.abilities.length; i++) {
     const resData = await fetch(dataPokemon.abilities[i].ability.url)
     const abilityData = await resData.json()
 
-    const abilityDescription = []
-    abilityDescription.push(abilityData.effect_entries[0].effect)
     const nameOfAbility = dataPokemon.abilities[i].ability.name
-    abilitiesAndDescriptions[nameOfAbility] = abilityDescription
+    abilityDescription.description = abilityData.effect_entries[0].effect
+    abilityDescription.nameOfAbility = nameOfAbility
+    abilitiesAndDescriptions.push(abilityDescription) //~
   }
   //Gettting pokemon's moves
   let moves = []

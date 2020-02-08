@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
-import { View, ImageBackground } from 'react-native'
+import { View, ImageBackground, Button, Text, ScrollView } from 'react-native'
 import { Content } from 'native-base';
 import TabsComp from '../components/TabsComp';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import { SimpleView, globalStyles } from '../styles/globalStyles';
+import { SimpleView, globalStyles, CenterAbsolutelyEverything } from '../styles/globalStyles';
 import PokemonFrame from '../components/PokemonFrame';
 import CustomHeader from '../components/CustomHeader'
 import styled, { ThemeProvider } from "styled-components";
-import { getSelectedPokemonType } from '../logic/logic'
+import { getSelectedPokemonType, getEvolutionsTypes } from '../logic/logic'
 
 import { connect } from 'react-redux'
-import { pokeStatsIsReadyNo, setThemeByPokeType } from '../actions/pokemonRelatedActions' // this is the funciton that make the dominos of redux tumble down
+import { pokeStatsIsReadyNo, pokeStatsIsReadyYes, setThemeByPokeType } from '../actions/pokemonRelatedActions' // this is the funciton that make the dominos of redux tumble down
+
 import { sliceOffDigits } from '../logic/logic';
+import CustomBackButton from '../components/CustomBackButton';
 
 export class PokeStats extends Component {
 
@@ -24,16 +26,27 @@ export class PokeStats extends Component {
           title={navigation.getParam('pokemonSelected')}
           type={navigation.getParam('pokeTypes')}
           themeColor={navigation.getParam('themeColor')}
-        />
+        />,
+      headerLeft: () =>
+        <CustomBackButton backButton={navigation.getParam('backButton')} />
+
     }
   }
 
+  backButton = () => {
+    console.log('worked')
+    this.props.navigation.navigate('Home')
+    this.props.pokeStatsIsReadyNo()
+  }
 
   componentDidMount = () => {
-    this.props.navigation.setParams({ pokeTypes: this.props.specificPokeType })
-    this.props.navigation.setParams({ pokemonSelected: Object.values(this.props.selectedPokemonNameAndType.name.item)[0] })
-    this.props.navigation.setParams({ pokeNumber: Object.keys(this.props.selectedPokemonNameAndType.name.item)[0] })
-    this.props.navigation.setParams({ themeColor: this.props.theme.color }) //you must only pass props into setPrams one at a time. Objects don't see to load on time. 
+    const navigation = this.props.navigation
+    navigation.setParams({ backButton: this.backButton })
+    navigation.setParams({ pokeTypes: this.props.specificPokeType })
+    navigation.setParams({ pokemonSelected: Object.values(this.props.selectedPokemonNameAndType.name.item)[0] })
+    navigation.setParams({ pokeNumber: Object.keys(this.props.selectedPokemonNameAndType.name.item)[0] })
+    navigation.setParams({ themeColor: this.props.theme.color }) //you must only pass props into setPrams one at a time. Objects don't see to load on time. 
+    this.props.pokeStatsIsReadyYes()
   }
 
   render() {
@@ -46,35 +59,40 @@ export class PokeStats extends Component {
     const stats = this.props.dataSpecificPokemon.stats
     const moves = this.props.dataSpecificPokemon.moves
     const description = this.props.dataSpecificPokemon.description
-    const evolutions = this.props.dataSpecificPokemon.evolutions
-    const combinedEvolutionIdType = {} //Filter in objects that match pokemon name 
-    // console.log(this.props.pokemonTypeList)
-    // const uppercasedBasic = evolutions.stage2[0].toUpperCase() + evolutions.stage2.substring(1)  //? I'm trying ot get the pokemonTypeList of all evolution pokemon.
-    //  evolutions.basic.charAt(0).toUpperCase()
-    // const resultz = getSelectedPokemonType(uppercasedBasic, this.props.pokemonTypeList)
 
-    // console.log(uppercasedBasic)
+    const evolutions = this.props.dataSpecificPokemon.evolutions
+    let evolutionsAndInfo
+    if (evolutions) {
+      evolutionsAndInfo = getEvolutionsTypes(evolutions, this.props.pokemonTypeList)
+    }
 
     return (
-      <Content>
-        <View style={{ height: 400 }}>
-          <ImageBackground
-            resizeMethod={'auto'} style={{ position: 'absolute', height: '100%', width: '100%' }}
-            source={this.props.theme.backgroundImage}>
-            <PokemonFrame pokemonNumber={slicedPokemonNum} />
-            <SimpleView></SimpleView>
-          </ImageBackground>
-        </View>
-        <View>
-          <TabsComp
-            abilitiesAndDescriptions={abilitiesAndDescriptions}
-            stats={stats}
-            moves={moves}
-            description={description}
-            evolutions={evolutions}
-          />
-        </View>
-      </Content>
+      <View style={{ position: 'relative' }}>
+        <ScrollView>
+          <View style={{ height: 400 }}>
+            <ImageBackground
+              resizeMethod={'auto'} style={{ height: 400, width: 400, position: 'absolute', top: 0 }}
+              source={this.props.theme.backgroundImage}>
+              <PokemonFrame pokemonNumber={slicedPokemonNum} />
+              <SimpleView></SimpleView>
+            </ImageBackground>
+          </View>
+
+          {this.props.isReady ? 
+            <TabsComp
+              abilitiesAndDescriptions={abilitiesAndDescriptions}
+              stats={stats}
+              moves={moves}
+              description={description}
+              evolutions={evolutionsAndInfo}
+            /> :
+            <CenterAbsolutelyEverything>
+              <Text>Loading...</Text>
+            </CenterAbsolutelyEverything>
+          }
+        </ScrollView>
+
+      </View>
     )
   }
 }
@@ -92,4 +110,4 @@ const mapStateToProps = state => ({
   pokemonTypeList: state.pokemonRelated.pokemonTypeList
 })
 
-export default connect(mapStateToProps, { pokeStatsIsReadyNo, setThemeByPokeType })(PokeStats)
+export default connect(mapStateToProps, { pokeStatsIsReadyNo, pokeStatsIsReadyYes, setThemeByPokeType })(PokeStats)
