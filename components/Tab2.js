@@ -11,15 +11,15 @@ import {
 } from '../styles/stylesTabs'
 
 const Tab2 = ({ stats }) => {
-  const speed = stats.filter(item => item.stat.name === 'speed')
-  const specialDefense = stats.filter(item => item.stat.name === 'special-defense')
-  const specialAttack = stats.filter(item => item.stat.name === 'special-attack')
-  const defense = stats.filter(item => item.stat.name === 'defense')
-  const attack = stats.filter(item => item.stat.name === 'attack')
-  const hp = stats.filter(item => item.stat.name === 'hp')
+  // const speed = stats.filter(item => item.stat.name === 'speed')
+  // const specialDefense = stats.filter(item => item.stat.name === 'special-defense')
+  // const specialAttack = stats.filter(item => item.stat.name === 'special-attack')
+  // const defense = stats.filter(item => item.stat.name === 'defense')
+  // const attack = stats.filter(item => item.stat.name === 'attack')
+  // const hp = stats.filter(item => item.stat.name === 'hp')
   return (
     <View>
-      <StatsContainer>
+      {/* <StatsContainer>
         <StatsText>speed</StatsText>
         <ResultForStats>{speed[0].base_stat}</ResultForStats>
       </StatsContainer>
@@ -44,7 +44,7 @@ const Tab2 = ({ stats }) => {
         <ResultForStats>{hp[0].base_stat}</ResultForStats>
       </StatsContainer>
 
-      <GlitchWithFramwork></GlitchWithFramwork>
+      <GlitchWithFramwork></GlitchWithFramwork> */}
     </View>
   )
 }
