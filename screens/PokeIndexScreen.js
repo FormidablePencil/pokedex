@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import * as Font from 'expo-font'
-import { Ionicons } from '@expo/vector-icons'
+// import * as Font from 'expo-font'
+// import { Ionicons } from '@expo/vector-icons'
 import AppLoading from '../components/AppLoading'
 import { Icon, View, Header, Container, Item } from 'native-base'
 import Search from '../components/Search'
