@@ -9,7 +9,7 @@ export const CenterEverything = styled.View`
 
 `
 export const CenterAbsolutelyEverything = styled(CenterEverything)`
-  height: 300;
+  height: 300px;
 `
 
 

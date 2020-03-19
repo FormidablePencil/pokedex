@@ -14,12 +14,12 @@ import { PokemonTypes, TextPokemonTypes } from '../styles/stylesContainersByPoke
 
 const TabEvolution = ({ evolutions }) => {
   console.log('ppsssss')
-  // console.log(evolutions)
   const basic = evolutions.basic[0]
+  console.log(basic)
   const stage1 = evolutions.stage1[0]
+  console.log(stage1)
   const stage2 = evolutions.stage2[0]
-  // console.log(stage2.type)
-  // console.log(basic)
+  console.log(stage2)
   return (
     <View>
       <StatsContainer>

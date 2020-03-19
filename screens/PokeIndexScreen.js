@@ -6,34 +6,15 @@ import { Icon, View, Header, Container, Item } from 'native-base'
 import Search from '../components/Search'
 import RenderSuggestions from '../components/RenderSuggestions'
 import { connect } from 'react-redux'
-import { experimentingRedux, reduxUpdateValueTyped } from '../actions/pokemonRelatedActions'
+import { experimentingRedux, reduxUpdateValueTyped, actiontest123 } from '../actions/pokemonRelatedActions'
+import { Text, Button } from 'react-native'
 
-export class PokeIndex extends Component {
-  static navigationOptions = {
-    header: false,
-  };
-
-  state = {
-    isReady: false,
-  }
-
-  async componentDidMount() {
-    await Font.loadAsync({
-      Roboto: require('native-base/Fonts/Roboto.ttf'),
-      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
-      ...Ionicons.font,
-    })
-    this.setState({ isReady: true });
-  }
+export class PokeIndexScreen extends Component {
 
   goToPokeStatsScreen = () => {
-    this.props.navigation.navigate('PokeStats')
+    // this.props.navigation.navigate('PokeStats')
   }
-
   render() {
-    if (!this.state.isReady) {
-      return <AppLoading />
-    }
     return (
       <Container>
         <Header searchBar>
@@ -47,6 +28,7 @@ export class PokeIndex extends Component {
           </Item>
         </Header>
         <View>
+          {/* <Button title="click herre erer" onPress={reduxUpdateValueTyped()} /> */}
           <RenderSuggestions goToPokeStatsScreen={this.goToPokeStatsScreen} />
         </View>
       </Container>
@@ -58,4 +40,4 @@ const mapStateToProps = state => ({
   localPokemonList: state.pokemonRelated.localPokemonList,
 })
 
-export default connect(mapStateToProps, { experimentingRedux, reduxUpdateValueTyped })(PokeIndex);
+export default connect(mapStateToProps, { experimentingRedux, reduxUpdateValueTyped, actiontest123 })(PokeIndexScreen)

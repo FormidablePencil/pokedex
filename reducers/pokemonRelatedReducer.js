@@ -8,7 +8,8 @@ import {
   UPDATE_THEME_POKE_TYPE,
   DATA_SPECIFIC_POKEMON,
   COUNTER_POKEMON_TYPES,
-  GET_LIST_POKEMON_TYPE
+  GET_LIST_POKEMON_TYPE,
+  TEST123
 } from '../actions/types'
 
 const initialState = {
@@ -30,11 +31,11 @@ export default function (state = initialState, action) {
         ...state,
         selectedPokemonNameAndType: action.payload
       }
-      case GET_LIST_POKEMON_TYPE:
-        return {
-          ...state,
-          pokemonTypeList: action.payload
-        } 
+    case GET_LIST_POKEMON_TYPE:
+      return {
+        ...state,
+        pokemonTypeList: action.payload
+      }
     case GENERATING_LOCAL_POKEMONLIST:
       return {
         ...state,
@@ -70,10 +71,13 @@ export default function (state = initialState, action) {
         ...state,
         theme: action.payload
       }
-      case COUNTER_POKEMON_TYPES:
-        return {
-          theme: action.payload
-        }
+    case COUNTER_POKEMON_TYPES:
+      return {
+        theme: action.payload
+      }
+    case TEST123:
+      console.log(action.payload)
+      return state
     default:
       return state;
   }

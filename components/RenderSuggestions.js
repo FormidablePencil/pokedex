@@ -3,6 +3,8 @@ import { View, Text } from 'native-base'
 import { FlatList, TouchableOpacity, Image } from 'react-native'
 import { WrappingView, SuggestionsContainer, IndexPokemonImage, IndexContainer, TextNum, TextName, ViewForText } from '../styles/stylesTabs'
 import { getSelectedPokemonType, sliceOffDigits } from '../logic/logic'
+// import { shorthash } from 'shorthash'
+// import { FileSystem } from 'expo'
 
 import { connect } from 'react-redux'
 import {
@@ -45,10 +47,36 @@ export class RenderSuggestions extends Component {
     }
   }
 
+  state = {
+    source: null
+  }
+
   componentDidMount = async () => {
     await this.props.generateLocalpokemonList()
     await this.props.getListOfPokemonTypes()
     this.props.updateSuggestions(this.props.localPokemonList)
+ 
+    // const { uri } = this.props;
+    // const name = shorthash.unique(uri)
+    // console.log(name)
+    // const image = await FileSystem.getInfoAsync(path)
+    // if (image.exists) {
+    //   console.log('reac image from cache') 
+    //   this.setState({
+    //     source: {
+    //       uri: image.uri
+    //     }
+    //   })
+    //   return
+    // }
+    
+    // console.log('downloading image to cache')
+    // const newImage = await FileSystem.downloadAsync(uri, path)
+    // this.setState({
+    //   source: {
+    //     uri: newImage.uri
+    //   }
+    // })
   }
 
   componentDidUpdate(prevProps) {
@@ -56,6 +84,7 @@ export class RenderSuggestions extends Component {
     if (prevProps.valueTyped !== valueTyped) {
       this.autoSuggestionFunctionality(valueTyped)
     }
+
   }
 
   spacificPokemonSelected = (selected) => {

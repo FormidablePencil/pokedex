@@ -28,3 +28,6 @@ export const TYPE_PSYCHIC = 'TYPE_PSYCHIC'
 export const TYPE_ROCK = 'TYPE_ROCK'
 export const TYPE_STEEL = 'TYPE_STEEL'
 export const TYPE_WATER = 'TYPE_WATER'
+
+
+export const TEST123 = 'TEST123'
