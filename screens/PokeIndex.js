@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import * as Font from 'expo-font'
-import { Ionicons } from '@expo/vector-icons'
+// import * as Font from 'expo-font'
+// import { Ionicons } from '@expo/vector-icons'
 import AppLoading from '../components/AppLoading'
-import { Icon, View, Header, Container, Item } from 'native-base'
 import Search from '../components/Search'
 import RenderSuggestions from '../components/RenderSuggestions'
 import { connect } from 'react-redux'
@@ -18,12 +17,12 @@ export class PokeIndex extends Component {
   }
 
   async componentDidMount() {
-    await Font.loadAsync({
-      Roboto: require('native-base/Fonts/Roboto.ttf'),
-      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
-      ...Ionicons.font,
-    })
-    this.setState({ isReady: true });
+  //   await Font.loadAsync({
+  //     Roboto: require('native-base/Fonts/Roboto.ttf'),
+  //     Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+  //     ...Ionicons.font,
+  //   })
+  //   this.setState({ isReady: true });
   }
 
   goToPokeStatsScreen = () => {
@@ -35,8 +34,7 @@ export class PokeIndex extends Component {
       return <AppLoading />
     }
     return (
-      <Container>
-        <Header searchBar>
+        {/* <Header searchBar>
           <Item>
             <Icon active name='search' />
             <Search
@@ -48,8 +46,8 @@ export class PokeIndex extends Component {
         </Header>
         <View>
           <RenderSuggestions goToPokeStatsScreen={this.goToPokeStatsScreen} />
-        </View>
-      </Container>
+        </View> */}    
+          // </Container>
     )
   }
 }

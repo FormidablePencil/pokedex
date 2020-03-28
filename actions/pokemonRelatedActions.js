@@ -24,6 +24,7 @@ export const updateSelectedPokemonAndType = (selectedPokemon, type) => dispatch 
   })
 }
 
+//! UNNECCESSARY
 export const generateLocalpokemonList = () => dispatch => {
   const name = gen1.map(item => (item.substr(3, item.indexOf('.png') - 3))).map(item => (item.replace('_', '')))
   const number = gen1.map(item => (item.substr(0, 3)))

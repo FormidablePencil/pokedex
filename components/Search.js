@@ -1,13 +1,13 @@
 import React from 'react'
-import { Input } from 'native-base'
 import { StyleSheet } from 'react-native'
+import { TextInput } from 'react-native-gesture-handler'
 
 export function Search({ reduxUpdateValueTyped }) {
   const onChangeHandler = (valueTyped) => {
     reduxUpdateValueTyped(valueTyped)
   }
   return (
-    <Input
+    <TextInput
       style={styles.input}
       onChangeText={valueTyped => onChangeHandler(valueTyped)}
       placeholder='search' />

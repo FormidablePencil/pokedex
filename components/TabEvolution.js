@@ -9,7 +9,6 @@ import {
   GlitchWithFramwork,
   TextGreen
 } from '../styles/stylesTabs'
-import { Button } from 'native-base'
 import { PokemonTypes, TextPokemonTypes } from '../styles/stylesContainersByPokeTypes'
 
 const TabEvolution = ({ evolutions }) => {

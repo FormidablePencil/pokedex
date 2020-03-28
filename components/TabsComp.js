@@ -1,7 +1,6 @@
 import React from 'react'
-import { View, Text, Tabs, Tab, TabHeading, Icon } from 'native-base'
 import { globalStyles } from '../styles/globalStyles'
-import { StyleSheet, ScrollView } from 'react-native'
+import { StyleSheet, ScrollView, View } from 'react-native'
 import Tab1 from './Tab1'
 import TabEvolution from './TabEvolution'
 import TabMoves from './TabMoves'
