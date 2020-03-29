@@ -53,39 +53,7 @@ export const TextWhite = styled.Text`
 export const WrappingView = styled.View`
   margin-horizontal: 6px
 `
-export const SuggestionsContainer = styled.TouchableOpacity`
-  background-color: white
-  border-radius: 10px
-  elevation: 5
-  justify-content: center
-  align-content: center
-  flex: 1
-  flex-direction: row
-  margin-horizontal: 10px
-  margin-vertical: 15px
-` //now simply set up logic to render styles according to what theme is in global state.
-export const TextName = styled.Text`
-  color: #606f76
-  position: absolute
-  bottom: 5px
-  left: -27px
-  width: 300px
-  font-weight: bold
-  `
-export const TextNum = styled.Text`
-  font-size: 25px
-  top: -10px
-  `
-export const ViewForText = styled.View`
-  flex: 1
-  justifyContent: center
-  `
-export const IndexPokemonImage = styled.Image`
-  width: 100px
-  height: 100px
-  left: -10px
-  top: -15px
-`
+
 export const IndexContainer = styled.View`
 
   height: 100%

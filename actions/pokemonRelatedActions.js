@@ -1,16 +1,3 @@
-import {
-  UPDATE_SUGGESTIONS,
-  UPDATE_VALUE_TYPED,
-  SELECTED_POKEMON_NAME_AND_TYPE,
-  GENERATING_LOCAL_POKEMONLIST,
-  IS_READY_POKESTATS,
-  NOT_READY_POKESTATS,
-  UPDATE_THEME_POKE_TYPE,
-  DATA_SPECIFIC_POKEMON,
-  FETCH_POKEMON_STATS,
-  COUNTER_POKEMON_TYPES,
-  GET_LIST_POKEMON_TYPE
-} from './types'
 import gen1 from '../allGenPokeName/gen1'
 import { determineThemeByType } from '../theming/themingLogic' //! as you can see, I've been experementing with various ways of fetching data. Fetching when onPress and fetching in component did mount. I;ve found that in most cases it's best to fetch the json data when the user first comes into the the app and perhaps caching it wouldn't be a bad idea. To be frank, this was my first time working with apis. I could have avoided alot of unneccesserry code and logic but I've left it anyway cause it's a good reference point to comeback to and see the various methods/logic I've done to acheive certain results. Also this is meerely a playground for trying out new web development technologies I've learned. So do understand I didn't refractor my code and left it speggetti code for a reason. 
 

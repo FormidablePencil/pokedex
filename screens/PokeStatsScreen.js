@@ -2,15 +2,20 @@ import React, { Component } from 'react'
 import { View, ImageBackground, Button, Text, ScrollView } from 'react-native'
 import { SimpleView } from '../styles/globalStyles';
 import PokemonFrame from '../components/PokemonFrame';
+import { useSelector } from 'react-redux';
 
 export const PokeStatsScreen = () => {
+  const fetchedSpecificPokemon = useSelector(state => state.fetchedSpecificPokemon)
+  console.log(fetchedSpecificPokemon)
+  
   return (
     <View style={{ position: 'relative' }}>
       <ScrollView>
         <Text>eee</Text>
         <View style={{ height: 400 }}>
           <ImageBackground
-            resizeMethod={'auto'} style={{ height: 400, width: 400, position: 'absolute', top: 0 }}
+            resizeMethod={'auto'}
+            style={{ height: 400, width: 400, position: 'absolute', top: 0 }}
           // source={theme.backgroundImage}
           >
             <PokemonFrame />
