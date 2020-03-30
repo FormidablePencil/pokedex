@@ -1,39 +1,53 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { WrappingView } from '../styles/stylesTabs'
 import { useSelector, useDispatch } from 'react-redux'
-import { FlatList } from 'react-native-gesture-handler'
-import { Text, Button } from 'react-native'
+import { Text, Button, FlatList } from 'react-native'
 import { SuggestionsContainer, ViewForText } from '../styles/containerStyles'
 import { IndexPokemonImage } from '../styles/miscStyles'
 import { TextNum, TextName } from '../styles/textStyles'
-import { fetchDataToAllPokemon, fetchSpecificPokemon } from '../actions/actions'
+import { fetchSpecificPokemon } from '../actions/actions'
+import CachedImage from '../screens/CachedImage'
+import FlatListItem from './FlatListItem'
+import Loading from './Loading'
 
 export const RenderPokemonList = ({ navigation }) => {
   const fetchedAllPokemon = useSelector(state => state.fetchedAllPokemon)
+  const [isReady, setIsReady] = useState(false)
+  const [pokemonData, setPokemonData] = useState({ data: [] })
   const dispatch = useDispatch()
 
-  const handleOnPressGoToStatsScreen = (dataOfSpecificPokemon) => {
-    dispatch(fetchSpecificPokemon(dataOfSpecificPokemon))
+  useEffect(() => {
+    setIsReady(true)
+    setPokemonData({ data: fetchedAllPokemon })
+    return () => {
+      setIsReady(false)
+    }
+  }, [fetchedAllPokemon])
+
+  console.log('renderPokemonList compomnent')
+  const handleOnPressGoToStatsScreen = async (pokemon) => {
     navigation.navigate('PokeStatsScreen')
+    dispatch(fetchSpecificPokemon(pokemon))
   }
+
+  //I found that you have to create a pureComponent for solving horrible proformance issues
+
 
   return (
     <WrappingView>
-      <FlatList
-        numColumns={2}
-        data={fetchedAllPokemon} //@ it would be easy to add an array of pokemonTypes to suggestions. Come back to it later 
-        renderItem={({ item }) =>
-          <SuggestionsContainer onPress={() => handleOnPressGoToStatsScreen(item)}>
-            <IndexPokemonImage source={{ uri: `https://pokeres.bastionbot.org/images/pokemon/${item.pokemon_id}.png` }} />
-            <ViewForText>
-              <TextNum>{item.pokemon_id}</TextNum>
-              {item.type.map(type =>
-                <Text key={type}>{type}</Text>
-              )}
-              <TextName>{item.pokemon_name}</TextName>
-            </ViewForText>
-          </SuggestionsContainer>
-        } keyExtractor={(item, index) => index.toString()} />
+      {isReady ?
+        <FlatList
+          enableMomentum
+          removeClippedSubviews
+          keyboardShouldPersistTaps={'handled'} //this fixed the onPress first tap failure
+          numColumns={2}
+          data={pokemonData.data} //@ it would be easy to add an array of pokemonTypes to suggestions. Come back to it later 
+          onEndReachedThreshold={0.1}
+          renderItem={({ item }) => <FlatListItem item={item} handleOnPressGoToStatsScreen={handleOnPressGoToStatsScreen} />}
+          keyExtractor={item => Object.values(item.pokemon_id)}
+        />
+        : <Loading />
+      }
     </WrappingView>
   )
 }

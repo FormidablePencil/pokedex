@@ -7,10 +7,8 @@ export const fetchDataToAllPokemon = () => async dispatch => {
    const fitleredCollection = data.filter(cluster => cluster.form === 'Normal' || cluster.form === undefined)
    dispatch({ type: SAVE_DATA_TO_ALL_POKEMON, payload: fitleredCollection })
 }
-export const fetchSpecificPokemon = (dataOfSpecificPokemon) => async dispatch => {
-   const lowercasedPokemonName = dataOfSpecificPokemon.pokemon_name.toLowerCase()
-
-   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${lowercasedPokemonName}`)
+export const fetchSpecificPokemon = (pokemon) => async dispatch => {
+   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.toLowerCase()}`)
    const pokemonInfo = await res.json()
 
    const speciesResponse = await fetch(pokemonInfo.species.url)

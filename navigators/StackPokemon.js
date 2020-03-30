@@ -15,6 +15,7 @@ const StackPokemon = () => {
 
    useEffect(() => {
       dispatch(fetchDataToAllPokemon())
+      console.log('once @@')
    }, [])
 
    return (
