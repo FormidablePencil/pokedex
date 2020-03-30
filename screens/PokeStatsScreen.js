@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 
 export const PokeStatsScreen = () => {
   const fetchedSpecificPokemon = useSelector(state => state.fetchedSpecificPokemon)
-  console.log(fetchedSpecificPokemon)
   
   return (
     <View style={{ position: 'relative' }}>

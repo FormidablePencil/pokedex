@@ -23,7 +23,7 @@ export const RenderPokemonList = ({ navigation }) => {
         numColumns={2}
         data={fetchedAllPokemon} //@ it would be easy to add an array of pokemonTypes to suggestions. Come back to it later 
         renderItem={({ item }) =>
-          <SuggestionsContainer onPress={() => handleOnPressGoToStatsScreen({ cluster })}>
+          <SuggestionsContainer onPress={() => handleOnPressGoToStatsScreen(item)}>
             <IndexPokemonImage source={{ uri: `https://pokeres.bastionbot.org/images/pokemon/${item.pokemon_id}.png` }} />
             <ViewForText>
               <TextNum>{item.pokemon_id}</TextNum>
