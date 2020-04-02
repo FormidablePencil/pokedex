@@ -5,7 +5,7 @@ export const PokemonFrame = ({ pokemonNumber }) => {
   return (
     <PokemonImageContainer>
       <PokemonImage
-        // source={{ uri: `https://pokeres.bastionbot.org/images/pokemon/${pokemonNumber}.png` }}
+        source={{ uri: `https://pokeres.bastionbot.org/images/pokemon/${pokemonNumber}.png` }}
       />
     </PokemonImageContainer>
   )

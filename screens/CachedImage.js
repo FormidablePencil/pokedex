@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { View } from 'react-native'
+import { View, Text, LayoutAnimation } from 'react-native'
 import shorthash from 'shorthash'
 import * as FileSystem from 'expo-file-system';
-import { IndexPokemonImage } from '../styles/miscStyles';
+import styled from 'styled-components';
 
-const CachedImage = ({ source }, props) => {
+//@own styles and default style option. 
+export const CachedImageStyle = styled.Image`
+ height: 100px;
+ width: 100px; 
+`
+
+const CachedImage = ({ source, imageStyles }) => {
    const [imageCached, setImageCached] = useState({ source: null })
-
-   //~ other problem was optimizing preformace cause of the memoray leak with FlatList...
-   useEffect(() => { //~ how to cancel async/await
+   
+   useEffect(() => {
       let isCancelled = false
       if (isCancelled === false) {
          (async () => {
@@ -26,17 +31,16 @@ const CachedImage = ({ source }, props) => {
       }
       return () => {
          isCancelled = true
+         // setImageCached({ source: null })
       }
-   }, [])
-
+   }, [source])
 
    return (
-      <View>
-         <IndexPokemonImage
-            source={imageCached.source}>
-            {props.children}
-         </IndexPokemonImage>
-      </View>
+      <>
+         <CachedImageStyle
+            style={imageStyles}
+            source={imageCached.source} />
+      </>
    )
 }
 

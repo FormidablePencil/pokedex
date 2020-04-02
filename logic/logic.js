@@ -47,3 +47,15 @@ export const getEvolutionsTypes = (evolutions, pokemonTypeList) => {
   result.stage2 = stage2 
   return result
 }
+
+export const capitalizeFirstChar = (string) => {
+  return string.charAt(0).toUpperCase() + string.substring(1)
+}
+
+export const searchFilterFunction = ({text, arrayToFilterThrough, ObjKeyToCompare}) => {
+   return arrayToFilterThrough.filter(function(item) {
+    const itemData = item[ObjKeyToCompare] ? item[ObjKeyToCompare].toUpperCase() : ''.toUpperCase();
+    const textData = text.toUpperCase();
+    return itemData.indexOf(textData) > -1;
+  });
+}

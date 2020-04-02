@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const IndexPokemonImage = styled.Image`
-  width: 100px;
-  height: 100px;
-  left: -10px;
-  top: -19px;
-`
+export const ImageBackgroundPokeStats = styled.ImageBackground`
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center
+`;

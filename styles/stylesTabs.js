@@ -50,9 +50,6 @@ export const TextWhite = styled.Text`
 
 
 
-export const WrappingView = styled.View`
-  margin-horizontal: 6px
-`
 
 export const IndexContainer = styled.View`
 

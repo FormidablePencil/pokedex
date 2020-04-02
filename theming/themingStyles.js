@@ -189,3 +189,9 @@ export const default_ = {
   ],
   backgroundImage: require('../assets/images/default.jpg')
 }
+
+export const themes = {
+  bug, dark, dragon, electric, fairy, fighting,
+  fire, flying, ghost, grass, ground, ice, normal,
+  poison, psychic, rock, steel, water, default_
+}

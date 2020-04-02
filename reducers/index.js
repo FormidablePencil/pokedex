@@ -1,5 +1,5 @@
-import {combineReducers} from 'redux'
-import pokemonRelatedReducer from './pokemonRelatedReducer' 
+import { combineReducers } from 'redux'
+import pokemonRelatedReducer from './pokemonRelatedReducer'
 import fetchedSpecificPokemonReducer from './fetchedSpecificPokemonReducer'
 import fetchedAllPokemonDataReducer from './fetchedAllPokemonDataReducer'
 import themeReducer from './themeReducer'
