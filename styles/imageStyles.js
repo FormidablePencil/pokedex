@@ -29,6 +29,13 @@ export const PokemonSlotImageBg = styled.Image`
   height: 200px;
   width: 200px;
   resize-mode: contain;
-  position: absolute;
+  /* position: absolute; */
   /* opacity: .75; */
+`;
+export const PokemonImage = styled.Image`
+  z-index: 20;
+  height: 140px;
+  width: 140px;
+  resize-mode: contain;
+  position: absolute;
 `;

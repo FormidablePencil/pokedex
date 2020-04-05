@@ -1,30 +1,42 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import useCachedImage from "./hooks/useCachedImage"
-import { View, Text, Dimensions, ImageBackground, LayoutAnimation, PanResponder, Animated } from "react-native"
+import { View, Text, Dimensions, ImageBackground, LayoutAnimation, PanResponder, Animated, TouchableHighlight } from "react-native"
 import styled from 'styled-components';
 import pokeballImg from '../assets/images/Pokeball1.png'
 import { useSelector } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import { themes } from '../theming/themingStyles';
 const screenHeight = Dimensions.get('window').height
-import { PokemonSlotImageBg } from '../styles/imageStyles'
+import { PokemonSlotImageBg, PokemonImage } from '../styles/imageStyles'
+import { TouchableWithoutFeedback, TouchableOpacity } from 'react-native-gesture-handler';
+import * as Animatable from 'react-native-animatable';
+import RenderTypes from './RenderTypes';
+import { SlotContainer } from '../styles/containerStyles';
 
 const AnimatedPokemonSlotImageBg = Animated.createAnimatedComponent(PokemonSlotImageBg)
+const AnimatedTouchableHighlight = Animated.createAnimatedComponent(TouchableHighlight)
 
-const Slot = ({ id }) => {
-  //here you will be able to do three diffrent things hold and drag to change places. double click to view the effectiveness of the pokemon and 3, navigate to the pokestats page
+//~ when double clicked open modal to veiw pokemon's effectivness/favAndAdd-to-team-options
+const Slot = ({ id, selectorMode }) => {
+  //here you will be able to do three diffrent things hold and drag to change places after longpress held. The pokeball will start changing. 2. Double click to view the effectiveness of the pokemon and 3, navigate to the pokestats page by double clicking
   const { type } = useSelector(state => state.fetchedAllPokemon.filter(cluster => cluster.pokemon_id === id)[0])
-  const [pokeSlotImgLoaded, setPokeSlotImgLoaded] = useState(false)
   const cachedPokemonImage = useCachedImage(`https://pokeres.bastionbot.org/images/pokemon/${id}.png`)
-  const customSpring = { duration: 300, create: { type: 'linear', property: 'opacity' }, update: { type: 'spring', springDamping: 0.4 }, delete: { type: 'linear', property: 'opacity' } }
-  const positionOfSlot = new Animated.ValueXY()
+  const [backCount, setBackCount] = useState(0)
+  const [backTimer, setBackTimer] = useState()
+  const positionOfSlot = new Animated.ValueXY({ x: 0, y: 0 })
   const scaleOfSlot = new Animated.Value(1)
   const scaleOfBg = new Animated.Value(1)
+  const ref = useRef(null) //manually trigger method on element that held ref
+  const ref2 = useRef(null)
+  const bounce = () => ref.current.pulse(800).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
+  // const movementPanHandler = ref.current = 
 
   const panResponder = PanResponder.create({
-    onStartShouldSetPanResponder: () => true, // config...
+    onStartShouldSetPanResponder: () => true,
     onPanResponderMove: (event, gesture) => {
-      positionOfSlot.setValue({ x: gesture.dx, y: gesture.dy }); //assigns the values of where your mouse is a varaible
+      if (selectorMode) {
+        positionOfSlot.setValue({ x: gesture.dx, y: gesture.dy });
+      }
     },
     onPanResponderGrant: (event, gesture) => {
       scaleOfSlot.setValue(1.1)
@@ -34,58 +46,79 @@ const Slot = ({ id }) => {
       scaleOfSlot.setValue(1)
       scaleOfBg.setValue(1)
     },
+    onPanResponderRelease: (e, gesture) => {
+      Animated.spring(positionOfSlot, {
+        toValue: { x: 0, y: 0 },
+        friction: 5
+      }).start();
+    },
   })
+
+  const onPressHandlerOpenModelIfPass = () => {
+    console.log("Clicked")
+    setBackCount(backCount + 1)
+    if (backCount == 1) {
+      clearTimeout(backTimer)
+      console.log("Clicked twice")
+    } else {
+      setBackTimer(setTimeout(() => {
+        setBackCount(0)
+        console.log('reset')
+      }, 1000)) //#mention here the time for clearing the counter in ms
+    }
+  }
+
+  useEffect(() => {
+    if (selectorMode) {
+      const timeout = setTimeout(() => {
+        clearTimeout(timeout)
+        executeAnimation()
+      }, (Math.random() * 3000) + 500)
+    }
+  }, [selectorMode])
+  const executeAnimation = () => {
+    // scaleOfBg.setValue(1)
+    Animated.timing(scaleOfBg, {
+      toValue: 1.1,
+      friction: 20,
+      duration: 300,
+      // delay: 6000
+    }).start(() => executeAnimation2()); //when selectorMode === true then fire function 
+  }
+
+  const executeAnimation2 = () => {
+    // scaleOfBg.setValue(1.5)
+    Animated.timing(scaleOfBg, {
+      toValue: 1.22,
+      friction: 10,
+      duration: 300,
+      // delay: 6000
+    }).start(() => executeAnimation());
+  }
+
+  // runAnimation() {
+  //   this.animatedValue.setValue(300);
+  //   Animated.timing(this.animatedValue, {
+  //     toValue: -100,
+  //     duration: 3000,
+  //   }).start(() => this.runAnimation());
+  // }
 
   return (
     <Animated.View
-      style={[positionOfSlot.getLayout(), { flex: 1, transform: [{ scale: scaleOfSlot }] }]}
-      {...panResponder.panHandlers}
+      {...selectorMode && { ...panResponder.panHandlers }}
+      useNativeDriver
+      ref={ref2}
+      style={[positionOfSlot.getLayout(), { flex: 1 }]}
     >
-      <SlotContainer style={{ height: screenHeight / 4, alignItems: 'center', justifyContent: 'center' }}>
-        <TypesContainer style={{ top: -70, zIndex: 15, justifyContent: 'center', width: 40 }}>
-          {type.map(specificType => {
-            const adjustedMissalignedTypeImg = specificType === 'Bug' ? { top: -1 } : { top: 0 }
-            return (
-              // <LinearGradient end={[.1, 1.3]} style={{ width: 50, height: 30, borderRadius: 4, marginVertical: 2 }} key={specificType}>
-              <View style={{ height: 40, width: 40, borderRadius: 4, marginVertical: 2, overflow: 'hidden' }}>
-                <PokeTypeImage style={adjustedMissalignedTypeImg} source={themes[specificType.toLowerCase()].typeImage} />
-              </View>
-              // {/* <Text>{specificType}</Text> */}
-              // </LinearGradient>
-            )
-          })}
-        </TypesContainer>
-        <AnimatedPokemonSlotImageBg style={{ transform: [{ scale: scaleOfBg }] }} fadeDuration={1} source={pokeballImg} />
-        {/* {pokeSlotImgLoaded && */}
+      <SlotContainer style={{ height: screenHeight / 4, width: 200, alignItems: 'center', justifyContent: 'center' }}>
+        <RenderTypes type={type} />
+        <View useNativeDriver style={{ position: 'absolute' }}>
+          <AnimatedPokemonSlotImageBg useNativeDriver style={{ transform: [{ scale: scaleOfBg }] }} fadeDuration={1} source={pokeballImg} />
+        </View>
         <PokemonImage source={cachedPokemonImage.source} />
-        {/* } */}
       </SlotContainer>
     </Animated.View >
   )
 }
 export default Slot
-
-export const PokemonImage = styled.Image`
-  z-index: 20;
-  height: 140px;
-  width: 140px;
-  resize-mode: contain;
-  position: absolute;
-`;
-export const PokeTypeImage = styled.Image`
-  /* flex: 1; */
-  height: 53px;
-  width: 40px;
-  bottom: 0px;
-  /* resize-mode: contain; */
-`;
-export const SlotContainer = styled.View`
-  width: 100%;
-  height: 100%;
-`;
-export const TypesContainer = styled.View` 
-  z-index: 15;
-  flex-direction: row;
-`;
-
-//~ use icons for types

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { LinearGradient } from 'expo-linear-gradient';
 import RenderFavList from '../components/RenderFavList';
 
+//* save list sorting by dragging for another day... or week XD
 //* [0.1, 0.2] means that the gradient will start 10% from the left and 20% from the top
 export const PokeFavContainer = styled(LinearGradient)`
   height: 100%;

@@ -57,3 +57,7 @@ export const PokeTeamContainer = styled.View`
   background-color: #4818FD;
   height: 100%;
 `;
+export const SlotContainer = styled.View`
+  width: 100%;
+  height: 100%;
+`;

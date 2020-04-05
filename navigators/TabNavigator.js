@@ -6,7 +6,6 @@ import PokeFavScreen from '../screens/PokeFavScreen';
 import PanResponderScreen from '../screens/PanResponderScreen'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { View } from 'react-native';
-import DraggableFlatListScreen from '../components/TabComps/DraggableFlatListScreen';
 
 const Tab = createBottomTabNavigator()
 
@@ -27,7 +26,6 @@ const TabNavigator = () => {
       }}
     >
       <Tab.Screen name="PanResponderScreen" component={PanResponderScreen} />
-      <Tab.Screen name="DraggableFlatListScreen" component={DraggableFlatListScreen} />
       <Tab.Screen
         options={{ headerTransparent: true, headerShown: false }}
         name="PokeTeamScreen" component={PokeTeamScreen} />

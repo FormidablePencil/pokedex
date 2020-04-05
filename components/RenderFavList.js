@@ -12,7 +12,6 @@ export const FavListContainer = styled.View`
 const RenderFavList = () => {
   //in this screen you'll be able to do the same things as in poketeam screen
   const pokemonId = useSelector(state => state.favoritePokemon)
-  const lastIndicyDivisibleByAmountOfColumn = findNearestNumDivisibleByNum(pokemonId.length, 3) - 1
   //@ tilt the image
   return (
     <FavListContainer>
@@ -22,6 +21,7 @@ const RenderFavList = () => {
         data={pokemonId}
         contentContainerStyle={{ paddingHorizontal: 5, paddingVertical: 5 }}
         keyExtractor={item => item}
+        contentContainerStyle={{ justifyContent: 'center'}}
         // ItemSeparatorComponent
         renderItem={({ item }) => <FavCardComp id={item} />} />
     </FavListContainer>
