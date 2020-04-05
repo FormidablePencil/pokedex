@@ -1,12 +1,24 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import styled from 'styled-components';
 
 const Loading = () => {
    return (
-      <View style={{ height: '100%', justifyContent: 'center', alignItems: 'center' }}>
-         <Text style={{fontSize: 21}}>Loading ...</Text>
-      </View>
+      <LoadingContainer>
+         <Text>Loading ...</Text>
+      </LoadingContainer>
    )
 }
+
+const LoadingContainer = styled.View`
+   background-color: #fff;
+   height: 100%;
+   justify-content: center;
+   align-items: center;
+`;
+
+const Text = styled.Text`
+ font-size: 21px;
+  /* color: white; */
+`
 
 export default Loading

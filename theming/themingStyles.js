@@ -6,7 +6,8 @@ export const bug = {
   tabColor: [
     'background-color: red;'
   ],
-  backgroundImage: require('../assets/images/bug.jpg')
+  backgroundImage: require('../assets/images/bug.jpg'),
+  typeImage: require('../assets/images/pokeTypesWithNames/bug.png')
 }
 export const dark = {
   pokeBox: [
@@ -16,7 +17,8 @@ export const dark = {
   tabColor: [
     'background-color: red;'
   ],
-  backgroundImage: require('../assets/images/dark.jpg')
+  backgroundImage: require('../assets/images/dark.jpg'),
+  typeImage: require('../assets/images/pokeTypesWithNames/dark.png')
 }
 export const dragon = {
   pokeBox: [
@@ -26,7 +28,8 @@ export const dragon = {
   tabColor: [
     'background-color: red;'
   ],
-  backgroundImage: require('../assets/images/dragon.jpg')
+  backgroundImage: require('../assets/images/dragon.jpg'),
+  typeImage: require('../assets/images/pokeTypesWithNames/dragon.png')
 }
 export const electric = {
   pokeBox: [
@@ -36,7 +39,8 @@ export const electric = {
   tabColor: [
     'background-color: red;'
   ],
-  backgroundImage: require('../assets/images/electric4.png')
+  backgroundImage: require('../assets/images/electric4.png'),
+  typeImage: require('../assets/images/pokeTypesWithNames/electric.png')
 }
 export const fairy = {
   pokeBox: [
@@ -46,7 +50,8 @@ export const fairy = {
   tabColor: [
     'background-color: red;'
   ],
-  backgroundImage: require('../assets/images//fairy_Fotor.jpg')
+  backgroundImage: require('../assets/images//fairy_Fotor.jpg'),
+  typeImage: require('../assets/images/pokeTypesWithNames/fairy.png')
 }
 
 export const fighting = {
@@ -57,7 +62,8 @@ export const fighting = {
   tabColor: [
     'background-color: red;'
   ],
-  backgroundImage: require('../assets/images/fighting2.jpg')
+  backgroundImage: require('../assets/images/fighting2.jpg'),
+  typeImage: require('../assets/images/pokeTypesWithNames/fighting.png')
 }
 export const fire = {
   pokeBox: [
@@ -67,7 +73,8 @@ export const fire = {
   tabColor: [
     'background-color: red;'
   ],
-  backgroundImage: require('../assets/images/fire.png')
+  backgroundImage: require('../assets/images/fire.png'),
+  typeImage: require('../assets/images/pokeTypesWithNames/fire.png')
 }
 export const flying = {
   pokeBox: [
@@ -77,7 +84,8 @@ export const flying = {
   tabColor: [
     'background-color: red;'
   ],
-  backgroundImage: require('../assets/images/cloads2.jpg')
+  backgroundImage: require('../assets/images/cloads2.jpg'),
+  typeImage: require('../assets/images/pokeTypesWithNames/flying.png')
 }
 export const ghost = {
   pokeBox: [
@@ -87,7 +95,8 @@ export const ghost = {
   tabColor: [
     'background-color: red;'
   ],
-  backgroundImage: require('../assets/images/ghost.jpg')
+  backgroundImage: require('../assets/images/ghost.jpg'),
+  typeImage: require('../assets/images/pokeTypesWithNames/ghost.png')
 }
 export const grass = {
   pokeBox: [
@@ -97,7 +106,8 @@ export const grass = {
   tabColor: [
     'background-color: green;'
   ],
-  backgroundImage: require('../assets/images/grass.jpg')
+  backgroundImage: require('../assets/images/grass.jpg'),
+  typeImage: require('../assets/images/pokeTypesWithNames/grass.png')
 }
 export const ground = {
   pokeBox: [
@@ -107,7 +117,8 @@ export const ground = {
   tabColor: [
     'background-color: brown;'
   ],
-  backgroundImage: require('../assets/images/ground.jpeg')
+  backgroundImage: require('../assets/images/ground.jpeg'),
+  typeImage: require('../assets/images/pokeTypesWithNames/ground.png')
 }
 export const ice = {
   pokeBox: [
@@ -117,7 +128,8 @@ export const ice = {
   tabColor: [
     'background-color: blue;'
   ],
-  backgroundImage: require('../assets/images/ice3.jpg')
+  backgroundImage: require('../assets/images/ice3.jpg'),
+  typeImage: require('../assets/images/pokeTypesWithNames/ice.png')
 }
 export const normal = {
   pokeBox: [
@@ -127,7 +139,8 @@ export const normal = {
   tabColor: [
     'background-color: blue;'
   ],
-  backgroundImage: require('../assets/images/normal.jpg')
+  backgroundImage: require('../assets/images/normal.jpg'),
+  typeImage: require('../assets/images/pokeTypesWithNames/normal.png')
 }
 export const poison = {
   pokeBox: [
@@ -137,7 +150,8 @@ export const poison = {
   tabColor: [
     'background-color: blue;'
   ],
-  backgroundImage: require('../assets/images/poison.jpg')
+  backgroundImage: require('../assets/images/poison.jpg'),
+  typeImage: require('../assets/images/pokeTypesWithNames/poison.png')
 }
 export const psychic = {
   pokeBox: [
@@ -147,7 +161,8 @@ export const psychic = {
   tabColor: [
     'background-color: blue;'
   ],
-  backgroundImage: require('../assets/images/psychic.jpg')
+  backgroundImage: require('../assets/images/psychic.jpg'),
+  typeImage: require('../assets/images/pokeTypesWithNames/psychic.png')
 }
 export const rock = {
   pokeBox: [
@@ -157,7 +172,8 @@ export const rock = {
   tabColor: [
     'background-color: blue;'
   ],
-  backgroundImage: require('../assets/images/rock2.jpg')
+  backgroundImage: require('../assets/images/rock2.jpg'),
+  typeImage: require('../assets/images/pokeTypesWithNames/rock.png')
 }
 export const steel = {
   pokeBox: [
@@ -167,7 +183,8 @@ export const steel = {
   tabColor: [
     'background-color: blue;'
   ],
-  backgroundImage: require('../assets/images/iron.png')
+  backgroundImage: require('../assets/images/iron.png'),
+  typeImage: require('../assets/images/pokeTypesWithNames/steel.png')
 }
 export const water = {
   pokeBox: [
@@ -177,7 +194,8 @@ export const water = {
   tabColor: [
     'background-color: blue;'
   ],
-  backgroundImage: require('../assets/images/water.jpg')
+  backgroundImage: require('../assets/images/water.jpg'),
+  typeImage: require('../assets/images/pokeTypesWithNames/water.png')
 }
 export const default_ = {
   pokeBox: [

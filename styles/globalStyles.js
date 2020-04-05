@@ -1,6 +1,21 @@
 import { StyleSheet } from 'react-native'
 import styled from "styled-components"
 
+export const styles = StyleSheet.create({
+  scrollViewContentContainer: {
+    backgroundColor: 'white',
+    paddingTop: 10,
+  },
+  
+  starIcon: {
+    color: 'lightgray',
+  },
+  starIconSaved: {
+    // color: 'yellow',
+  }
+});
+
+
 export const CenterEverything = styled.View`
   flex: 1
   justify-content: center

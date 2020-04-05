@@ -1,20 +1,12 @@
-import React, { Component, useState, useEffect, createContext } from 'react'
-import { View, ImageBackground, Button, Text, ScrollView, LayoutAnimation, BackHandler } from 'react-native'
-import { SimpleView } from '../styles/globalStyles';
-import PokemonFrame from '../components/PokemonFrame';
+import React, { useState, useEffect, createContext } from 'react'
+import { View, LayoutAnimation, Text, } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux';
 import Loading from '../components/Loading';
-import { themes } from '../theming/themingStyles'
-import CachedImage from './CachedImage';
-import { CLEAR_SPECIFIC_POKEMON_DATA } from '../actions/types';
 import PokemonStats from '../components/PokemonStats';
-import PokemonStatsCard from '../components/Tabs';
-import PokeStatsHeader, { PokemonStatsHeaderRight } from '../components/PokeStatsHeader';
-import { capitalizeFirstChar } from '../logic/logic';
-import { fetchSpecificPokemon } from '../actions/actions';
-import { useFocusEffect } from '@react-navigation/native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Ionicons } from '@expo/vector-icons';
+import PokeStatsHeader from '../components/PokeStatsHeader';
+import { testObjEmptyFuc } from '../logic/logic';
+import { CLEAR_SPECIFIC_POKEMON_DATA } from '../actions/types';
+import { PokemonIdText } from '../styles/textStyles';
 
 export const PokeStatsContext = createContext()
 
@@ -27,24 +19,15 @@ export const PokeStatsScreen = ({ navigation }) => {
 
   navigation.setOptions({
     headerTransparent: true,
-    headerLeft: () => <Ionicons name="md-checkmark-circle" name='' onPress={() => clearEverything()} />,
-    // headerTitle: () =>
-    //   <PokeStatsHeader
-    //     pokemonName={capitalizeFirstChar(fetchedSpecificPokemon.pokemonInfo.name)}
-    //     pokemonTypes={fetchedSpecificPokemon.pokemonInfo.types}
-    //   />,
-    // headerRight: () => <PokemonStatsHeaderRight pokemonId={fetchedSpecificPokemon.pokemonInfo.id} />
+    headerTitle: () => <PokeStatsHeader />,
+    headerRight: () => <PokemonIdText>{testObjEmptyFuc(fetchedSpecificPokemon) && fetchedSpecificPokemon.pokemonInfo.id}</PokemonIdText>
   })
-
-
-
-
-  const clearEverything = () => {
-    navigation.goBack()
-    // console.log('cleared')
-    // setIsReady(false)
-    // dispatch({ type: CLEAR_SPECIFIC_POKEMON_DATA })
-  }
+  React.useEffect(() => {
+    return async () => {
+      await setIsReady(false)
+      dispatch({ type: CLEAR_SPECIFIC_POKEMON_DATA })
+    }
+  }, []);
 
   useEffect(() => {
     (() => {
@@ -55,14 +38,12 @@ export const PokeStatsScreen = ({ navigation }) => {
     })()
   }, [fetchedSpecificPokemon])
 
-
-
   useEffect(() => {
-    // if (isReady) LayoutAnimation.configureNext(customSpring);
+    if (isReady) LayoutAnimation.configureNext(customSpring);
   }, [isReady])
   return (
     <PokeStatsContext.Provider value={{ uri }}>
-      <View style={{ height: '100%' }}>
+      <View style={{ height: '100%', backgroundColor: '#fff' }}>
         {isReady ?
           <PokemonStats />
           : <Loading />

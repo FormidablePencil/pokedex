@@ -41,21 +41,42 @@ export const getEvolutionsTypes = (evolutions, pokemonTypeList) => {
     stage2 = getSelectedPokemonType(uppercasedStage2, pokemonTypeList)
   }
   const result = {}
-  result.basic = basic 
-  result.stage1 = stage1 
-  result.stage1 = stage1 
-  result.stage2 = stage2 
+  result.basic = basic
+  result.stage1 = stage1
+  result.stage1 = stage1
+  result.stage2 = stage2
   return result
 }
 
-export const capitalizeFirstChar = (string) => {
+export const capitalizeFirstCharFunc = (string) => {
   return string.charAt(0).toUpperCase() + string.substring(1)
 }
 
-export const searchFilterFunction = ({text, arrayToFilterThrough, ObjKeyToCompare}) => {
-   return arrayToFilterThrough.filter(function(item) {
+export const testObjEmptyFucFuc = ({ text, arrayToFilterThrough, ObjKeyToCompare }) => {
+  return arrayToFilterThrough.filter(function (item) {
     const itemData = item[ObjKeyToCompare] ? item[ObjKeyToCompare].toUpperCase() : ''.toUpperCase();
     const textData = text.toUpperCase();
     return itemData.indexOf(textData) > -1;
   });
+}//???/???????????????????????
+export const testArrEmtyFunc = (arr) => {
+  return arr.length > 0
+}
+
+
+export const testObjEmptyFuc = (obj) => {
+  return Object.keys(obj).length > 0
+}
+
+//ounds down by default
+export const findNearestNumDivisibleByNum = (index, divisible, setting) => {
+  if (index % divisible !== 0) {
+    for (let i = index; Math.sign(index) === 1 ? i : -i > 0; setting === 'roundUp' ? i++ : i--) {
+      if (i % divisible === 0) {
+        return i
+      }
+    }
+  } else {
+    return index
+  }
 }

@@ -16,7 +16,7 @@ class ErrorBoundaries extends Component {
   }
 
   logErrorToMyService = ({ error, info }) => {
-    console.log(error, info)
+    // console.log(error, info)
 
   }
 

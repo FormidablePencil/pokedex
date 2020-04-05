@@ -1,45 +1,21 @@
-import React, { useState, useEffect } from 'react'
-import { View, Text, LayoutAnimation } from 'react-native'
-import shorthash from 'shorthash'
-import * as FileSystem from 'expo-file-system';
+import React from 'react'
 import styled from 'styled-components';
+import useCachedImage from '../components/hooks/useCachedImage';
 
 //@own styles and default style option. 
 export const CachedImageStyle = styled.Image`
- height: 100px;
- width: 100px; 
+ height: 85px;
+ width: 85px; 
+ /* background-color:red; */
 `
-
 const CachedImage = ({ source, imageStyles }) => {
-   const [imageCached, setImageCached] = useState({ source: null })
-   
-   useEffect(() => {
-      let isCancelled = false
-      if (isCancelled === false) {
-         (async () => {
-            const uri = source
-            const name = shorthash.unique(uri) //you'd secure the images
-            const path = `${FileSystem.cacheDirectory}${name}` //this is where the directory where the cached files where to exist
-            const image = await FileSystem.getInfoAsync(path)
-            if (image.exists) {
-               setImageCached({ source: { uri: image.uri } })
-               return
-            }
-            const newImage = await FileSystem.downloadAsync(uri, path)
-            setImageCached({ source: { uri: newImage.url } })
-         })()
-      }
-      return () => {
-         isCancelled = true
-         // setImageCached({ source: null })
-      }
-   }, [source])
-
+   const cachedImage = useCachedImage(source)
+   // console.log(cachedImage)
    return (
       <>
          <CachedImageStyle
             style={imageStyles}
-            source={imageCached.source} />
+            source={cachedImage.source} />
       </>
    )
 }

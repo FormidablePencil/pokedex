@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const SliderAnimation = Animated.createAnimatedComponent(View);
 const screenWidth = Math.round(Dimensions.get('window').width);
-console.log(screenWidth)
+// console.log(screenWidth)
 
 //@ reuseable component
 //~ how to use: ...
@@ -49,7 +49,7 @@ const Tabs = ({ defualtTabSelected, tabTitles, contentComponents, btnStyle, text
                   translateX: slideAnimaton
                }],
             }} />
-         <TabNavigator>
+         <TabNavigatorContainer>
             {tabTitles.map((tabTitle, index) =>
                <TabBtn
                   key={index}
@@ -61,7 +61,7 @@ const Tabs = ({ defualtTabSelected, tabTitles, contentComponents, btnStyle, text
                   <TabText style={textStyle}>{tabTitle}</TabText>
                </TabBtn>
             )}
-         </TabNavigator>
+         </TabNavigatorContainer>
          <TabSection>
             < TabContent>
                {contentComponents.map((contentComponent, index) => {
@@ -101,7 +101,7 @@ export const TabText = styled.Text`
    color: ${props => props.color ? props.color : '#fff'};
    font-size: ${props => props.size ? props.size : '20px'};
 `;
-export const TabNavigator = styled.View`
+export const TabNavigatorContainer = styled.View`
    flex-direction: row;
    height: 20px;
 `;
