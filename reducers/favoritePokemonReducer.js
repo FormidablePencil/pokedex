@@ -9,7 +9,7 @@ export default (state = initialState, { type, payload }) => {
     case SAVE_FAVORITE:
       console.log('save fav')
       // return initialState
-      console.log(payload)
+      // console.log(payload)
       return [...state, payload]
 
     case REMOVE_FAVORITE:

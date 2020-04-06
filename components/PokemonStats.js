@@ -39,7 +39,7 @@ const PokemonStats = () => {
    }
 
    useEffect(() => {
-      console.log(favoritePokemon)
+      // console.log(favoritePokemon)
    }, [favoritePokemon])
    
    return (

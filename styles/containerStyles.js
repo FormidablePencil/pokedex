@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { StyleSheet } from 'react-native';
-
+import { LinearGradient } from 'expo-linear-gradient';
 
 export const ViewForText = styled.View`
   flex: 1;
@@ -60,4 +60,14 @@ export const PokeTeamContainer = styled.View`
 export const SlotContainer = styled.View`
   width: 100%;
   height: 100%;
+`;
+export const PokeIndexContainer = styled(LinearGradient)`
+  height: 100%;
+  width: 100%;
+  /* background-color: yellow; */
+  flex: 1;
+  /* backgroundColor: '#FFF'; */
+  min-height: 1px;
+  min-width: 1px;
+  /* padding-horizontal: 6px; */
 `;

@@ -15,6 +15,7 @@ class IndexCardComp extends PureComponent {
    render() {
       const specificPokemon = this.props.specificPokemon
       const handleOnPressGoToStatsScreen = this.props.handleOnPressGoToStatsScreen
+      // console.log(specificPokemon)
       return (
          <PokemonCard onPress={() => handleOnPressGoToStatsScreen(specificPokemon.pokemon_name)}>
             <PokemonIndexContainer>

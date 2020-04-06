@@ -9,9 +9,9 @@ export const PokeTeamContainer = styled(LinearGradient)`
   width: 100%;
 `;
 
-const PokeTeamScreen = () =>
-  <PokeTeamContainer colors={['#C80505', '#0424AB']} start={[1, 1]}>
-    <TeamSlots />
+const PokeTeamScreen = ({navigation}) =>
+  <PokeTeamContainer colors={['#0583D9', '#03339F']} start={[1, .3]}>
+    <TeamSlots navigation={navigation} />
   </PokeTeamContainer>
 
 export default PokeTeamScreen

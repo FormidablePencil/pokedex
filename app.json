@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "PokedexApp",
-    "slug": "pokedexapp",
+    "name": "Simple Pokedex",
+    "slug": "SimplePokedex",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
@@ -10,12 +10,10 @@
       "web"
     ],
     "version": "1.0.0",
-    "orientation": "portrait",
     "icon": "./assets/images/AppIcon.png",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "resizeMode": "contain"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -28,6 +26,10 @@
     },
     "androidStatusBar": {
       "backgroundColor": "#000000"
+    },
+    "android": {
+      "package": "com.smallfunall.simplepokedex",
+      "versionCode": 1
     }
   }
 }

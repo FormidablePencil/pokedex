@@ -5,7 +5,7 @@ import PokeIndexScreen from '../screens/PokeIndexScreen';
 import PokeStatsScreen from '../screens/PokeStatsScreen'
 import { useDispatch } from 'react-redux';
 import { fetchDataToAllPokemon } from '../actions/actions';
-import { Text } from 'react-native';
+import { Text, StatusBar, View } from 'react-native';
 import PokeFavScreen from '../screens/PokeFavScreen';
 import PokeTeamScreen from '../screens/PokeTeamScreen';
 import TabNavigator from './TabNavigator';
@@ -33,6 +33,7 @@ const StackPokemon = () => {
 
    return (
       <NavigationContainer>
+         <View style={{height: StatusBar.currentHeight}} />
          <Stack.Navigator
             screenOptions={{
                transitionSpec: {

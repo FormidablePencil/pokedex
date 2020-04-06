@@ -8,11 +8,11 @@ import { TextInput } from 'react-native-gesture-handler';
 //* add swipe gestures to go to next tab
 //* maybe disable tab bar and have the user simply swipe... and have a btn top screen for a model to pop up and allow user to go to anther screen
 //* move custom header to this component and perhaps some state that mabe doesn't belong in renderPokemonList
-export const PokeIndexContainer = styled(LinearGradient)`
+const PokeIndexContainer = styled(LinearGradient)`
   height: 100%;
   padding-horizontal: 6px;
 `;
-
+//! replace FlatList with recyclableListView
 const PokeIndexScreen = ({ navigation }) => {
   const [controlledInputValue, setControlledInputValue] = useState()
   const onChangeHandleSearch = async (text) => {

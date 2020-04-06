@@ -60,7 +60,7 @@ const EvolutionChainItem = ({ name, stage }) => {
     return fetchedAllPokemon.filter(item => item.pokemon_name === capitalizeFirstCharFunc(pokemon))[0]
   }
   const pokemon = getInfoOfPokemon(name)
-  console.log(pokemon.pokemon_id, 'pokemon.pokemon_id')
+  // console.log(pokemon.pokemon_id, 'pokemon.pokemon_id')
   return (
     <ImageContainer>
       <Text style={{ fontSize: 12, color: 'black' }}>{stage}</Text>
