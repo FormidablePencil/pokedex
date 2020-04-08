@@ -19,13 +19,13 @@ const Slot = ({ id, draggingMode, navigation }) => {
   /////1.. The pokeball will start changing.
   // //2. singleclick click to view the effectiveness of the pokemon. There's an api for that
   // 3, doubleclick to navigate to the pokestats page 
-  const { type, pokemon_name } = useSelector(state => state.fetchedAllPokemon.filter(cluster => cluster.pokemon_id === id)[0])
+  const { type, pokemon_id } = useSelector(state => state.fetchedAllPokemon.filter(cluster => cluster.pokemon_id === id)[0])
   const cachedPokemonImage = useCachedImage(`https://pokeres.bastionbot.org/images/pokemon/${id}.png`)
   const { panResponder, positionOfSlot, scaleOfBg } = usePanHandlerBouceBack({ draggingMode })
   const [onPressCount, setOnPressCount] = useState()
   const [onPressCountTimer, setOnPressCountTimer] = useState()
   const dispatch = useDispatch()
-  
+
   const onPressHandler = () => {
     if (!draggingMode) {
       console.log('clicked')
@@ -34,7 +34,7 @@ const Slot = ({ id, draggingMode, navigation }) => {
         clearTimeout(onPressCountTimer)
         setOnPressCount(0)
         console.log('doubleClick')
-        dispatch(fetchSpecificPokemon(pokemon_name))
+        dispatch(fetchSpecificPokemon(pokemon_id))
         navigation.navigate('PokeStatsScreen') // additional step mayhave to be take
       } else {
         setOnPressCountTimer(

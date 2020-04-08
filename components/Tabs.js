@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Animated, Text, Dimensions, Button } from 'react-native';
 import styled from 'styled-components';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const SliderAnimation = Animated.createAnimatedComponent(View);
 const screenWidth = Math.round(Dimensions.get('window').width);
@@ -44,7 +45,7 @@ const Tabs = ({ defualtTabSelected, tabTitles, contentComponents, btnStyle, text
          <SliderAnimation
             transition='translate'
             style={{
-               height: 3, width: `${sliderWidth}%`, bottom: -20, backgroundColor: 'blue',
+               height: 3, width: `${sliderWidth}%`, bottom: -39, backgroundColor: 'red', zIndex: 10,
                transform: [{
                   translateX: slideAnimaton
                }],
@@ -82,15 +83,16 @@ const Tabs = ({ defualtTabSelected, tabTitles, contentComponents, btnStyle, text
 export default Tabs
 
 //scp
-export const TabBtn = styled.TouchableHighlight`
+export const TabBtn = styled.TouchableOpacity`
+   background-color: transparent;
    flex: 1;
    justify-content: center;
    align-items: center; 
    border-radius: 0;
-   margin-horizontal: 0;
-   margin-vertical: 0;
-   padding-horizontal: 0;
-   padding-vertical: 0;
+   height: 40px;
+   top: -15px;
+   padding-vertical: 27px;
+   z-index: 5
 `;
 export const TabContent = styled.View`
    min-height: 850px;
@@ -98,14 +100,15 @@ export const TabContent = styled.View`
 export const TabContainer = styled.View`
 `;
 export const TabText = styled.Text`
-   color: ${props => props.color ? props.color : '#fff'};
-   font-size: ${props => props.size ? props.size : '20px'};
+   color: #fff;
+   font-size: 20px;
 `;
 export const TabNavigatorContainer = styled.View`
    flex-direction: row;
    height: 20px;
 `;
 export const TabSection = styled.View`
+   margin-top: 12px;
 `;
 
 //@ goal in mind: make tabs component reusable

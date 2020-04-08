@@ -25,11 +25,11 @@ export const StatsSection = styled.View`
   width: auto;
 `;
 export const EvolutionContainer = styled.View`
-  justify-content: space-evenly;
   flex-direction: row;
 `;
 export const ImageContainer = styled.View`
-  height: 200px;
+  height: 150px;
+  width: 100px;
 `;
 
 export const CoverDisplay = styled.View`
@@ -64,10 +64,22 @@ export const SlotContainer = styled.View`
 export const PokeIndexContainer = styled(LinearGradient)`
   height: 100%;
   width: 100%;
-  /* background-color: yellow; */
   flex: 1;
-  /* backgroundColor: '#FFF'; */
-  min-height: 1px;
-  min-width: 1px;
+  /* min-height: 1px;
+  min-width: 1px; */
+  /* background-color: yellow; */
   /* padding-horizontal: 6px; */
+`;
+export const SwitchToNextPokemonContainer = styled.View`
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  z-index: 400;
+  position: absolute;
+`;
+export const LoadingContainer = styled(LinearGradient)`
+  background-color: #3F3836;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 `;

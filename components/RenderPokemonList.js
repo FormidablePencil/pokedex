@@ -4,7 +4,7 @@ import { FlatList } from 'react-native'
 import { fetchSpecificPokemon } from '../actions/actions'
 import IndexCardComp from './IndexCardComp'
 import Loading from './Loading'
-import { testObjEmptyFuc } from '../logic/logic'
+import { testObjEmptyFunc } from '../logic/logic'
 
 export const RenderPokemonList = ({ navigation }) => {
   const fetchedAllPokemon = useSelector(state => state.fetchedAllPokemon)
@@ -18,9 +18,9 @@ export const RenderPokemonList = ({ navigation }) => {
     setIsReady(true)
   }, [fetchedAllPokemon])
 
-  const handleOnPressGoToStatsScreen = (pokemon) => {
+  const handleOnPressGoToStatsScreen = (pokemon_id) => {
     navigation.navigate('PokeStatsScreen')
-    dispatch(fetchSpecificPokemon(pokemon))
+    dispatch(fetchSpecificPokemon(pokemon_id))
   }
 
   return (
@@ -32,7 +32,7 @@ export const RenderPokemonList = ({ navigation }) => {
             removeClippedSubviews
             keyboardShouldPersistTaps={'handled'} //this fixed the onPress first tap failure
             numColumns={2}
-            data={testObjEmptyFuc(allPokemonData) ? allPokemonData : null} //dummy data exists so that 'Tried to get frame for out of range index NaN' didn't appear whenever saving redux files
+            data={testObjEmptyFunc(allPokemonData) ? allPokemonData : null} //dummy data exists so that 'Tried to get frame for out of range index NaN' didn't appear whenever saving redux files
             // onEndReachedThreshold={0.1}
             renderItem={({ item }) => {
               return (

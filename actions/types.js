@@ -6,6 +6,7 @@ export const SAVE_FAVORITE = 'SAVE_FAVORITE'
 export const REMOVE_FAVORITE = 'REMOVE_FAVORITE'
 export const ADD_TO_TEAM = 'ADD_TO_TEAM'
 export const REMOVE_FROM_TEAM = 'REMOVE_FROM_TEAM'
+export const SAVE_FROM_LOCALSTORAGE = 'SAVE_FROM_LOCALSTORAGE'
 
 export const TYPE_BUG = 'TYPE_BUG'
 export const TYPE_DARK = 'TYPE_DARK'

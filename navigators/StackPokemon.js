@@ -3,21 +3,28 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import PokeIndexScreen from '../screens/PokeIndexScreen';
 import PokeStatsScreen from '../screens/PokeStatsScreen'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchDataToAllPokemon } from '../actions/actions';
-import { Text, StatusBar, View } from 'react-native';
+import { Text, StatusBar, View, SafeAreaView, AsyncStorage, Button } from 'react-native';
 import PokeFavScreen from '../screens/PokeFavScreen';
 import PokeTeamScreen from '../screens/PokeTeamScreen';
 import TabNavigator from './TabNavigator';
+import EnterScreen from '../screens/EnterScreen';
+import PokemonEffectivenessChartScreen from '../screens/PokemonEffectivenessChartScreen';
+import useLocalStorage from '../components/hooks/useLocalStorage'
+import HeaderBackBtn from '../components/HeaderBackBtn';
+import { themes } from '../theming/themingStyles';
 
 const Stack = createStackNavigator();
 
 const StackPokemon = () => {
-   const dispatch = useDispatch()
+   const [theme, setTheme] = useState({})
+   const themeRedux = useSelector(state => state.theme)
+   useLocalStorage()
 
    useEffect(() => {
-      dispatch(fetchDataToAllPokemon())
-   }, [])
+      if (themeRedux !== null) setTheme(themeRedux)
+   }, [theme])
 
    const config = {
       animation: 'spring',
@@ -30,22 +37,24 @@ const StackPokemon = () => {
          restSpeedThreshold: 0.01,
       },
    };
-
+   // console.log(theme)
    return (
       <NavigationContainer>
-         <View style={{height: StatusBar.currentHeight}} />
          <Stack.Navigator
             screenOptions={{
                transitionSpec: {
                   open: config,
                   close: config,
                },
+               headerTintColor: Object.keys(theme).length > 0 ? themes[theme].pokeBox.color : 'black'
+               // headerLeft: (navigation) => <HeaderBackBtn navigation={navigation} title='btn' />,
             }}>
-            <Stack.Screen options={{headerShown: false}}
-             name="TabNavigator" component={TabNavigator} />
+            <Stack.Screen name='EnterScreen' component={EnterScreen} />
+            <Stack.Screen options={{ headerShown: false }} name="TabNavigator" component={TabNavigator} />
             <Stack.Screen name="PokeStatsScreen" component={PokeStatsScreen} />
+            <Stack.Screen name="PokemonEffectivenessChart" component={PokemonEffectivenessChartScreen} />
          </Stack.Navigator>
-      </NavigationContainer>
+      </NavigationContainer >
    )
 }
 

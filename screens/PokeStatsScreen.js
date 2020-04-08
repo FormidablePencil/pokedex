@@ -4,9 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import Loading from '../components/Loading';
 import PokemonStats from '../components/PokemonStats';
 import PokeStatsHeader from '../components/PokeStatsHeader';
-import { testObjEmptyFuc } from '../logic/logic';
+import { testObjEmptyFunc } from '../logic/logic';
 import { CLEAR_SPECIFIC_POKEMON_DATA } from '../actions/types';
 import { PokemonIdText } from '../styles/textStyles';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import HeaderRightPokeStats from '../components/HeaderRightPokeStats';
 
 export const PokeStatsContext = createContext()
 
@@ -20,9 +22,9 @@ export const PokeStatsScreen = ({ navigation }) => {
   navigation.setOptions({
     headerTransparent: true,
     headerTitle: () => <PokeStatsHeader />,
-    headerRight: () => <PokemonIdText>{testObjEmptyFuc(fetchedSpecificPokemon) && fetchedSpecificPokemon.pokemonInfo.id}</PokemonIdText>
+    headerRight: () => <HeaderRightPokeStats pokemonId={testObjEmptyFunc(fetchedSpecificPokemon) ? fetchedSpecificPokemon.pokemonInfo.id : ''} navigation={navigation} />
   })
-  React.useEffect(() => {
+  useEffect(() => {
     return async () => {
       await setIsReady(false)
       dispatch({ type: CLEAR_SPECIFIC_POKEMON_DATA })

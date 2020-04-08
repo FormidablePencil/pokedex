@@ -18,10 +18,8 @@ export const TextName = styled.Text`
 `
 
 export const PokemonIdText = styled.Text`
-  background-color: orange;
-  margin-horizontal: 6px;
-  font-size: 25px;
-  padding: 6px;
+  color: ${props => props.color};
+  font-size: 40px;
 `;
 export const PokeTypeText = styled.Text`
   margin-right: 5px;
@@ -29,4 +27,7 @@ export const PokeTypeText = styled.Text`
   margin-right: 10px;
   font-size: 13px;
   text-align: right;
+`;
+export const TextWhite = styled.Text`
+  color: white;
 `;

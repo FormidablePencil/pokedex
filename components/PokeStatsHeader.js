@@ -1,30 +1,31 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { View } from 'react-native'
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { capitalizeFirstCharFunc, testObjEmptyFuc } from '../logic/logic';
+import { capitalizeFirstCharFunc, testObjEmptyFunc } from '../logic/logic';
 
 const PokeStatsHeader = () => {
-   const types = useSelector(state => testObjEmptyFuc(state.fetchedSpecificPokemon) ? state.fetchedSpecificPokemon.pokemonInfo.types : {})
+   const types = useSelector(state => testObjEmptyFunc(state.fetchedSpecificPokemon) ? state.fetchedSpecificPokemon.pokemonInfo.types : {})
    const pokeName = useSelector(state =>
-      testObjEmptyFuc(state.fetchedSpecificPokemon) > 0 ?
+      testObjEmptyFunc(state.fetchedSpecificPokemon) > 0 ?
          state.fetchedSpecificPokemon.pokemonInfo.name : {}
    )
+
    return (
-      <HeaderContainer>
-         {testObjEmptyFuc(pokeName) && testObjEmptyFuc(types) &&
-            <>
-               <Text>{capitalizeFirstCharFunc(pokeName)}</Text>
-               <JustifyContent>
-                  {Object.keys(types).length > 0 && types.map((cluster, index) =>
-                     <PokeTypesContainer key={index}>
-                        <PokeTypesText>{cluster.type.name}</PokeTypesText>
-                     </PokeTypesContainer>
-                  )}
-               </JustifyContent>
-            </>
-         }
-      </HeaderContainer>
+         <HeaderContainer>
+            {testObjEmptyFunc(pokeName) && testObjEmptyFunc(types) &&
+               <>
+                  <Text>{capitalizeFirstCharFunc(pokeName)}</Text>
+                  <JustifyContent>
+                     {Object.keys(types).length > 0 && types.map((cluster, index) =>
+                        <PokeTypesContainer key={index}>
+                           <PokeTypesText>{cluster.type.name}</PokeTypesText>
+                        </PokeTypesContainer>
+                     )}
+                  </JustifyContent>
+               </>
+            }
+         </HeaderContainer>
    )
 }
 
@@ -38,7 +39,7 @@ const PokeTypesText = styled.Text`
 `;
 const HeaderContainer = styled.View`
    flex-direction: column;
-   bottom: -15px;
+   bottom: -25px;
 `;
 const PokeTypesContainer = styled.View`
   flex-direction: row;

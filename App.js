@@ -7,7 +7,6 @@ import { UIManager } from 'react-native';
 
 export const PokemonContextProvider = createContext()
 
-
 const App = () => {
   
   if (Platform.OS === 'android') {
@@ -27,6 +26,5 @@ const App = () => {
 
   )
 }
-
 
 export default App

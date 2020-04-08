@@ -5,7 +5,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "count": "cloc app/screens/CachedImage"
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.5",
@@ -14,10 +15,11 @@
     "@react-navigation/stack": "^5.2.8",
     "animated": "^0.2.2",
     "axios": "^0.19.1",
-    "expo": "~36.0.0",
-    "expo-file-system": "~8.0.0",
-    "expo-linear-gradient": "~8.0.0",
+    "expo": "^37.0.6",
+    "expo-file-system": "~8.1.0",
+    "expo-linear-gradient": "~8.1.0",
     "faker": "^4.1.0",
+    "install": "^0.13.0",
     "navigation": "^5.2.0",
     "react": "^16.13.1",
     "react-dom": "~16.9.0",
@@ -38,7 +40,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
-    "babel-preset-expo": "~8.0.0"
+    "babel-preset-expo": "~8.0.0",
+    "cloc": "^2.5.1"
   },
   "private": true
 }

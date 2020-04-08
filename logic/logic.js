@@ -1,3 +1,4 @@
+
 export const getSelectedPokemonType = (selectedPokemon, pokemonTypeList) => {
   const pokemonType = pokemonTypeList.filter(item =>
     item.pokemon_name === selectedPokemon &&
@@ -52,7 +53,7 @@ export const capitalizeFirstCharFunc = (string) => {
   return string.charAt(0).toUpperCase() + string.substring(1)
 }
 
-export const testObjEmptyFucFuc = ({ text, arrayToFilterThrough, ObjKeyToCompare }) => {
+export const searchSuggestionsFunc = ({ text, arrayToFilterThrough, ObjKeyToCompare }) => {
   return arrayToFilterThrough.filter(function (item) {
     const itemData = item[ObjKeyToCompare] ? item[ObjKeyToCompare].toUpperCase() : ''.toUpperCase();
     const textData = text.toUpperCase();
@@ -64,7 +65,7 @@ export const testArrEmtyFunc = (arr) => {
 }
 
 
-export const testObjEmptyFuc = (obj) => {
+export const testObjEmptyFunc = (obj) => {
   return Object.keys(obj).length > 0
 }
 

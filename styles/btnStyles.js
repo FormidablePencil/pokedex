@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const GoToPokemonBtn = styled.TouchableHighlight`
-  background-color: hotpink;
+export const GoToPokemonBtn = styled.TouchableOpacity`
+  /* background-color: hotpink; */
 `;
 export const PokemonCard = styled.TouchableOpacity`
    background-color: white;
@@ -29,4 +29,32 @@ export const PokeTeamBtn = styled.TouchableOpacity`
   right: 0;
   bottom: 0;
   padding: 6px;
+`;
+export const SwitchToNextPokemonBtn = styled.TouchableOpacity`
+  background-color: rgba(59,59,59,.3);
+  border-top-start-radius: 10px;
+  border-bottom-start-radius: 10px;
+  margin-right:5px;
+`;
+export const SwitchToNextPokemonBtnR = styled.TouchableOpacity`
+  background-color: rgba(59,59,59,.3);
+  border-top-end-radius: 10px;
+  border-bottom-end-radius: 10px;
+  margin-left:5px;
+`;
+export const ThemeBtn = styled.TouchableOpacity`
+  background-color: indigo;
+  background-color: teal;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const EnterBtn = styled.TouchableOpacity`
+  background-color: green;
+  height: 30px;
+  width: 100px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
 `;

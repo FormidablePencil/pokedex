@@ -1,24 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { Animated, Easing } from 'react-native';
 import styled from 'styled-components';
+import { LoadingContainer } from '../styles/containerStyles';
 
-const Loading = () => {
+export const Loading = () => {
+   const progress = new Animated.Value(0)
+
+   useEffect(() => {
+      Animated.timing(progress, {
+         toValue: 1,
+         duration: 1000,
+         easing: Easing.linear,
+      }).start();
+   })
+
    return (
-      <LoadingContainer>
-         <Text>Loading ...</Text>
+      <LoadingContainer colors={['#390148', '#27229F']} start={[1.5, .8]}>
+         <LoadingText>Loading...</LoadingText>
       </LoadingContainer>
-   )
+   );
 }
-
-const LoadingContainer = styled.View`
-   background-color: #fff;
-   height: 100%;
-   justify-content: center;
-   align-items: center;
-`;
-
-const Text = styled.Text`
- font-size: 21px;
-  /* color: white; */
-`
-
 export default Loading
+
+export const LoadingText = styled.Text`
+   font-style: italic;
+   font-size: 25px;
+   color: white;
+   font-weight: bold;
+`;

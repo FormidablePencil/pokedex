@@ -4,8 +4,8 @@ import useCachedImage from '../components/hooks/useCachedImage';
 
 //@own styles and default style option. 
 export const CachedImageStyle = styled.Image`
- height: 85px;
- width: 85px; 
+ flex: 1;
+ resize-mode: contain;
  /* background-color:red; */
 `
 const CachedImage = ({ source, imageStyles }) => {
