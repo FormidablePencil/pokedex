@@ -10,7 +10,7 @@
       "web"
     ],
     "version": "1.0.0",
-    "icon": "./assets/images/AppIcon.png",
+    "icon": "./assets/AppIcon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain"

@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react'
 import { Provider } from 'react-redux'
-import store from './store'
-import StackPokemon from './navigators/StackPokemon';
+import store from './src/store'
+import StackPokemon from './src/navigators/StackPokemon';
 import ErrorBoundaries from './ErrorBoundaries';
 import { UIManager, Text } from 'react-native';
 import * as Font from 'expo-font'
@@ -21,11 +21,11 @@ const App = () => {
   useEffect(() => {
     async function loadFonts() {
       await Font.loadAsync({
-        'LemonadaLight': require('./assets/fonts/Lemonada/static/Lemonada-Light.ttf'),
-        'LemonadaRegular': require('./assets/fonts/Lemonada/static/Lemonada-Regular.ttf'),
-        'LemonadaMedium': require('./assets/fonts/Lemonada/static/Lemonada-Medium.ttf'),
-        'LemonadaSemiBold': require('./assets/fonts/Lemonada/static/Lemonada-SemiBold.ttf'),
-        'LemonadaBold': require('./assets/fonts/Lemonada/static/Lemonada-Bold.ttf'),
+        'LemonadaLight': require('./src/assets/fonts/Lemonada/static/Lemonada-Light.ttf'),
+        'LemonadaRegular': require('./src/assets/fonts/Lemonada/static/Lemonada-Regular.ttf'),
+        'LemonadaMedium': require('./src/assets/fonts/Lemonada/static/Lemonada-Medium.ttf'),
+        'LemonadaSemiBold': require('./src/assets/fonts/Lemonada/static/Lemonada-SemiBold.ttf'),
+        'LemonadaBold': require('./src/assets/fonts/Lemonada/static/Lemonada-Bold.ttf'),
       })
       setFontsLoaded(true)
     }
