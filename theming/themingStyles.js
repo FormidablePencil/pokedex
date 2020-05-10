@@ -1,5 +1,6 @@
 export const bug = {
   pokeBox: {
+    linearGradientColors: ['#72C85F', '#9DF829'],
     backgroundColor: 'green',
     color: 'white',
   },
@@ -11,6 +12,7 @@ export const bug = {
 }
 export const dark = {
   pokeBox: {
+    linearGradientColors: ['#77C8B1', '#13C865'],
     backgroundColor: 'teal',
     color: 'white',
   },
@@ -22,6 +24,7 @@ export const dark = {
 }
 export const dragon = {
   pokeBox: {
+    linearGradientColors: ['#C8B46E', '#C88309'],
     backgroundColor: '#6C0202',
     color: 'white',
   },
@@ -33,6 +36,7 @@ export const dragon = {
 }
 export const electric = {
   pokeBox: {
+    linearGradientColors: ['#C8AE5F', '#FFFB0B'],
     backgroundColor: 'yellow',
     color: 'black',
   },
@@ -44,6 +48,7 @@ export const electric = {
 }
 export const fairy = {
   pokeBox: {
+    linearGradientColors: ['#A61F9B', '#FF30EF'],
     backgroundColor: 'green',
     color: 'white',
   },
@@ -56,6 +61,7 @@ export const fairy = {
 
 export const fighting = {
   pokeBox: {
+    linearGradientColors: ['#87563D', '#D06204'],
     backgroundColor: 'green',
     color: 'white',
   },
@@ -67,6 +73,7 @@ export const fighting = {
 }
 export const fire = {
   pokeBox: {
+    linearGradientColors: ['#903033', '#D77E05'],
     backgroundColor: 'green',
     color: 'white',
   },
@@ -78,6 +85,7 @@ export const fire = {
 }
 export const flying = {
   pokeBox: {
+    linearGradientColors: ['#45B6F1', '#C2EEF7'],
     backgroundColor: 'green',
     color: 'white',
   },
@@ -89,6 +97,7 @@ export const flying = {
 }
 export const ghost = {
   pokeBox: {
+    linearGradientColors: ['#2111F6', '#754CF6'],
     backgroundColor: 'green',
     color: 'white',
   },
@@ -100,6 +109,7 @@ export const ghost = {
 }
 export const grass = {
   pokeBox: {
+    linearGradientColors: ['#0B7702', '#14E305'],
     backgroundColor: 'green',
     color: 'white',
   },
@@ -111,6 +121,7 @@ export const grass = {
 }
 export const ground = {
   pokeBox: {
+    linearGradientColors: ['#A1782A', '#D7A138'],
     backgroundColor: 'green',
     color: 'white',
   },
@@ -122,6 +133,7 @@ export const ground = {
 }
 export const ice = {
   pokeBox: {
+    linearGradientColors: ['#0EBFC5', '#12F8FF'],
     backgroundColor: 'green',
     color: 'white',
   },
@@ -133,6 +145,7 @@ export const ice = {
 }
 export const normal = {
   pokeBox: {
+    linearGradientColors: ['#FFCDB0', '#C8EAFF'],
     backgroundColor: 'green',
     color: 'white',
   },
@@ -144,6 +157,7 @@ export const normal = {
 }
 export const poison = {
   pokeBox: {
+    linearGradientColors: ['#277538', '#75C36F'],
     backgroundColor: 'green',
     color: 'white',
   },
@@ -155,6 +169,7 @@ export const poison = {
 }
 export const psychic = {
   pokeBox: {
+    linearGradientColors: ['#3A1BC3', '#7A04C3'],
     backgroundColor: 'green',
     color: 'white',
   },
@@ -166,6 +181,7 @@ export const psychic = {
 }
 export const rock = {
   pokeBox: {
+    linearGradientColors: ['#683D02', '#C39E66'],
     backgroundColor: 'green',
     color: 'white',
   },
@@ -177,6 +193,7 @@ export const rock = {
 }
 export const steel = {
   pokeBox: {
+    linearGradientColors: ['#596860', '#9DB7A9'],
     backgroundColor: 'green',
     color: 'black',
   },
@@ -188,6 +205,7 @@ export const steel = {
 }
 export const water = {
   pokeBox: {
+    linearGradientColors: ['#51ABDF', '#22FFFF'],
     backgroundColor: 'green',
     color: 'white',
   },
@@ -199,6 +217,7 @@ export const water = {
 }
 export const default_ = {
   pokeBox: {
+    linearGradientColors: ['#FFFFFF', '#FFFFFF'],
     backgroundColor: 'green',
     color: 'white',
   },

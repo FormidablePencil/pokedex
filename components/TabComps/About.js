@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text } from 'react-native'
 import { useSelector } from 'react-redux'
-import { Container, StatsView, StatsText, DescriptionView } from '../../styles/TabContentStyles';
+import { Container, StatsView, StatsText, DescriptionView, TabTextStandard, TabTextHeader, TabTextDescription } from '../../styles/TabContentStyles';
 import { StandardHeaderText, StandardText } from '../../styles/textStyles';
 
 const About = () => {
@@ -20,16 +20,16 @@ const About = () => {
       {fetchedSpecificPokemon &&
         <View>
           <DescriptionView>
-            <StandardHeaderText>Description</StandardHeaderText>
-            <StandardText>{description}</StandardText>
+            <TabTextHeader>Description</TabTextHeader>
+            <TabTextDescription>{description}</TabTextDescription>
           </DescriptionView>
           <StatsView>
-            <StatsText>weight</StatsText>
-            <StatsText>{Object.keys(fetchedSpecificPokemon).length > 0 && fetchedSpecificPokemon.pokemonInfo.weight}</StatsText>
+            <TabTextStandard>weight</TabTextStandard>
+            <TabTextStandard>{Object.keys(fetchedSpecificPokemon).length > 0 && fetchedSpecificPokemon.pokemonInfo.weight}</TabTextStandard>
           </StatsView>
           <StatsView>
-            <StatsText>height</StatsText>
-            <StatsText>{Object.keys(fetchedSpecificPokemon).length > 0 && fetchedSpecificPokemon.pokemonInfo.height}</StatsText>
+            <TabTextStandard>height</TabTextStandard>
+            <TabTextStandard>{Object.keys(fetchedSpecificPokemon).length > 0 && fetchedSpecificPokemon.pokemonInfo.height}</TabTextStandard>
           </StatsView>
         </View>
       }

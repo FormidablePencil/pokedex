@@ -6,7 +6,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 //* Customization: Put anything within TouchableOpacity, style TouchableOpacity, use any state from redux state, compare with any item in redux state and name the dispatch types.
 //* In a few words, it's a btn that that saves and deletes data from redux and responds accordingly. 
 //~ Highly reusable comp
-const AddDeleteInReduxCompWithBtn = ({ payload, whatState, compareFromCluster, addType, deleteType, child1, child2, btnStyle }) => {
+interface ReduxAddDelete { payload, whatState, compareFromCluster?, addType, deleteType, child1, child2, btnStyle }
+const AddDeleteInReduxCompWithBtn = ({ payload, whatState, compareFromCluster, addType, deleteType, child1, child2, btnStyle }: ReduxAddDelete) => {
 
   const itemExists = useSelector(state => state[whatState].filter(cluster => {
     if (compareFromCluster) return cluster[compareFromCluster] === payload

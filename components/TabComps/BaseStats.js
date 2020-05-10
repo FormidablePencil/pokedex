@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Container, StatsView, StatsText } from '../../styles/TabContentStyles';
+import { Container, StatsView, StatsText, TabTextStandard } from '../../styles/TabContentStyles';
 
 const BaseStats = () => {
   const fetchedSpecificPokemon = useSelector(state => state.fetchedSpecificPokemon)
@@ -9,8 +9,8 @@ const BaseStats = () => {
     <Container>
       {Object.keys(fetchedSpecificPokemon).length > 0 && fetchedSpecificPokemon.pokemonInfo.stats.map((cluster, index) =>
         <StatsView key={index}>
-          <StatsText>{cluster.stat.name}</StatsText>
-          <StatsText>{cluster.base_stat}</StatsText>
+          <TabTextStandard>{cluster.stat.name}</TabTextStandard>
+          <TabTextStandard>{cluster.base_stat}</TabTextStandard>
         </StatsView>
       )}
     </Container>

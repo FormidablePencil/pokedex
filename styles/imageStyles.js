@@ -26,16 +26,16 @@ export const ImageBackground = styled.ImageBackground`
 `
 export const PokemonSlotImageBg = styled.Image`
   z-index: 10;
-  height: 150px;
-  width: 150px;
+  height: 130px;
+  width: 130px;
   resize-mode: contain;
   /* position: absolute; */
   opacity: .35;
 `;
 export const PokemonImage = styled.Image`
   z-index: 20;
-  height: 120px;
-  width: 120px;
+  height: 100px;
+  width: 100px;
   resize-mode: contain;
   position: absolute;
 `;

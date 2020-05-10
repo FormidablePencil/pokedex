@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext } from 'react'
-import { View, LayoutAnimation, Text, } from 'react-native'
+import { View, LayoutAnimation, Text, Animated, } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux';
 import Loading from '../components/Loading';
 import PokemonStats from '../components/PokemonStats';
@@ -19,10 +19,12 @@ export const PokeStatsScreen = ({ navigation }) => {
   const dispatch = useDispatch()
   const customSpring = { duration: 300, create: { type: 'linear', property: 'opacity' }, update: { type: 'spring', springDamping: 0.4 }, delete: { type: 'linear', property: 'opacity' } }
 
+  // console.log(isReady)
+  
   navigation.setOptions({
     headerTransparent: true,
     headerTitle: () => <PokeStatsHeader />,
-    headerRight: () => <HeaderRightPokeStats pokemonId={testObjEmptyFunc(fetchedSpecificPokemon) ? fetchedSpecificPokemon.pokemonInfo.id : ''} navigation={navigation} />
+    headerRight: () => <HeaderRightPokeStats isReady={isReady} pokemonId={testObjEmptyFunc(fetchedSpecificPokemon) ? fetchedSpecificPokemon.pokemonInfo.id : ''} navigation={navigation} />
   })
   useEffect(() => {
     return async () => {

@@ -12,6 +12,8 @@ import Moves from './TabComps/Moves'
 import Evolution from './TabComps/Evolution'
 import useCachedImage from './hooks/useCachedImage'
 import SwitchToNextPokemon from './SwitchToNextPokemon'
+import { LinearGradient } from 'expo-linear-gradient'
+import { LightenDarkenColor } from 'lighten-darken-color';
 //! Loading screen, pokemonImage over navigiationHeader => then we got design... favorite pokemon page and team of 6 pokemon. 
 
 const IMAGE_HEIGHT = 450
@@ -24,13 +26,12 @@ const PokemonStats = () => {
    const [scrollEnabled, setScrollEnabled] = useState(false)
    const cachedImage = useCachedImage(`https://pokeres.bastionbot.org/images/pokemon/${uri}.png`)
    const ref = useRef(null)
-   
+
    useEffect(() => {
       if (ref.current !== null) {
-         console.log(ref.current)
       }
    }, [ref])
-   
+
    const interpolateTranslateY = {
       translateY: scrollAnimatedValue.interpolate({
          inputRange: [-IMAGE_HEIGHT, 0, IMAGE_HEIGHT],
@@ -109,19 +110,22 @@ const PokemonStats = () => {
             )}
             scrollEventThrottle={8}
             contentContainerStyle={{ ...styles.scrollViewContentContainer, marginTop: IMAGE_HEIGHT }}>
-            <View style={{ zIndex: 1900 }}>
-               <Button style={{ margin: 29 }} title='test123' onPress={() => testFunc()} />
-               <Tabs
-                  btnStyle={{ backgroundColor: '#04BD78' }}
-                  textStyle={{ color: 'white' }}
-                  tabTitles={['about', 'base stats', 'moves', 'evolutions']}
-                  contentComponents={[
-                     <About />,
-                     <BaseStats />,
-                     <Moves />,
-                     <Evolution scrollEnabled={scrollEnabled} setScrollEnabled={setScrollEnabled} />
-                  ]} />
-            </View>
+            <LinearGradient colors={themes[theme].pokeBox.linearGradientColors}>
+               <View style={{ zIndex: 1900 }}>
+                  {/* <Button style={{ margin: 29 }} title='test123' onPress={() => testFunc()} /> */}
+                  <Tabs
+                     btnStyle={{ backgroundColor: LightenDarkenColor(themes[theme].pokeBox.linearGradientColors[1], -10) }}
+                     lineColor={LightenDarkenColor(themes[theme].pokeBox.linearGradientColors[1], 60)}
+                     textStyle={{ color: 'white' }}
+                     tabTitles={['about', 'base stats', 'moves', 'evolutions']}
+                     contentComponents={[
+                        <About />,
+                        <BaseStats />,
+                        <Moves />,
+                        <Evolution scrollEnabled={scrollEnabled} setScrollEnabled={setScrollEnabled} />
+                     ]} />
+               </View>
+            </LinearGradient>
          </Animated.ScrollView>
       </View>
    )

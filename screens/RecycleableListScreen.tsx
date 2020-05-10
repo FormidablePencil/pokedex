@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { View, Text, StatusBar } from 'react-native'
-import RecyclerListViewComponent from '../screens/RecyclerListViewComponent'
+import RecyclerListViewComponent from './RecyclerListViewComponent'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchSpecificPokemon } from '../actions/actions'
 import { PokeIndexContainer } from '../styles/containerStyles'
@@ -24,6 +24,7 @@ const RecycleableListScreen = ({ navigation }) => {
     setControlledInputValue(controlledInputValue)
     const filtered = searchSuggestionsFunc({ text, arrayToFilterThrough: fetchedAllPokemon, ObjKeyToCompare: 'pokemon_name' })
     setAllPokemonData()
+    // console.log(allPokemonData, 'filtered')
   }
 
   const handleOnPressGoToStatsScreen = (pokemon_id) => {

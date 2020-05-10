@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, useEffect, useState } from 'react'
 import { Text, Button, FlatList, Image, View } from 'react-native'
 import { ViewForText, CenterText, PokemonIndexContainer, PokeTypesContainer } from '../styles/containerStyles'
 import { TextNum, TextName, PokeTypeText } from '../styles/textStyles'
@@ -10,14 +10,20 @@ import AddDeleteInReduxCompWithBtn from './AddDeleteInReduxCompWithBtn'
 import { capitalizeFirstCharFunc } from '../logic/logic'
 import { SAVE_FAVORITE, REMOVE_FAVORITE, ADD_TO_TEAM, REMOVE_FROM_TEAM } from '../actions/types'
 import useCachedImage from './hooks/useCachedImage'
+import useRenderImgsDynamically from './hooks/useRenderImgsDynamically'
 //I found that you have to create a pureComponent for solving horrible proformance issues
 
 const IndexCardComp = ({ specificPokemon, handleOnPressGoToStatsScreen }) => {
-   const cachedImage = useCachedImage(`https://pokeres.bastionbot.org/images/pokemon/${specificPokemon.pokemon_id}.png`)
+   const [renderPokemonImg, setRenderPokemonImg] = useState(null)
+
+   useEffect(() => {
+      useRenderImgsDynamically({ pokemon_id: specificPokemon.pokemon_id, setRenderPokemonImg })
+    }, [specificPokemon])
+  
    return (
       <PokemonCard onPress={() => handleOnPressGoToStatsScreen(specificPokemon.pokemon_id)}>
          <PokemonIndexContainer>
-            <Image source={cachedImage.source} style={{height: 100, width: 100}} />
+            <Image source={renderPokemonImg} style={{height: 100, width: 100}} />
          </PokemonIndexContainer>
          <TextNum>{specificPokemon.pokemon_id}</TextNum>
          <CenterText>

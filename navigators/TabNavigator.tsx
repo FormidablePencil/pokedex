@@ -9,10 +9,14 @@ import { View, StatusBar } from 'react-native';
 import RecycleableListScreen from '../screens/RecycleableListScreen';
 import AttemptToImplementListScreen from '../screens/AttemptToImplementListScreen';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useDispatch } from 'react-redux'
+import { GESTURE_OFF } from '../actions/types';
 
 const Tab = createBottomTabNavigator()
 
 const TabNavigator = () => {
+  const dispatch = useDispatch()
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Tab.Navigator
@@ -29,15 +33,23 @@ const TabNavigator = () => {
           }
         }}
       >
-        {/* <Tab.Screen name="PanResponderScreen" component={PanResponderScreen} /> */}
         <Tab.Screen
-          options={{ headerTransparent: true, headerShown: false }}
+          listeners={{
+            tabPress: () => dispatch({ type: GESTURE_OFF })
+          }}
           name="PokeTeamScreen" component={PokeTeamScreen} />
-        <Tab.Screen name="RecycleableListScreen" component={RecycleableListScreen} />
         <Tab.Screen
-          options={{ headerTransparent: true }}
+          listeners={{
+            tabPress: () => dispatch({ type: GESTURE_OFF })
+          }}
           name="PokeFavScreen" component={PokeFavScreen} />
-        {/* <Tab.Screen name="PokeIndexScreen" component={PokeIndexScreen} /> */}
+        <Tab.Screen name="PokeIndexScreen" component={PokeIndexScreen}
+          listeners={{
+            tabPress: () => dispatch({ type: GESTURE_OFF })
+          }}
+        />
+        {/* <Tab.Screen name="PanResponderScreen" component={PanResponderScreen} /> */}
+        {/* <Tab.Screen name="RecycleableListScreen" component={RecycleableListScreen} /> */}
         {/* <Tab.Screen name="attemptRecycleList" component={AttemptToImplementListScreen} /> */}
       </Tab.Navigator >
     </SafeAreaView>

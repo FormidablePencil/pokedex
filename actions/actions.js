@@ -13,6 +13,8 @@ export const saveLocalStorageToRedux = ({ fetchedAllPokemon, fetchedSpecificPoke
 }
 
 export const fetchSpecificPokemon = (pokemonId) => async dispatch => {
+   console.log(pokemonId, 'pokemonId')
+
    // const response = cacheDataToAsyncStorageObj.getLocallyStoredData(pokemonId)
    let res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
    const pokemonInfo = await res.json()

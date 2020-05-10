@@ -18,7 +18,7 @@ export const PokemonTypes = styled.View`
   width: 70px;
   align-items: center;
   background-color: ${props => {
-    console.log(props.theme)
+    // console.log(props.theme)
     switch (props.theme) {
       case 'Bug':
         return 'black'

@@ -5,6 +5,7 @@ import fetchedAllPokemonDataReducer from './fetchedAllPokemonDataReducer'
 import themeReducer from './themeReducer'
 import favoritePokemonReducer from './favoritePokemonReducer'
 import pokemonTeamReducer from './pokemonTeamReducer'
+import pokemonTeamGestureReducer from './pokemonTeamGestureReducer'
 
 export default combineReducers({
   // pokemonRelated: pokemonRelatedReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
   theme: themeReducer,
   favoritePokemon: favoritePokemonReducer,
   pokemonTeam: pokemonTeamReducer,
+  pokemonTeamGesture: pokemonTeamGestureReducer
 })

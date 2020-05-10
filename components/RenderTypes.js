@@ -5,7 +5,7 @@ import { themes } from '../theming/themingStyles'
 
 const RenderTypes = ({ type }) => {
   return (
-    <TypesContainer style={{ top: -70, zIndex: 15, justifyContent: 'center', width: 40 }}>
+    <TypesContainer style={{ top: -50, zIndex: 15, justifyContent: 'center', width: 40 }}>
       {type.map(specificType => {
         const adjustedMissalignedTypeImg = specificType === 'Bug' ? { top: -1 } : { top: 0 }
         return (

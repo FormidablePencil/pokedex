@@ -5,9 +5,6 @@ export const TextNum = styled.Text`
   position: absolute;
   right: 45px;
 `
-export const StandardHeaderText = styled.Text`
-  font-size: 25px;
-`
 export const StandardText = styled.Text`
   font-size: 15px;
 `
@@ -18,8 +15,9 @@ export const TextName = styled.Text`
 `
 
 export const PokemonIdText = styled.Text`
+  font-family: LemonadaMedium;
   color: ${props => props.color};
-  font-size: 40px;
+  font-size: 30px;
 `;
 export const PokeTypeText = styled.Text`
   margin-right: 5px;

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Animated, Text, Dimensions, Button } from 'react-native';
 import styled from 'styled-components';
-import { LinearGradient } from 'expo-linear-gradient';
 
 const SliderAnimation = Animated.createAnimatedComponent(View);
 const screenWidth = Math.round(Dimensions.get('window').width);
@@ -9,7 +8,7 @@ const screenWidth = Math.round(Dimensions.get('window').width);
 
 //@ reuseable component
 //~ how to use: ...
-const Tabs = ({ defualtTabSelected, tabTitles, contentComponents, btnStyle, textStyle }) => {
+const Tabs = ({ defualtTabSelected, tabTitles, contentComponents, btnStyle, textStyle, lineColor }) => {
    const [slideAnimaton] = useState(new Animated.Value(0))
    const [currentTab, setCurrentTab] = useState(0)
    const [sliderWidth, setSliderWidth] = useState(0)
@@ -45,7 +44,7 @@ const Tabs = ({ defualtTabSelected, tabTitles, contentComponents, btnStyle, text
          <SliderAnimation
             transition='translate'
             style={{
-               height: 3, width: `${sliderWidth}%`, bottom: -39, backgroundColor: 'red', zIndex: 10,
+               height: 3, width: `${sliderWidth}%`, bottom: -39, backgroundColor: lineColor, zIndex: 10,
                transform: [{
                   translateX: slideAnimaton
                }],
@@ -64,7 +63,7 @@ const Tabs = ({ defualtTabSelected, tabTitles, contentComponents, btnStyle, text
             )}
          </TabNavigatorContainer>
          <TabSection>
-            < TabContent>
+            <TabContent>
                {contentComponents.map((contentComponent, index) => {
                   return (
                      <View
@@ -101,7 +100,8 @@ export const TabContainer = styled.View`
 `;
 export const TabText = styled.Text`
    color: #fff;
-   font-size: 20px;
+   font-size: 12px;
+   font-family: LemonadaRegular;
 `;
 export const TabNavigatorContainer = styled.View`
    flex-direction: row;

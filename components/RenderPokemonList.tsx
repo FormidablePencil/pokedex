@@ -6,11 +6,9 @@ import IndexCardComp from './IndexCardComp'
 import Loading from './Loading'
 import { testObjEmptyFunc } from '../logic/logic'
 
-export const RenderPokemonList = ({ navigation }) => {
+export const RenderPokemonList = ({ navigation, allPokemonData, setAllPokemonData }) => {
   const fetchedAllPokemon = useSelector(state => state.fetchedAllPokemon)
-  const [allPokemonData, setAllPokemonData] = useState()
   const [isReady, setIsReady] = useState(false)
-  const [dummyData] = useState([{ pokemon_name: 'Bulb', pokemon_id: 1, type: ['grass'] }])
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -28,12 +26,10 @@ export const RenderPokemonList = ({ navigation }) => {
       {isReady ?
         <>
           <FlatList
-            enableMomentum
             removeClippedSubviews
-            keyboardShouldPersistTaps={'handled'} //this fixed the onPress first tap failure
+            keyboardShouldPersistTaps={'handled'}
             numColumns={2}
-            data={testObjEmptyFunc(allPokemonData) ? allPokemonData : null} //dummy data exists so that 'Tried to get frame for out of range index NaN' didn't appear whenever saving redux files
-            // onEndReachedThreshold={0.1}
+            data={testObjEmptyFunc(allPokemonData) ? allPokemonData : null}
             renderItem={({ item }) => {
               return (
                 <IndexCardComp
@@ -49,7 +45,5 @@ export const RenderPokemonList = ({ navigation }) => {
     </>
   )
 }
-//~ fire pokemmon fetch action that collects all pokemon data and then set it into the it's seperate store. From there pull it into this component
-//@ fetch pokemon names, ids, types.
 
 export default RenderPokemonList

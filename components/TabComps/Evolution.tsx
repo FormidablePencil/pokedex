@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { View, Text, Animated } from 'react-native'
+import { View, Text, Animated, Image } from 'react-native'
 import { Container } from '../../styles/TabContentStyles';
 import { capitalizeFirstCharFunc } from '../../logic/logic';
 import CachedImage from '../../screens/CachedImage';
@@ -9,6 +9,10 @@ import { GoToPokemonBtn } from '../../styles/btnStyles';
 import { fetchSpecificPokemon } from '../../actions/actions';
 import { ScrollView } from 'react-native-gesture-handler';
 import { FontAwesome, Entypo } from '@expo/vector-icons'
+import { LinearGradient } from 'expo-linear-gradient';
+import { themes } from '../../theming/themingStyles';
+import styled from 'styled-components'
+import useRenderImgsDynamically from '../hooks/useRenderImgsDynamically';
 
 const Evolution = ({ scrollEnabled, setScrollEnabled }) => {
   const fetchedSpecificPokemon = useSelector(state => state.fetchedSpecificPokemon)
@@ -23,14 +27,14 @@ const Evolution = ({ scrollEnabled, setScrollEnabled }) => {
   }
 
   useEffect(() => {
-    styleDynamically(fetchedSpecificPokemon.evolutionChain.chain.evolves_to)
-    for (let i = 0; i < fetchedSpecificPokemon.evolutionChain.chain.evolves_to.length; i++) {
-      styleDynamically(fetchedSpecificPokemon.evolutionChain.chain.evolves_to[i].evolves_to)
+    if (fetchedSpecificPokemon.evolutionChain !== undefined) {
+      styleDynamically(fetchedSpecificPokemon.evolutionChain.chain.evolves_to)
+      for (let i = 0; i < fetchedSpecificPokemon.evolutionChain.chain.evolves_to.length; i++) {
+        styleDynamically(fetchedSpecificPokemon.evolutionChain.chain.evolves_to[i].evolves_to)
+      }
     }
   }, [fetchedSpecificPokemon])
-  useEffect(() => {
-    // console.log(VIEW_HEIGHT)
-  })
+
   const styleDynamically = (chain) => {
     console.log(chain.length)
     if (chain.length === 2 && highestStage >= 1) {
@@ -44,42 +48,33 @@ const Evolution = ({ scrollEnabled, setScrollEnabled }) => {
       VIEW_HEIGHT.current = 1100
     }
   }
-
   // if only pokemon chain has no more than one pokemon in a stage then render side by side else render top down.
   return (
     <View
-      style={{ backgroundColor: 'pink', height: 1200, alignItems: 'flex-start' }}>
+      style={{ backgroundColor: 'transparent', height: 900, alignItems: 'flex-start' }}>
       <View style={{ width: '100%', height: 500, alignItems: 'flex-end', }}>
-        <Container style={{ flexDirection: 'row', width: '100%', flexWrap: 'wrap', justifyContent: 'space-evenly' }} >
+        <Container style={{ flexDirection: 'row', width: '100%', flexWrap: 'wrap', justifyContent: 'space-evenly', backgroundColor: 'transparent' }} >
           <>
             {(fetchedSpecificPokemon.evolutionChain !== undefined) &&
               <>
-                <GoToPokemonBtn style={{}} onPress={() => onPressHandlerGoToCertainPokemon(fetchedSpecificPokemon.evolutionChain.chain.species.name)}>
+                <GoToPokemonBtn onPress={() => onPressHandlerGoToCertainPokemon(fetchedSpecificPokemon.evolutionChain.chain.species.name)}>
                   <EvolutionChainItem name={fetchedSpecificPokemon.evolutionChain.chain.species.name} stage='0' />
                 </GoToPokemonBtn>
               </>
             }
           </>
           <>
-            {fetchedSpecificPokemon.evolutionChain.chain.evolves_to.map(cluster =>
-              <> 
+            {(fetchedSpecificPokemon.evolutionChain !== undefined) && fetchedSpecificPokemon.evolutionChain.chain.evolves_to.map((cluster, index) =>
+              <>
                 <>
-                  <GoToPokemonBtn style={{}} onPress={() => onPressHandlerGoToCertainPokemon(cluster.species.name)}>
+                  <GoToPokemonBtn key={index} onPress={() => onPressHandlerGoToCertainPokemon(cluster.species.name)}>
                     <EvolutionChainItem name={cluster.species.name} stage='1' />
                   </GoToPokemonBtn>
                 </>
-                {cluster.evolves_to.map(cluster =>
-                  <>
-                    <GoToPokemonBtn style={{}} onPress={() => onPressHandlerGoToCertainPokemon(cluster.species.name)}>
-                      <EvolutionChainItem name={cluster.species.name} stage='2' />
-                    </GoToPokemonBtn>
-                    {/* <GoToPokemonBtn style={{}} onPress={() => onPressHandlerGoToCertainPokemon(cluster.species.name)}>
-                      <EvolutionChainItem name={cluster.species.name} stage='basic' />
-                    </GoToPokemonBtn>
-                    <GoToPokemonBtn style={{}} onPress={() => onPressHandlerGoToCertainPokemon(cluster.species.name)}>
-                      <EvolutionChainItem name={cluster.species.name} stage='basic' />
-                    </GoToPokemonBtn> */}
-                  </>
+                {cluster.evolves_to.map((cluster, index2) =>
+                  <GoToPokemonBtn key={index2} onPress={() => onPressHandlerGoToCertainPokemon(cluster.species.name)}>
+                    <EvolutionChainItem name={cluster.species.name} stage='2' />
+                  </GoToPokemonBtn>
                 )}
               </>
             )}
@@ -117,9 +112,20 @@ const Evolution = ({ scrollEnabled, setScrollEnabled }) => {
 
 const EvolutionChainItem = ({ name, stage }) => {
   const fetchedAllPokemon = useSelector(state => state.fetchedAllPokemon)
+
   const getInfoOfPokemon = (pokemon) => {
     return fetchedAllPokemon.filter(item => item.pokemon_name === capitalizeFirstCharFunc(pokemon))[0]
   }
+
+  const [renderPokemonImg, setRenderPokemonImg] = useState(null)
+  const pokemon = getInfoOfPokemon(name)
+
+  useEffect(() => {
+    if (pokemon) {
+      useRenderImgsDynamically({ pokemon_id: pokemon.pokemon_id, setRenderPokemonImg })
+    }
+  }, [pokemon])
+
   const getStage = (stage) => {
     if (stage === '0') return 'dot-single'
     if (stage === '1') return 'dots-two-vertical'
@@ -129,20 +135,25 @@ const EvolutionChainItem = ({ name, stage }) => {
   const dots = getStage(stage)
 
   console.log(stage)
-  const pokemon = getInfoOfPokemon(name)
   return (
     <ImageContainer>
       {pokemon !== undefined ?
-        < CachedImage source={`https://pokeres.bastionbot.org/images/pokemon/${pokemon !== undefined && pokemon.pokemon_id}.png`} />
+        <ImageStyled source={renderPokemonImg} />
         :
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }} >
           <FontAwesome name='question' size={50} color='gray' />
         </View>
       }
-      <Entypo style={{position: 'absolute', bottom: 0, }} name={dots} size={15} />
-      <Text style={{ fontSize: 12, color: 'black', alignSelf: 'center' }}>{capitalizeFirstCharFunc(name)}</Text>
+      <Entypo style={{ position: 'absolute', bottom: 3 }} name={dots} size={15} />
+      <Text style={{ position: 'absolute', bottom: 0, fontSize: 12, color: 'black', alignSelf: 'center', justifyContent: "flex-end", fontFamily: 'LemonadaLight', color: 'white' }}>   {capitalizeFirstCharFunc(name)}</Text>
     </ImageContainer>
   )
 }
+
+export const ImageStyled = styled(Image)`
+ height: 100%;
+ width: 100%;
+ resize-mode: contain;
+`
 
 export default Evolution

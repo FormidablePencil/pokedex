@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, Dimensions, Animated, PanResponder } from 'react-native'
 import styled from 'styled-components';
 import useCachedImage from './hooks/useCachedImage';
@@ -6,12 +6,16 @@ import AddDeleteInReduxCompWithBtn from './AddDeleteInReduxCompWithBtn'
 import { PokeFavoriteBtn, PokeTeamBtn } from '../styles/btnStyles';
 import { SAVE_FAVORITE, REMOVE_FAVORITE, ADD_TO_TEAM, REMOVE_FROM_TEAM } from '../actions/types'
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons'
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux'
+import { fetchSpecificPokemon } from '../actions/actions';
+import useRenderImgsDynamically from './hooks/useRenderImgsDynamically';
 
 const Image123 = styled.Image`
   flex: 1;
+  width: 100%;
   resize-mode: contain;
-  position: relative;
-  margin: 5px;
 `;
 export const FavCard = styled.View`
   /* flex: 1; */
@@ -29,9 +33,16 @@ export const IconsContainer = styled.View`
   margin-bottom: 5px;
 `;
 const FavCardComp = ({ id, cardStyle, imageStyle }) => {
+  const [renderPokemonImg, setRenderPokemonImg] = useState()
   const cardPosition = new Animated.ValueXY()
   const cardSize = new Animated.Value(1)
   // const pokemonSize = new Animated.Value(1)
+  const navigation = useNavigation()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    useRenderImgsDynamically({ pokemon_id: id, setRenderPokemonImg })
+  }, [id])
 
 
   const panResponder = PanResponder.create({
@@ -49,14 +60,20 @@ const FavCardComp = ({ id, cardStyle, imageStyle }) => {
     },
   })
 
-  const cachedPokemonImage = useCachedImage(`https://pokeres.bastionbot.org/images/pokemon/${id}.png`)
+  const onPressHandler = async () => {
+    await dispatch(fetchSpecificPokemon(id))
+    navigation.navigate('PokeStatsScreen')
+  }
+
   //@ tilt the image
   return ( //I want it to transition slwoly rather that spawn out of nowhere
-    <Animated.View {...panResponder.panHandlers} style={[cardPosition.getLayout(), { width: '33%', paddingHorizontal: 6, paddingVertical: 6 }]}>
+    <Animated.View /* {...panResponder.panHandlers} */ style={[cardPosition.getLayout(), { width: '33%', paddingHorizontal: 6, paddingVertical: 6 }]}>
       <FavCard style={cardStyle}>
-        <Image123 style={imageStyle} source={cachedPokemonImage.source} />
+        <TouchableOpacity style={{ height: '90%' }} onPress={() => onPressHandler()}>
+          <Image123 style={imageStyle} source={renderPokemonImg} />
+        </TouchableOpacity>
         <IconsContainer>
-          <PokeFavoriteBtn style={{ bottom: 0 }}>
+          <PokeFavoriteBtn style={{ bottom: 20 }}>
             <AddDeleteInReduxCompWithBtn
               payload={id}
               whatState={'favoritePokemon'}
@@ -67,7 +84,7 @@ const FavCardComp = ({ id, cardStyle, imageStyle }) => {
               btnStyle
             />
           </PokeFavoriteBtn>
-          <PokeFavoriteBtn style={{ right: 0, bottom: 0 }}>
+          <PokeFavoriteBtn style={{ right: 0, bottom: 20 }}>
             <AddDeleteInReduxCompWithBtn
               payload={id}
               whatState={'pokemonTeam'}

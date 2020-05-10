@@ -12,44 +12,44 @@ const PokeStatsHeader = () => {
    )
 
    return (
-         <HeaderContainer>
-            {testObjEmptyFunc(pokeName) && testObjEmptyFunc(types) &&
-               <>
-                  <Text>{capitalizeFirstCharFunc(pokeName)}</Text>
-                  <JustifyContent>
-                     {Object.keys(types).length > 0 && types.map((cluster, index) =>
-                        <PokeTypesContainer key={index}>
-                           <PokeTypesText>{cluster.type.name}</PokeTypesText>
-                        </PokeTypesContainer>
-                     )}
-                  </JustifyContent>
-               </>
-            }
-         </HeaderContainer>
+      <HeaderContainer>
+         {testObjEmptyFunc(pokeName) && testObjEmptyFunc(types) &&
+            <>
+               <HeaderText>{capitalizeFirstCharFunc(pokeName)}</HeaderText>
+               <JustifyContent>
+                  {Object.keys(types).length > 0 && types.map((cluster, index) =>
+                     <PokeTypesText key={index}>{cluster.type.name}</PokeTypesText>
+                  )}
+               </JustifyContent>
+            </>
+         }
+      </HeaderContainer>
    )
 }
 
-const Text = styled.Text`
-  font-size: 30px;
-  margin-horizontal: 10px;
-  color: white;
+const HeaderText = styled.Text`
+   font-size: 30px;
+   margin: 0px 10px;
+   color: white;
+   font-family: LemonadaMedium;
+   font-size: 25px;
 `;
 const PokeTypesText = styled.Text`
-   font-size: 20px;
+   font-family: LemonadaRegular;
+   color: white;
+   padding: 0px 15px;
+   margin: 0px 5px;
+   border-radius: 20px;
+   background-color: orange;
+   font-size: 10px;
 `;
 const HeaderContainer = styled.View`
    flex-direction: column;
-   bottom: -25px;
-`;
-const PokeTypesContainer = styled.View`
-  flex-direction: row;
-  background-color: orange;
-  border-radius: 5px;
-  margin-horizontal: 5px;
-  padding-horizontal: 5px;
+   bottom: -15px;
 `;
 const JustifyContent = styled.View`
-   margin-vertical: 5px;
+   top: -10px;
+   margin: 5px 0px;
    flex-direction: row;
 `;
 
