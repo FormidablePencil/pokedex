@@ -59,7 +59,7 @@ export const searchSuggestionsFunc = ({ text, arrayToFilterThrough, ObjKeyToComp
     const textData = text.toUpperCase();
     return itemData.indexOf(textData) > -1;
   });
-}//???/???????????????????????
+}
 export const testArrEmtyFunc = (arr) => {
   return arr.length > 0
 }
@@ -69,7 +69,7 @@ export const testObjEmptyFunc = (obj) => {
   return Object.keys(obj).length > 0
 }
 
-//ounds down by default
+//rounds down by default
 export const findNearestNumDivisibleByNum = (index, divisible, setting) => {
   if (index % divisible !== 0) {
     for (let i = index; Math.sign(index) === 1 ? i : -i > 0; setting === 'roundUp' ? i++ : i--) {

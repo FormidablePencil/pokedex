@@ -3,7 +3,6 @@ import shorthash from 'shorthash'
 import * as FileSystem from 'expo-file-system';
 
 const useCachedImage = (source) => {
-  // console.log(source)
   const [imageCached, setImageCached] = useState({ source: null })  //~ create your own hook 
 
   useEffect(() => {
@@ -24,7 +23,6 @@ const useCachedImage = (source) => {
     }
     return () => {
       isCancelled = true
-      // setImageCached({ source: null })
     }
   }, [source])
   

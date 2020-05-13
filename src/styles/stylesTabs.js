@@ -1,56 +1,51 @@
 import styled from 'styled-components'
 
 export const AboutContainer = styled.View`
-  flex-direction: column
-  margin-horizontal: 30px
+  flex-direction: column;
+  margin: 0px 30px;
 `
 export const AboutText = styled.Text`
-  color: grey
-  margin-vertical: 6px
+  color: grey;
+  margin: 6px 0px;
 `
 export const AboutTextResults = styled.Text`
-  margin-left: 50px
-  margin-vertical: 6px
-  flex-wrap: wrap
-
+  margin-left: 50px;
+  margin: 6px 0px;
+  flex-wrap: wrap;
 `
 export const StatsContainer = styled.View`
-  flex-direction: row
-  margin-horizontal: 30px
+  flex-direction: row;
+  margin: 0px 30px;
 `
-export const HeaderContainer = styled(StatsContainer)`
-  margin-bottom: 20px
-  margin-top: 25px
-`
+export const HeaderContainer = styled.View`
+   flex-direction: column;
+   bottom: -15px;
+`;
 export const StatsText = styled.Text`
-  color: grey
-  width: 80px
-  margin-vertical: 6px
+  color: grey;
+  width: 80px;
+  margin: 6px 0px;
 `
 export const ResultForStats = styled.Text`
-  margin-left: 50px
-  margin-vertical: 6px
-  flex-wrap: wrap
-  width: 200
+  margin-left: 50px;
+  margin: 6px 0px;
+  flex-wrap: wrap;
+  width: 200px;
 `
 export const BoldHeader = styled.Text`
-  font-weight: bold
-  font-size: 20px
-  margin-left: -10px
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: -10px;
 `
 export const GlitchWithFramwork = styled.View`
-  height: 100px
+  height: 100px;
 `
 export const TextGreen = styled.Text`
-  color: green
+  color: green;
 `
 export const TextWhite = styled.Text`
-  color: white
+  color: white;
 `
-
-
-
-
 export const IndexContainer = styled.View`
 
   height: 100%

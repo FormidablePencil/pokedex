@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import RenderPokemonList from '../components/RenderPokemonList'
-import { LinearGradient } from 'expo-linear-gradient';
-import styled from 'styled-components';
-import { TextInput } from 'react-native-gesture-handler';
 import { searchSuggestionsFunc } from '../logic/logic';
 import { useSelector } from 'react-redux'
+import { PokeIndexContainer } from '../styles/containerStyles';
+import { TextInputStyled } from '../styles/textStyles';
+import useLocalStorage from '../components/hooks/useLocalStorage';
 
 const PokeIndexScreen = ({ navigation }) => {
   const [controlledInputValue, setControlledInputValue] = useState()
   const [allPokemonData, setAllPokemonData] = useState(null)
   const fetchedAllPokemon = useSelector((state: any) => state.fetchedAllPokemon)
+  useLocalStorage()
 
   const onChangeHandleSearch = async (text) => {
     setControlledInputValue(controlledInputValue)
@@ -18,7 +19,7 @@ const PokeIndexScreen = ({ navigation }) => {
   }
 
   return (
-    <PokeIndexContainer colors={['#390148', '#27229F']} start={[1.5, .8]}>
+    <PokeIndexContainer colors={['#2AC73F', '#EFF54C']} start={[1.8, .8]}>
       <TextInputStyled
         onChangeText={text => onChangeHandleSearch(text)}
         value={controlledInputValue}
@@ -33,18 +34,5 @@ const PokeIndexScreen = ({ navigation }) => {
     </PokeIndexContainer>
   )
 }
-
-const TextInputStyled = styled.TextInput`
-  background-color: black;
-  color: white;
-  margin-top: 20px;
-  height: 50px;
-  padding: 0px 10px;
-`;
-const PokeIndexContainer = styled(LinearGradient)`
-  height: 100%;
-  padding: 0px 6px;
-`;
-
 
 export default PokeIndexScreen

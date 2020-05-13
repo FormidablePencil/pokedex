@@ -10,12 +10,12 @@ export const StatsView = styled.View`
   justify-content: space-between;
   padding: 0px 10px;
   flex-direction: row;
-  margin-vertical: 5px;
+  margin: 5px 0px;
 `;
 export const StatsText = styled.Text`
   flex: 1;
   font-size: 15px;
-  padding-horizontal: 10px;
+  padding: 0px 10px;
   font-family: LemonadaRegular;
 `;
 export const DescriptionView = styled(StatsView)`

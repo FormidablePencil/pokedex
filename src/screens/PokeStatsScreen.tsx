@@ -1,13 +1,11 @@
 import React, { useState, useEffect, createContext } from 'react'
-import { View, LayoutAnimation, Text, Animated, } from 'react-native'
+import { View, LayoutAnimation } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux';
 import Loading from '../components/Loading';
 import PokemonStats from '../components/PokemonStats';
 import PokeStatsHeader from '../components/PokeStatsHeader';
 import { testObjEmptyFunc } from '../logic/logic';
 import { CLEAR_SPECIFIC_POKEMON_DATA } from '../actions/types';
-import { PokemonIdText } from '../styles/textStyles';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import HeaderRightPokeStats from '../components/HeaderRightPokeStats';
 
 export const PokeStatsContext = createContext()
@@ -19,8 +17,6 @@ export const PokeStatsScreen = ({ navigation }) => {
   const dispatch = useDispatch()
   const customSpring = { duration: 300, create: { type: 'linear', property: 'opacity' }, update: { type: 'spring', springDamping: 0.4 }, delete: { type: 'linear', property: 'opacity' } }
 
-  // console.log(isReady)
-  
   navigation.setOptions({
     headerTransparent: true,
     headerTitle: () => <PokeStatsHeader />,
@@ -47,12 +43,10 @@ export const PokeStatsScreen = ({ navigation }) => {
   }, [isReady])
   return (
     <PokeStatsContext.Provider value={{ uri }}>
-      <View style={{ height: '100%', backgroundColor: '#fff' }}>
         {isReady ?
           <PokemonStats />
           : <Loading />
         }
-      </View >
     </PokeStatsContext.Provider>
   )
 }

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import { useSelector } from 'react-redux'
-import { Container, StatsView, StatsText, DescriptionView, TabTextStandard, TabTextHeader, TabTextDescription } from '../../styles/TabContentStyles';
-import { StandardHeaderText, StandardText } from '../../styles/textStyles';
+import { Container, StatsView, DescriptionView, TabTextStandard, TabTextHeader, TabTextDescription } from '../../styles/TabContentStyles';
+import { themes } from '../../theming/themingStyles';
 
 const About = () => {
   const fetchedSpecificPokemon = useSelector(state => state.fetchedSpecificPokemon)
   const [description, setDescription] = useState()
+  const theme = useSelector(state => state.theme)
+  const txtColor = themes[theme].pokeBox.contentTxtColor
 
   useEffect(() => {
     if (fetchedSpecificPokemon.species !== undefined) {
@@ -14,22 +16,31 @@ const About = () => {
     }
   }, [fetchedSpecificPokemon])
 
-  // console.log(fetchedSpecificPokemon)
   return (
     <Container>
       {fetchedSpecificPokemon &&
         <View>
           <DescriptionView>
             <TabTextHeader>Description</TabTextHeader>
-            <TabTextDescription>{description}</TabTextDescription>
+            <TabTextDescription
+              color={txtColor}
+            >{description}</TabTextDescription>
           </DescriptionView>
           <StatsView>
-            <TabTextStandard>weight</TabTextStandard>
-            <TabTextStandard>{Object.keys(fetchedSpecificPokemon).length > 0 && fetchedSpecificPokemon.pokemonInfo.weight}</TabTextStandard>
+            <TabTextStandard
+              color={txtColor}
+            >weight</TabTextStandard>
+            <TabTextStandard
+              color={txtColor}
+            >{Object.keys(fetchedSpecificPokemon).length > 0 && fetchedSpecificPokemon.pokemonInfo.weight}</TabTextStandard>
           </StatsView>
           <StatsView>
-            <TabTextStandard>height</TabTextStandard>
-            <TabTextStandard>{Object.keys(fetchedSpecificPokemon).length > 0 && fetchedSpecificPokemon.pokemonInfo.height}</TabTextStandard>
+            <TabTextStandard
+              color={txtColor}
+            >height</TabTextStandard>
+            <TabTextStandard
+              color={txtColor}
+            >{Object.keys(fetchedSpecificPokemon).length > 0 && fetchedSpecificPokemon.pokemonInfo.height}</TabTextStandard>
           </StatsView>
         </View>
       }

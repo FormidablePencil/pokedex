@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import gen1 from "../../allGenPokeName/gen1"
 import gen2 from "../../allGenPokeName/gen2"
 import gen3 from "../../allGenPokeName/gen3"

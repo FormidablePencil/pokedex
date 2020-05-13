@@ -29,8 +29,7 @@ export const PokemonSlotImageBg = styled.Image`
   height: 130px;
   width: 130px;
   resize-mode: contain;
-  /* position: absolute; */
-  opacity: .35;
+  opacity: .60;
 `;
 export const PokemonImage = styled.Image`
   z-index: 20;
@@ -38,4 +37,31 @@ export const PokemonImage = styled.Image`
   width: 100px;
   resize-mode: contain;
   position: absolute;
+`;
+export const ImageStyled = styled.Image`
+ height: 100%;
+ width: 100%;
+ resize-mode: contain;
+`
+export const Image123 = styled.Image`
+  width: 100%;
+  height: 80%;
+  margin-top: 5px;
+  resize-mode: contain;
+`;
+export const ChartImage = styled.Image`
+  resize-mode: contain;
+  height: 100%;
+  width: 100%;
+`;
+export const PokeTypeImage = styled.Image`
+  height: 53px;
+  width: 40px;
+  bottom: 0px;
+`;
+export const TabNavImage = styled.Image`
+  resize-mode: contain;
+  flex: 1;
+  margin-top: 5px;
+  opacity: ${({ active }) => active ? 1 : .3};
 `;

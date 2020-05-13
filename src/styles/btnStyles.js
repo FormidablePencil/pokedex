@@ -1,18 +1,16 @@
 import styled from 'styled-components';
 
 export const GoToPokemonBtn = styled.TouchableOpacity`
-  /* background-color: hotpink; */
 `;
 export const PokemonCard = styled.TouchableOpacity`
-   background-color: white;
+   background-color: #F5FFE6;
    border-radius: 10px;
    elevation: 5;
    justify-content: center;
    align-content: center;
    flex: 1;
    flex-direction: row;
-   margin-horizontal: 10px;
-   margin-vertical: 15px;
+   margin: 5px 5px;
    height: 120px;
 `
 export const PokeballBtn = styled.TouchableOpacity`
@@ -22,9 +20,11 @@ export const PokeballBtn = styled.TouchableOpacity`
   right: 10px;
 `
 export const PokeFavoriteBtn = styled.TouchableOpacity`
+  /* bottom: 20px; */
 `;
-
 export const PokeTeamBtn = styled.TouchableOpacity`
+  position: absolute;
+  right: 0;
   position: absolute;
   right: 0;
   bottom: 0;
@@ -32,14 +32,12 @@ export const PokeTeamBtn = styled.TouchableOpacity`
 `;
 export const SwitchToNextPokemonBtn = styled.TouchableOpacity`
   background-color: rgba(59,59,59,.3);
-  border-top-start-radius: 10px;
-  border-bottom-start-radius: 10px;
+  border-radius: 10px 0px 0px 10px;
   margin-right:5px;
 `;
 export const SwitchToNextPokemonBtnR = styled.TouchableOpacity`
   background-color: rgba(59,59,59,.3);
-  border-top-end-radius: 10px;
-  border-bottom-end-radius: 10px;
+  border-radius: 0px 10px 10px 0px;
   margin-left:5px;
 `;
 export const ThemeBtn = styled.TouchableOpacity`
@@ -58,3 +56,11 @@ export const EnterBtn = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
 `;
+export const TouchableOpacityOverImage = styled.TouchableOpacity`
+  height: 90%;
+`;
+export const ModalCloseBtn = styled.TouchableOpacity`
+  background-color: #10E394;
+  padding: 10px;
+  align-items: center;
+`

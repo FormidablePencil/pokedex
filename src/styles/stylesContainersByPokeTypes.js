@@ -9,16 +9,13 @@ export const WaterTypeContainer = styled.View`
 export const TextPokemonTypes = styled.Text`
   color: white;
 `
-
-//make case for pokemonIndexIndividual container
 export const PokemonTypes = styled.View`
   border-radius: 20px;
-  padding-horizontal: 10px;
-  padding-vertical: 5px;
+  padding: 0px 10px;
+  padding: 5px 0px;
   width: 70px;
   align-items: center;
   background-color: ${props => {
-    // console.log(props.theme)
     switch (props.theme) {
       case 'Bug':
         return 'black'

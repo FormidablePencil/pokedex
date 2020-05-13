@@ -1,7 +1,6 @@
 import { SAVE_DATA_TO_ALL_POKEMON, FETCHED_SPECIFIC_POKEMON_DATA, SAVE_FROM_LOCALSTORAGE } from "./types"
 
 export const fetchDataToAllPokemon = () => async dispatch => {
-   //names, types, id 
    const res = await fetch('https://pogoapi.net/api/v1/pokemon_types.json')
    const data = await res.json()
    const filteredCollection = data.filter(cluster => cluster.form === 'Normal' || cluster.form === undefined)
@@ -13,9 +12,6 @@ export const saveLocalStorageToRedux = ({ fetchedAllPokemon, fetchedSpecificPoke
 }
 
 export const fetchSpecificPokemon = (pokemonId) => async dispatch => {
-   console.log(pokemonId, 'pokemonId')
-
-   // const response = cacheDataToAsyncStorageObj.getLocallyStoredData(pokemonId)
    let res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
    const pokemonInfo = await res.json()
 
@@ -26,9 +22,5 @@ export const fetchSpecificPokemon = (pokemonId) => async dispatch => {
    const evolutionChain = await evolutionChainResponse.json()
 
    dispatch({ type: FETCHED_SPECIFIC_POKEMON_DATA, payload: { pokemonInfo, species, evolutionChain } })
-
-   // console.log(Object.keys(pokemonInfo))
-   // console.log(Object.keys(species))
-   // console.log(Object.keys(evolutionChain.chain))
 }
 

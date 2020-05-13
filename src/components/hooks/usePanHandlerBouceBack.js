@@ -3,7 +3,6 @@ import { View, Text, PanResponder, Animated } from 'react-native'
 
 //@ I love hooks! 
 const usePanHandlerBouceBack = ({ draggingMode }) => {
-  // console.log(draggingMode)
   const positionOfSlot = new Animated.ValueXY({ x: 0, y: 0 })
   const scaleOfSlot = new Animated.Value(1)
   const scaleOfBg = new Animated.Value(1)
@@ -12,7 +11,6 @@ const usePanHandlerBouceBack = ({ draggingMode }) => {
     if (draggingMode) {
       const timeout = setTimeout(() => {
         clearTimeout(timeout)
-        // console.log('object')
         executeAnimation()
       }, (Math.random() * 3000) + 2000)
     }

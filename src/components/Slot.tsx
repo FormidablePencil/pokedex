@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import useCachedImage from "./hooks/useCachedImage"
-import { View, Dimensions, Animated } from "react-native"
+import {  Dimensions, Animated } from "react-native"
 import pokeballImg from '../assets/images/Pokeball1.png'
 import { useSelector, useDispatch } from 'react-redux';
 import { PokemonSlotImageBg, PokemonImage } from '../styles/imageStyles'
@@ -15,16 +14,22 @@ import * as Animatable from 'react-native-animatable';
 const screenHeight = Dimensions.get('window').height
 const AnimatedPokemonSlotImageBg = Animated.createAnimatedComponent(PokemonSlotImageBg)
 
-//go though my code and seperate logic into hooks
-//~ when double clicked open modal to veiw pokemon's effectivness/favAndAdd-to-team-options
+// when double clicked open modal to veiw pokemon's effectivness/favAndAdd-to-team-options
 const Slot = ({ id, draggingMode, navigation }) => {
-  const { type, pokemon_id } = useSelector(state => state.fetchedAllPokemon.filter(cluster => cluster.pokemon_id === id)[0])
   const { panResponder, positionOfSlot, scaleOfBg } = usePanHandlerBouceBack({ draggingMode })
   const [onPressCount, setOnPressCount] = useState()
   const [onPressCountTimer, setOnPressCountTimer] = useState()
   const dispatch = useDispatch()
   const spinLoadingAnim = useRef(null)
   const [renderPokemonImg, setRenderPokemonImg] = useState(null)
+  const fetchedAllPokemon = useSelector((state: any) => state.fetchedAllPokemon)
+  const [pokemonProps, setPokemonProps] = useState({ type: [], pokemon_id: null })
+
+  useEffect(() => {
+    if (fetchedAllPokemon[0]) {
+      setPokemonProps(fetchedAllPokemon.filter(cluster => cluster.pokemon_id === id)[0])
+    }
+  }, [fetchedAllPokemon])
 
   useEffect(() => {
     useRenderImgsDynamically({ pokemon_id: id, setRenderPokemonImg })
@@ -32,14 +37,13 @@ const Slot = ({ id, draggingMode, navigation }) => {
 
   const onPressHandler = async () => {
     if (!draggingMode) {
-      console.log('clicked')
       setOnPressCount(1)
       if (onPressCount > 0) {
         clearTimeout(onPressCountTimer)
         setOnPressCount(0)
         spinLoadingAnim.current.rotate()
-        await dispatch(fetchSpecificPokemon(pokemon_id))
-        navigation.navigate('PokeStatsScreen') // additional step mayhave to be take
+        await dispatch(fetchSpecificPokemon(pokemonProps.pokemon_id))
+        navigation.navigate('PokeStatsScreen')
       } else {
         setOnPressCountTimer(
           setTimeout(() => {
@@ -56,9 +60,9 @@ const Slot = ({ id, draggingMode, navigation }) => {
       style={[positionOfSlot.getLayout(), { flex: 1 }]}
     >
       <TouchableOpacity onPress={() => onPressHandler()}>
-        <SlotContainer style={{ height: screenHeight / 4, width: 200, alignItems: 'center', justifyContent: 'center' }}>
-          <RenderTypes type={type} />
-          <Animatable.View useNativeDriver ref={spinLoadingAnim} style={{ position: 'absolute', }}>
+        <SlotContainer style={{ height: screenHeight / 4 }}>
+          <RenderTypes type={pokemonProps.type} />
+          <Animatable.View useNativeDriver ref={spinLoadingAnim} style={{ position: 'absolute'}}>
             <AnimatedPokemonSlotImageBg useNativeDriver style={{ transform: [{ scale: scaleOfBg }] }} fadeDuration={1} source={pokeballImg} />
           </Animatable.View>
 
@@ -70,21 +74,3 @@ const Slot = ({ id, draggingMode, navigation }) => {
 }
 
 export default Slot
-
-
-
-
-
-  // const onPressHandlerOpenModelIfPass = () => {
-  //   console.log("Clicked")
-  //   setBackCount(backCount + 1)
-  //   if (backCount == 1) {
-  //     clearTimeout(backTimer)
-  //     console.log("Clicked twice")
-  //   } else {
-  //     setBackTimer(setTimeout(() => {
-  //       setBackCount(0)
-  //       console.log('reset')
-  //     }, 1000)) //#mention here the time for clearing the counter in ms
-  //   }
-  // }

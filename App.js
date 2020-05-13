@@ -1,8 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react'
 import { Provider } from 'react-redux'
 import store from './src/store'
-import StackPokemon from './src/navigators/StackPokemon';
-import ErrorBoundaries from './ErrorBoundaries';
+import StackPokemon from './src/navigators/StackNavigator';
 import { UIManager, Text } from 'react-native';
 import * as Font from 'expo-font'
 
@@ -48,6 +47,3 @@ const App = () => {
 }
 
 export default App
-
-
-//npx react-native start --reset-cache //* troubleshooting react navigation

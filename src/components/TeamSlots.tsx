@@ -1,27 +1,17 @@
-import React, { useState, useEffect } from 'react'
-import { View, Text, Image, FlatList, Animated, PanResponder, SafeAreaView } from 'react-native'
+import React from 'react'
+import { View, FlatList } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
-import useCachedImage from './hooks/useCachedImage'
-import styled from 'styled-components';
-import CachedImage from '../screens/CachedImage';
 import Slot from './Slot'
-import { TouchableOpacity, TouchableWithoutFeedback, NativeViewGestureHandler } from 'react-native-gesture-handler';
-import { useRoute, useNavigation } from '@react-navigation/native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 import { GESTURE_OFF, GESTURE_ON } from '../actions/types';
-import useRenderImgsDynamically from './hooks/useRenderImgsDynamically';
+import { globalStyles } from '../styles/globalStyles';
 
 const TeamSlots = () => {
   const pokemonId = useSelector(state => state.pokemonTeam)
   const pokemonTeamGesture = useSelector((state: any) => state.pokemonTeamGesture)
-  // const [daraggingMode, setDraggingMode] = useState(false) //a workaround I could create are trigger zones for each slot though I'm good 
-  const [renderPokemonImg, setRenderPokemonImg] = useState()
   const dispatch = useDispatch()
   const navigation = useNavigation()
-  const route = useRoute()
-
-  useEffect(() => {
-    useRenderImgsDynamically({ pokemon_id: pokemonId, setRenderPokemonImg })
-  }, [pokemonId])
 
   const onLongPressHandler = () => {
     if (pokemonTeamGesture) {
@@ -30,9 +20,9 @@ const TeamSlots = () => {
   }
 
   return (
-    <View style={{ height: '100%', width: '100%' }}>
+    <View style={globalStyles.widthHeight100}>
 
-      <TouchableWithoutFeedback style={{ height: '100%', width: '100%' }} onLongPress={() => onLongPressHandler()}>
+      <TouchableWithoutFeedback style={globalStyles.widthHeight100} onLongPress={() => onLongPressHandler()}>
         <FlatList
           contentContainerStyle={{ flex: 1, justifyContent: 'center' }}
           numColumns={2}
@@ -40,7 +30,6 @@ const TeamSlots = () => {
           keyExtractor={(id) => id}
           renderItem={({ item, index }) => {
             return (
-              // (index % 2 === 0 || index === 0) ?
               <>
                 {item ?
                   <>
@@ -50,9 +39,7 @@ const TeamSlots = () => {
                 }
               </>
             )
-            // :
           }
-            // <Slot id={item} />
           } />
       </TouchableWithoutFeedback>
     </View>
@@ -60,4 +47,3 @@ const TeamSlots = () => {
 }
 
 export default TeamSlots
-      // {/* <AddDeleteItemFromReduxBtn /> */}

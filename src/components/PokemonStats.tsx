@@ -1,20 +1,18 @@
-import React, { useContext, useState, useEffect, useRef } from 'react'
-import { View, Animated, PanResponder, Button } from 'react-native'
+import React, { useContext, useState, useEffect } from 'react'
+import { View, Animated, Text } from 'react-native'
 import { themes } from '../theming/themingStyles'
 import { PokeStatsContext } from '../screens/PokeStatsScreen'
 import { useSelector } from 'react-redux'
-import { styles } from '../styles/globalStyles'
+import { styles, FlexContainer } from '../styles/globalStyles'
 import { CachedImageStyle, ImageBackground } from '../styles/imageStyles'
 import Tabs from './Tabs'
 import About from './TabComps/About'
 import BaseStats from './TabComps/BaseStats'
 import Moves from './TabComps/Moves'
 import Evolution from './TabComps/Evolution'
-import useCachedImage from './hooks/useCachedImage'
-import SwitchToNextPokemon from './SwitchToNextPokemon'
 import { LinearGradient } from 'expo-linear-gradient'
 import { LightenDarkenColor } from 'lighten-darken-color';
-//! Loading screen, pokemonImage over navigiationHeader => then we got design... favorite pokemon page and team of 6 pokemon. 
+import useRenderImgsDynamically from './hooks/useRenderImgsDynamically'
 
 const IMAGE_HEIGHT = 450
 const AnimatedImageBackground = Animated.createAnimatedComponent(ImageBackground);
@@ -24,18 +22,17 @@ const PokemonStats = () => {
    const { uri } = useContext(PokeStatsContext)
    const [scrollAnimatedValue] = useState(new Animated.Value(0));
    const [scrollEnabled, setScrollEnabled] = useState(false)
-   const cachedImage = useCachedImage(`https://pokeres.bastionbot.org/images/pokemon/${uri}.png`)
-   const ref = useRef(null)
+   const [renderPokemonImg, setRenderPokemonImg] = useState(null)
+   const txtColor = themes[theme].pokeBox.contentTxtColor
 
    useEffect(() => {
-      if (ref.current !== null) {
-      }
-   }, [ref])
+      useRenderImgsDynamically({ pokemon_id: uri,  setRenderPokemonImg })
+   }, [uri])
 
    const interpolateTranslateY = {
       translateY: scrollAnimatedValue.interpolate({
          inputRange: [-IMAGE_HEIGHT, 0, IMAGE_HEIGHT],
-         outputRange: [+IMAGE_HEIGHT / 2, 0, -IMAGE_HEIGHT / 2], //? this is fascinating. It resizes the screen according to what position the ScrollView is in
+         outputRange: [+IMAGE_HEIGHT / 2, 0, -IMAGE_HEIGHT / 2],
          extrapolateRight: 'clamp'
       })
    }
@@ -46,48 +43,9 @@ const PokemonStats = () => {
          extrapolateRight: 'clamp'
       })
    }
-   useEffect(() => {
-      // const animatedListenerId =  scrollAnimatedValue.addListener
-
-      // const animatedListenerId = scrollAnimatedValue.addListener(({ value }) =>
-      //    (() => {
-      //       if (value < 135) {
-      //          setScrollEnabled(false)
-      //          console.log('21')
-      //       } else if (value > 135) {
-      //          setScrollEnabled(true)
-      //          console.log('abc')
-      //       }
-      //       // console.log(value < 135, 'eeee')
-      //    })()
-      // );
-      // return () => {
-      //    scrollAnimatedValue.addListener(animatedListenerId);
-      // }
-   }, [])
-   // console.log(scrollEnabled === true)
-   useEffect(() => {
-      // console.log( 'scrollEnabled')
-   }, [scrollEnabled])
-
-   const testFunc = () => {
-      let three
-      three = 2
-      if (1 === 1) {
-         three = 40
-      }
-      console.log(three)
-   }
-
-   const handleScroll = (event) => {
-
-      console.log(event.nativeEvent.contentOffset.y)
-      // console.log('passed122')
-   }
 
    return (
-      <View style={{ flex: 1, }}>
-         {/* <SwitchToNextPokemon /> */}
+      <FlexContainer>
          <AnimatedImageBackground
             source={themes[theme].backgroundImage}
             style={{
@@ -98,25 +56,21 @@ const PokemonStats = () => {
                ]
             }}
          >
-            <CachedImageStyle
-               source={cachedImage.source}
-            />
+            <CachedImageStyle source={renderPokemonImg} />
          </AnimatedImageBackground>
          <Animated.ScrollView
-            ref={ref}
             onScroll={Animated.event(
                [{ nativeEvent: { contentOffset: { y: scrollAnimatedValue } } }],
                { useNativeDriver: true },
             )}
             scrollEventThrottle={8}
             contentContainerStyle={{ ...styles.scrollViewContentContainer, marginTop: IMAGE_HEIGHT }}>
-            <LinearGradient colors={themes[theme].pokeBox.linearGradientColors}>
-               <View style={{ zIndex: 1900 }}>
-                  {/* <Button style={{ margin: 29 }} title='test123' onPress={() => testFunc()} /> */}
+            <LinearGradient colors={themes[theme].pokeBox.linearGradientColors} start={[1, .01]} end={[1, .4]}>
+               <View /* style={{ zIndex: 30 }} */>
                   <Tabs
-                     btnStyle={{ backgroundColor: LightenDarkenColor(themes[theme].pokeBox.linearGradientColors[1], -10) }}
+                     btnStyle={{ backgroundColor: LightenDarkenColor(themes[theme].pokeBox.linearGradientColors[0], 30) }}
                      lineColor={LightenDarkenColor(themes[theme].pokeBox.linearGradientColors[1], 60)}
-                     textStyle={{ color: 'white' }}
+                     textStyle={{ color: txtColor ? txtColor : 'white' }}
                      tabTitles={['about', 'base stats', 'moves', 'evolutions']}
                      contentComponents={[
                         <About />,
@@ -127,19 +81,8 @@ const PokemonStats = () => {
                </View>
             </LinearGradient>
          </Animated.ScrollView>
-      </View>
+      </FlexContainer>
    )
 }
 
 export default PokemonStats
-
-// const name = (params) => {
-   // if (value < 135 && MscrollIsEnabled) {
-   //    setScrollEnabled(false)
-   //    console.log('21')
-   // } else if (value > 135 && !MscrollIsEnabled) {
-   //    setScrollEnabled(true)
-   //    scrollIsEnabled = true
-   //    console.log('abc')
-   // }
-// }

@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, Animated, Text, Dimensions, Button } from 'react-native';
+import { View, Animated, Dimensions } from 'react-native';
 import styled from 'styled-components';
 
 const SliderAnimation = Animated.createAnimatedComponent(View);
 const screenWidth = Math.round(Dimensions.get('window').width);
-// console.log(screenWidth)
 
-//@ reuseable component
-//~ how to use: ...
 const Tabs = ({ defualtTabSelected, tabTitles, contentComponents, btnStyle, textStyle, lineColor }) => {
    const [slideAnimaton] = useState(new Animated.Value(0))
    const [currentTab, setCurrentTab] = useState(0)
@@ -23,13 +20,13 @@ const Tabs = ({ defualtTabSelected, tabTitles, contentComponents, btnStyle, text
       if (contentComponents.length >= 1) {
          Animated.spring(slideAnimaton, {
             duration: 200,
-            toValue: screenWidth / contentComponents.length * currentTab, // return to start
+            toValue: screenWidth / contentComponents.length * currentTab,
             useNativeDriver: true
          }).start();
       } else if (currentTab === 0) {
          Animated.spring(slideAnimaton, {
             duration: 200,
-            toValue: 0, // return to start
+            toValue: 0,
             useNativeDriver: true
          }).start();
       }
@@ -81,7 +78,6 @@ const Tabs = ({ defualtTabSelected, tabTitles, contentComponents, btnStyle, text
 
 export default Tabs
 
-//scp
 export const TabBtn = styled.TouchableOpacity`
    background-color: transparent;
    flex: 1;
@@ -90,8 +86,8 @@ export const TabBtn = styled.TouchableOpacity`
    border-radius: 0;
    height: 40px;
    top: -15px;
-   padding-vertical: 27px;
-   z-index: 5
+   padding: 27px 0px;
+   z-index: 5;
 `;
 export const TabContent = styled.View`
    min-height: 850px;
@@ -110,10 +106,3 @@ export const TabNavigatorContainer = styled.View`
 export const TabSection = styled.View`
    margin-top: 12px;
 `;
-
-//@ goal in mind: make tabs component reusable
-//~ Plan: using animated interpolation for the tabs when onClick it'll appear as if it's comming from the left or right but really it's an animation effect.
-//~ Firstly, create these components and design the tab btns, 
-//~ 2nd, put the pokemon data in each tab
-//~ create that animation effect with animated transform or interpolation... likely interpolation
-//~ create that slide effect on tabs

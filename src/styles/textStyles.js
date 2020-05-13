@@ -16,8 +16,11 @@ export const TextName = styled.Text`
 
 export const PokemonIdText = styled.Text`
   font-family: LemonadaMedium;
-  color: ${props => props.color};
-  font-size: 30px;
+  color: ${({color}) => color ? color : 'white'};
+  font-size: 35px;
+  margin-top:100px;
+  top: 2px;
+  margin-bottom: -5px;
 `;
 export const PokeTypeText = styled.Text`
   margin-right: 5px;
@@ -28,4 +31,43 @@ export const PokeTypeText = styled.Text`
 `;
 export const TextWhite = styled.Text`
   color: white;
+`;
+export const HeaderText = styled.Text`
+   font-size: 30px;
+   margin: 0px 10px;
+   color: ${({ color }) => color};
+   font-family: LemonadaMedium;
+   font-size: 25px;
+`;
+export const PokeTypesText = styled.Text`
+   font-family: LemonadaRegular;
+   color: ${({ typeTxtColor }) => typeTxtColor ? typeTxtColor : 'white'}; 
+   ${({ pokeStats }) => {
+    if (pokeStats) {
+      return [
+        `padding: 0px 15px;`,
+        `margin: 0px 5px;`,
+        `border-radius: 20px;`
+      ]
+    }
+  }};
+   background-color: ${({ bgColor }) => bgColor ? bgColor : 'grey'};
+   font-size: 10px;
+   flex-wrap: nowrap;
+`;
+export const TextInputStyled = styled.TextInput`
+  background-color: #E5FFB0;
+  color: black;
+  margin: 10px 0px;
+  height: 50px;
+  padding: 0px 10px;
+`;
+export const ModalCloseText = styled.Text`
+  font-family: LemonadaMedium;
+  color: white;
+`;
+export const ModalContentText = styled.Text`
+  font-family: LemonadaMedium;
+  margin: 20px;
+  text-align: center;
 `;

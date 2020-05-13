@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, Dimensions, Animated, PanResponder } from 'react-native'
-import styled from 'styled-components';
-import useCachedImage from './hooks/useCachedImage';
+import { Animated } from 'react-native'
 import AddDeleteInReduxCompWithBtn from './AddDeleteInReduxCompWithBtn'
-import { PokeFavoriteBtn, PokeTeamBtn } from '../styles/btnStyles';
+import { PokeFavoriteBtn, TouchableOpacityOverImage } from '../styles/btnStyles';
 import { SAVE_FAVORITE, REMOVE_FAVORITE, ADD_TO_TEAM, REMOVE_FROM_TEAM } from '../actions/types'
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -11,32 +9,11 @@ import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux'
 import { fetchSpecificPokemon } from '../actions/actions';
 import useRenderImgsDynamically from './hooks/useRenderImgsDynamically';
+import { Image123 } from '../styles/imageStyles';
+import { FavCard, IconsContainer, FavCardCompContainerAnimated } from '../styles/containerStyles';
 
-const Image123 = styled.Image`
-  flex: 1;
-  width: 100%;
-  resize-mode: contain;
-`;
-export const FavCard = styled.View`
-  /* flex: 1; */
-  background-color: rgba(31,67,163,.5);
-  border-radius: 10px;
-  height: 150px;
-  width: 100%;
-  justify-content: flex-start;
-  padding: 3px;
-`;
-export const IconsContainer = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  margin-horizontal: 5px;
-  margin-bottom: 5px;
-`;
 const FavCardComp = ({ id, cardStyle, imageStyle }) => {
   const [renderPokemonImg, setRenderPokemonImg] = useState()
-  const cardPosition = new Animated.ValueXY()
-  const cardSize = new Animated.Value(1)
-  // const pokemonSize = new Animated.Value(1)
   const navigation = useNavigation()
   const dispatch = useDispatch()
 
@@ -45,33 +22,17 @@ const FavCardComp = ({ id, cardStyle, imageStyle }) => {
   }, [id])
 
 
-  const panResponder = PanResponder.create({
-    onStartShouldSetPanResponder: () => true, // config...
-    onPanResponderMove: (event, gesture) => {
-      cardPosition.setValue({ x: gesture.dx, y: gesture.dy }); //assigns the values of where your mouse is a varaible
-    },
-    onPanResponderGrant: (event, gesture) => {
-      cardSize.setValue(1.1)
-      // scaleOfBg.setValue(1.2)
-    },
-    onPanResponderEnd: (event, gesture) => {
-      cardSize.setValue(1)
-      // scaleOfBg.setValue(1)
-    },
-  })
-
   const onPressHandler = async () => {
     await dispatch(fetchSpecificPokemon(id))
     navigation.navigate('PokeStatsScreen')
   }
 
-  //@ tilt the image
-  return ( //I want it to transition slwoly rather that spawn out of nowhere
-    <Animated.View /* {...panResponder.panHandlers} */ style={[cardPosition.getLayout(), { width: '33%', paddingHorizontal: 6, paddingVertical: 6 }]}>
+  return (
+    <FavCardCompContainerAnimated>
       <FavCard style={cardStyle}>
-        <TouchableOpacity style={{ height: '90%' }} onPress={() => onPressHandler()}>
+        <TouchableOpacityOverImage onPress={() => onPressHandler()}>
           <Image123 style={imageStyle} source={renderPokemonImg} />
-        </TouchableOpacity>
+        </TouchableOpacityOverImage>
         <IconsContainer>
           <PokeFavoriteBtn style={{ bottom: 20 }}>
             <AddDeleteInReduxCompWithBtn
@@ -84,7 +45,7 @@ const FavCardComp = ({ id, cardStyle, imageStyle }) => {
               btnStyle
             />
           </PokeFavoriteBtn>
-          <PokeFavoriteBtn style={{ right: 0, bottom: 20 }}>
+          <PokeFavoriteBtn style={{ bottom: 20, right: 0 }}>
             <AddDeleteInReduxCompWithBtn
               payload={id}
               whatState={'pokemonTeam'}
@@ -97,7 +58,7 @@ const FavCardComp = ({ id, cardStyle, imageStyle }) => {
           </PokeFavoriteBtn>
         </IconsContainer>
       </FavCard>
-    </Animated.View>
+    </FavCardCompContainerAnimated>
   )
 }
 

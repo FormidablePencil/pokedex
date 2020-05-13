@@ -1,20 +1,22 @@
 import { ADD_TO_TEAM, REMOVE_FROM_TEAM, SAVE_FROM_LOCALSTORAGE } from "../actions/types"
 
-const initialState = [3, 5, 2, 1]
+const initialState = []
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
 
-  case ADD_TO_TEAM:
-    return [ ...state, payload ]
-    
-    case REMOVE_FROM_TEAM: 
-    return state.filter(pokemon => pokemon !== payload)
+    case ADD_TO_TEAM:
+      if (state.length < 6) {
+        return [...state, payload]
+      } else return state
+
+    case REMOVE_FROM_TEAM:
+      return state.filter(pokemon => pokemon !== payload)
 
     case SAVE_FROM_LOCALSTORAGE:
       return payload.teamList
 
-  default:
-    return state
+    default:
+      return state
   }
 }

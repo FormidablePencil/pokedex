@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Dimensions, Text, Image } from 'react-native';
 import faker from 'faker';
 import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview';
-import IndexCardComp from '../components/IndexCardComp';
+import IndexCardComp from './IndexCardComp';
 import { PokeIndexContainer } from '../styles/containerStyles';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;

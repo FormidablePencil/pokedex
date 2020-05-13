@@ -10,10 +10,11 @@
       "web"
     ],
     "version": "1.0.0",
-    "icon": "./assets/AppIcon.png",
+    "icon": "./assets/blackPokeball.png",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain"
+      "image": "./assets/blackPokeball.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#B7E39C"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

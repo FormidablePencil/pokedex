@@ -1,8 +1,6 @@
-import { SAVE_DATA_TO_ALL_POKEMON, SAVE_FROM_LOCALSTORAGE } from "../actions/types"
+import { SAVE_DATA_TO_ALL_POKEMON } from "../actions/types"
 
-const initialState = {
-
-}
+const initialState = []
 
 export default (state = initialState, { type, payload }) => {
    switch (type) {
