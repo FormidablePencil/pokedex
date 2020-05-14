@@ -5,8 +5,8 @@ import PokeStatsScreen from '../screens/PokeStatsScreen'
 import { useSelector } from 'react-redux';
 import TabNavigator from './TabNavigator';
 import PokemonEffectivenessChartScreen from '../screens/PokemonEffectivenessChartScreen';
-import useLocalStorage from '../components/hooks/useLocalStorage'
 import { themes } from '../theming/themingStyles';
+import PokeTeamLimitMsg from '../components/PokeTeamLimitMsg';
 
 const Stack = createStackNavigator();
 
@@ -32,28 +32,30 @@ const StackPokemon = () => {
    };
 
    return (
-      <NavigationContainer>
-         <Stack.Navigator
-            screenOptions={{
-               transitionSpec: {
-                  open: config,
-                  close: config,
-               },
-               headerTintColor: Object.keys(theme).length > 0 ? themes[theme].pokeBox.color : 'black'
-            }}>
-            <Stack.Screen options={{ headerShown: false }} name="TabNavigator" component={TabNavigator} />
-            <Stack.Screen name="PokeStatsScreen" component={PokeStatsScreen} />
-            <Stack.Screen
-               options={{
-                  headerStyle: { backgroundColor: '#212121' },
-                  title: 'Type Effectiveness',
-                  headerTitleStyle: {
-                     color: 'white'
-                  }
-               }}
-               name="PokemonEffectivenessChart" component={PokemonEffectivenessChartScreen} />
-         </Stack.Navigator>
-      </NavigationContainer >
+      <>
+         <NavigationContainer>
+            <Stack.Navigator
+               screenOptions={{
+                  transitionSpec: {
+                     open: config,
+                     close: config,
+                  },
+                  headerTintColor: Object.keys(theme).length > 0 ? themes[theme].pokeBox.color : 'black'
+               }}>
+               <Stack.Screen options={{ headerShown: false }} name="TabNavigator" component={TabNavigator} />
+               <Stack.Screen name="PokeStatsScreen" component={PokeStatsScreen} />
+               <Stack.Screen
+                  options={{
+                     headerStyle: { backgroundColor: '#212121' },
+                     title: 'Type Effectiveness',
+                     headerTitleStyle: {
+                        color: 'white'
+                     }
+                  }}
+                  name="PokemonEffectivenessChart" component={PokemonEffectivenessChartScreen} />
+            </Stack.Navigator>
+         </NavigationContainer >
+      </>
    )
 }
 

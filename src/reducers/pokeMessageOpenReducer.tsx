@@ -5,10 +5,7 @@ const initialState = false
 export default (state = initialState, { type, payload }) => {
   switch (type) {
 
-    // case TOGGLE_POKE_MSG_TEAM_LIST:
-    //   return !state
-
-    case ADD_TO_TEAM:
+    case TOGGLE_POKE_MSG_TEAM_LIST:
       return true
 
     case RESET_POKE_MSG_TEAM_LIST:

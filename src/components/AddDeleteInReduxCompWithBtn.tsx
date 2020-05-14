@@ -15,10 +15,10 @@ const AddDeleteInReduxCompWithBtn = ({ payload, whatState, compareFromCluster, a
   const pokemonTeam = useSelector(state => state.pokemonTeam)
 
 
-  const itemExists = useSelector(state => state[whatState].filter(cluster => {
+  const itemExists = useSelector(state => whatState ? state[whatState].filter(cluster => {
     if (compareFromCluster) return cluster[compareFromCluster] === payload
     else return cluster === payload
-  })[0])
+  })[0] : null)
   const dispatch = useDispatch()
   
   useEffect(() => {
@@ -28,9 +28,8 @@ const AddDeleteInReduxCompWithBtn = ({ payload, whatState, compareFromCluster, a
     if (!itemExists) dispatch({ type: addType, payload })
     else dispatch({ type: deleteType, payload })
     
-    if (addType === ADD_TO_TEAM && pokemonTeam.length === 6) {
-      console.log(pokemonTeam.length, 'dfdfdf');
-      // dispatch({ type: TOGGLE_POKE_MSG_TEAM_LIST })
+    if (!itemExists && pokemonTeam.length === 6) {
+      dispatch({ type: TOGGLE_POKE_MSG_TEAM_LIST })
     }
   }
 

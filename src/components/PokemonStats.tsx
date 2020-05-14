@@ -13,6 +13,7 @@ import Evolution from './TabComps/Evolution'
 import { LinearGradient } from 'expo-linear-gradient'
 import { LightenDarkenColor } from 'lighten-darken-color';
 import useRenderImgsDynamically from './hooks/useRenderImgsDynamically'
+import PokeTeamLimitMsg from './PokeTeamLimitMsg'
 
 const IMAGE_HEIGHT = 450
 const AnimatedImageBackground = Animated.createAnimatedComponent(ImageBackground);
@@ -46,6 +47,7 @@ const PokemonStats = () => {
 
    return (
       <FlexContainer>
+         {/* <PokeTeamLimitMsg /> */}
          <AnimatedImageBackground
             source={themes[theme].backgroundImage}
             style={{

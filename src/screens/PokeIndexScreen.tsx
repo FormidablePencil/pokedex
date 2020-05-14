@@ -24,7 +24,7 @@ const PokeIndexScreen = ({ navigation }) => {
         onChangeText={text => onChangeHandleSearch(text)}
         value={controlledInputValue}
         underlineColorAndroid="transparent"
-        placeholder="Search Pokemon"
+        placeholder="Search pokemon by name"
       />
       <RenderPokemonList
         allPokemonData={allPokemonData}

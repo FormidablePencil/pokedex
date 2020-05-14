@@ -3,11 +3,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import PokeIndexScreen from '../screens/PokeIndexScreen';
 import PokeTeamScreen from '../screens/PokeTeamScreen';
 import PokeFavScreen from '../screens/PokeFavScreen';
-import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux'
 import { GESTURE_OFF } from '../actions/types';
-import { Image } from 'react-native';
 import greatball from '../assets/images/greatball.png'
 import ultraball from '../assets/images/ultraball.png'
 import masterball from '../assets/images/masterball.png'

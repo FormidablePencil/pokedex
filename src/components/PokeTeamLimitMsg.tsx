@@ -1,10 +1,7 @@
 import React from 'react'
-import { View, Text } from 'react-native'
-import Modal, { ModalFooter, ModalButton, ModalContent } from 'react-native-modals';
-import { HeaderText, ModalCloseText, ModalContentText } from '../styles/textStyles'
+import { ModalCloseText, ModalContentText } from '../styles/textStyles'
 import { useDispatch, useSelector } from 'react-redux'
 import { RESET_POKE_MSG_TEAM_LIST } from '../actions/types';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ModalContainer, ModalCard } from '../styles/containerStyles';
 import { ModalCloseBtn } from '../styles/btnStyles';
 

@@ -35,9 +35,13 @@ export const TextWhite = styled.Text`
 export const HeaderText = styled.Text`
    font-size: 30px;
    margin: 0px 10px;
-   color: ${({ color }) => color};
+   color: ${({ color }) => color ?? '#353535'};
    font-family: LemonadaMedium;
    font-size: 25px;
+`;
+export const EmptyListMsgText = styled(HeaderText)`
+  color: white;
+  text-align: center;
 `;
 export const PokeTypesText = styled.Text`
    font-family: LemonadaRegular;
