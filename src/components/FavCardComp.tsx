@@ -11,15 +11,16 @@ import { fetchSpecificPokemon } from '../actions/actions';
 import useRenderImgsDynamically from './hooks/useRenderImgsDynamically';
 import { Image123 } from '../styles/imageStyles';
 import { FavCard, IconsContainer, FavCardCompContainerAnimated } from '../styles/containerStyles';
+import pokemonRetroImgs from '../allGenPokeName/retroImgs';
 
 const FavCardComp = ({ id, cardStyle, imageStyle }) => {
   const [renderPokemonImg, setRenderPokemonImg] = useState()
   const navigation = useNavigation()
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    useRenderImgsDynamically({ pokemon_id: id, setRenderPokemonImg })
-  }, [id])
+  // useEffect(() => {
+  //   useRenderImgsDynamically({ pokemon_id: id, setRenderPokemonImg })
+  // }, [id])
 
 
   const onPressHandler = async () => {
@@ -31,7 +32,8 @@ const FavCardComp = ({ id, cardStyle, imageStyle }) => {
     <FavCardCompContainerAnimated>
       <FavCard style={cardStyle}>
         <TouchableOpacityOverImage onPress={() => onPressHandler()}>
-          <Image123 style={imageStyle} source={renderPokemonImg} />
+          {/* <Image123 style={imageStyle} source={renderPokemonImg} /> */}
+          <Image123 source={pokemonRetroImgs[id - 1].src} />
         </TouchableOpacityOverImage>
         <IconsContainer>
           <PokeFavoriteBtn style={{ bottom: 20 }}>

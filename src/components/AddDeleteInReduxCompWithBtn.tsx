@@ -15,7 +15,7 @@ const AddDeleteInReduxCompWithBtn = ({ payload, whatState, compareFromCluster, a
   const pokemonTeam = useSelector(state => state.pokemonTeam)
 
 
-  const itemExists = useSelector(state => whatState ? state[whatState].filter(cluster => {
+  const itemExists = useSelector(state => state[whatState] ? state[whatState].filter(cluster => {
     if (compareFromCluster) return cluster[compareFromCluster] === payload
     else return cluster === payload
   })[0] : null)

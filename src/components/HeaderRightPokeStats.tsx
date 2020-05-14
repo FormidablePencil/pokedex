@@ -18,7 +18,7 @@ const HeaderRightPokeStats = ({ isReady, navigation, pokemonId }) => {
       state.fetchedSpecificPokemon.pokemonInfo.id : {}
   )
   const theme = useSelector(state => state.theme)
-  const txtColor = theme ? themes[theme].pokeBox.color : null
+  const txtColor = themes[theme] ? themes[theme].pokeBox.color : null
 
   if (isReady) {
     return (

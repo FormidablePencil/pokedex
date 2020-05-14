@@ -60,6 +60,13 @@ export const searchSuggestionsFunc = ({ text, arrayToFilterThrough, ObjKeyToComp
     return itemData.indexOf(textData) > -1;
   });
 }
+export const searchPokemonById = (typedText, findInArr) => {
+  const typedNum = parseInt(typedText)
+  const filtered = findInArr.filter(item => item.pokemon_id === typedNum)
+  return filtered
+}
+
+
 export const testArrEmtyFunc = (arr) => {
   return arr.length > 0
 }

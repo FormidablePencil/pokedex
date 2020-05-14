@@ -11,6 +11,7 @@ import ultraball from '../assets/images/ultraball.png'
 import masterball from '../assets/images/masterball.png'
 import { TabNavImage } from '../styles/imageStyles';
 import PokeTeamLimitMsg from '../components/PokeTeamLimitMsg';
+import RecycleableListScreen from '../screens/RecycleableListScreen';
 
 const Tab = createBottomTabNavigator()
 
@@ -51,7 +52,7 @@ const TabNavigator = () => {
           listeners={{
             tabPress: () => dispatch({ type: GESTURE_OFF })
           }}
-          name="PokeIndexScreen" component={PokeIndexScreen} />
+          name="PokeIndexScreen" component={RecycleableListScreen} />
         <Tab.Screen
           options={(route) => ({
             tabBarIcon: ({ focused, color, size }) => {

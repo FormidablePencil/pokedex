@@ -12,8 +12,9 @@ export default (state = initialState, { type, payload }) => {
     case REMOVE_FAVORITE:
       return state.filter(pokemon => pokemon !== payload)
 
-      case SAVE_FROM_LOCALSTORAGE:
-        return payload.favList
+    case SAVE_FROM_LOCALSTORAGE:
+      if (payload.favList === null) return initialState
+      return payload.favList
     default:
       return state
   }

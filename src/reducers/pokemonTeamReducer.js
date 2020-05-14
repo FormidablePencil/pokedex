@@ -14,6 +14,7 @@ export default (state = initialState, { type, payload }) => {
       return state.filter(pokemon => pokemon !== payload)
 
     case SAVE_FROM_LOCALSTORAGE:
+      if (payload.favList === null) return initialState
       return payload.teamList
 
     default:

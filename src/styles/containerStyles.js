@@ -112,7 +112,6 @@ export const PokeFavContainer = styled(LinearGradient)`
 `;
 export const PokeIndexContainer = styled(LinearGradient)`
   height: 100%;
-  padding: 0px 6px;
 `;
 export const PokeTeamContainer = styled(LinearGradient)`
   height: 100%;

@@ -11,6 +11,7 @@ import useRenderImgsDynamically from '../hooks/useRenderImgsDynamically';
 import { ImageStyled } from '../../styles/imageStyles';
 import { globalStyles } from '../../styles/globalStyles';
 import { themes } from '../../theming/themingStyles';
+import pokemonRetroImgs from '../../allGenPokeName/retroImgs';
 
 const Evolution = ({ scrollEnabled, setScrollEnabled }) => {
   const fetchedSpecificPokemon = useSelector(state => state.fetchedSpecificPokemon)
@@ -76,9 +77,9 @@ const EvolutionChainItem = ({ name, stage }) => {
   const [renderPokemonImg, setRenderPokemonImg] = useState(null)
   const pokemon = getInfoOfPokemon(name)
 
-  useEffect(() => {
-    if (pokemon) useRenderImgsDynamically({ pokemon_id: pokemon.pokemon_id, setRenderPokemonImg })
-  }, [pokemon])
+  // useEffect(() => {
+  //   if (pokemon) useRenderImgsDynamically({ pokemon_id: pokemon.pokemon_id, setRenderPokemonImg })
+  // }, [pokemon])
 
   const getStage = (stage) => {
     if (stage === '0') return 'dot-single'
@@ -91,7 +92,8 @@ const EvolutionChainItem = ({ name, stage }) => {
   return (
     <ImageContainer>
       {pokemon !== undefined ?
-        <ImageStyled source={renderPokemonImg} />
+        // <ImageStyled source={renderPokemonImg} />
+        <ImageStyled source={pokemonRetroImgs[pokemon.pokemon_id -1].src} />
         :
         <QuestionMarkContainer>
           <FontAwesome name='question' size={50} color='gray' />

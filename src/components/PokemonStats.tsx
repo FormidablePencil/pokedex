@@ -14,6 +14,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { LightenDarkenColor } from 'lighten-darken-color';
 import useRenderImgsDynamically from './hooks/useRenderImgsDynamically'
 import PokeTeamLimitMsg from './PokeTeamLimitMsg'
+import pokemonRetroImgs from '../allGenPokeName/retroImgs'
 
 const IMAGE_HEIGHT = 450
 const AnimatedImageBackground = Animated.createAnimatedComponent(ImageBackground);
@@ -26,9 +27,10 @@ const PokemonStats = () => {
    const [renderPokemonImg, setRenderPokemonImg] = useState(null)
    const txtColor = themes[theme].pokeBox.contentTxtColor
 
-   useEffect(() => {
-      useRenderImgsDynamically({ pokemon_id: uri,  setRenderPokemonImg })
-   }, [uri])
+   //~ this was for the higher quality images that we are not using for the early release
+   // useEffect(() => {
+      // useRenderImgsDynamically({ pokemon_id: uri,  setRenderPokemonImg })
+   // }, [uri])
 
    const interpolateTranslateY = {
       translateY: scrollAnimatedValue.interpolate({
@@ -58,7 +60,7 @@ const PokemonStats = () => {
                ]
             }}
          >
-            <CachedImageStyle source={renderPokemonImg} />
+            <CachedImageStyle source={pokemonRetroImgs[uri - 1].src} />
          </AnimatedImageBackground>
          <Animated.ScrollView
             onScroll={Animated.event(

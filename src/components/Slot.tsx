@@ -8,8 +8,9 @@ import { SlotContainer } from '../styles/containerStyles';
 import usePanHandlerBouceBack from './hooks/usePanHandlerBouceBack';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { fetchSpecificPokemon } from '../actions/actions';
-import useRenderImgsDynamically from '../components/hooks/useRenderImgsDynamically'
+// import useRenderImgsDynamically from '../components/hooks/useRenderImgsDynamically'
 import * as Animatable from 'react-native-animatable';
+import pokemonRetroImgs from '../allGenPokeName/retroImgs';
 
 const screenHeight = Dimensions.get('window').height
 const AnimatedPokemonSlotImageBg = Animated.createAnimatedComponent(PokemonSlotImageBg)
@@ -31,9 +32,9 @@ const Slot = ({ id, draggingMode, navigation }) => {
     }
   }, [fetchedAllPokemon])
 
-  useEffect(() => {
-    useRenderImgsDynamically({ pokemon_id: id, setRenderPokemonImg })
-  }, [id])
+  // useEffect(() => {
+  //   useRenderImgsDynamically({ pokemon_id: id, setRenderPokemonImg })
+  // }, [id])
 
   const onPressHandler = async () => {
     if (!draggingMode) {
@@ -65,8 +66,8 @@ const Slot = ({ id, draggingMode, navigation }) => {
           <Animatable.View useNativeDriver ref={spinLoadingAnim} style={{ position: 'absolute'}}>
             <AnimatedPokemonSlotImageBg useNativeDriver style={{ transform: [{ scale: scaleOfBg }] }} fadeDuration={1} source={pokeballImg} />
           </Animatable.View>
-
-          <PokemonImage source={renderPokemonImg} />
+          {/* <PokemonImage source={renderPokemonImg} /> */}
+          <PokemonImage style={{height: 150, width: 150}} source={pokemonRetroImgs[id - 1].src} />
         </SlotContainer>
       </TouchableOpacity>
     </Animated.View >

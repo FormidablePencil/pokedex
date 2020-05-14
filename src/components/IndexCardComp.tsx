@@ -11,18 +11,22 @@ import useRenderImgsDynamically from './hooks/useRenderImgsDynamically'
 import { themes } from '../theming/themingStyles'
 import { LightenDarkenColor } from 'lighten-darken-color';
 import Color from 'color'
+import pokemonRetroImgs from '../allGenPokeName/retroImgs'
 
 const IndexCardComp = ({ specificPokemon, handleOnPressGoToStatsScreen }) => {
    const [renderPokemonImg, setRenderPokemonImg] = useState(null)
 
-   useEffect(() => {
-      useRenderImgsDynamically({ pokemon_id: specificPokemon.pokemon_id, setRenderPokemonImg })
-   }, [specificPokemon])
+   // useEffect(() => {
+   //    useRenderImgsDynamically({ pokemon_id: specificPokemon.pokemon_id, setRenderPokemonImg })
+   // }, [specificPokemon])
 
    return (
       <PokemonCard onPress={() => handleOnPressGoToStatsScreen(specificPokemon.pokemon_id)}>
          <PokemonIndexContainer>
-            <Image source={renderPokemonImg} style={{ height: 80, width: 80 }} />
+            {/* <Image source={renderPokemonImg} style={{ height: 80, width: 80 }} /> */}
+            {pokemonRetroImgs[specificPokemon.pokemon_id - 1] &&
+               <Image source={pokemonRetroImgs[specificPokemon.pokemon_id - 1].src} />
+            }
          </PokemonIndexContainer>
          <TextNum>{specificPokemon.pokemon_id}</TextNum>
          <CenterText>
