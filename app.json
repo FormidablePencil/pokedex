@@ -3,7 +3,6 @@
     "name": "Simple Pokedex",
     "slug": "SimplePokedex",
     "privacy": "public",
-    "sdkVersion": "36.0.0",
     "platforms": [
       "ios",
       "android",
@@ -12,9 +11,9 @@
     "version": "1.0.0",
     "icon": "./assets/blackPokeball.png",
     "splash": {
-      "image": "./assets/blackPokeball.png",
+      "image": "./assets/pokeballSplash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#B7E39C"
+      "backgroundColor": "#FFE7E0"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -26,6 +25,7 @@
       "supportsTablet": true
     },
     "androidStatusBar": {
+      "barStyle": "light-content",
       "backgroundColor": "#000000"
     },
     "android": {

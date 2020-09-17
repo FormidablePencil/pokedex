@@ -12,7 +12,7 @@ const App = () => {
   const [fontsLoaded, setFontsLoaded] = useState(false)
 
   async function changeScreenOrientation() {
-    await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
+    await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
   }
 
   if (Platform.OS === 'android') {

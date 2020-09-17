@@ -16,6 +16,8 @@ import useRenderImgsDynamically from './hooks/useRenderImgsDynamically'
 import PokeTeamLimitMsg from './PokeTeamLimitMsg'
 import pokemonRetroImgs from '../allGenPokeName/retroImgs'
 
+//! doesn't show message in here
+
 const IMAGE_HEIGHT = 450
 const AnimatedImageBackground = Animated.createAnimatedComponent(ImageBackground);
 
@@ -25,31 +27,31 @@ const PokemonStats = () => {
    const [scrollAnimatedValue] = useState(new Animated.Value(0));
    const [scrollEnabled, setScrollEnabled] = useState(false)
    const [renderPokemonImg, setRenderPokemonImg] = useState(null)
-   const txtColor = themes[theme].pokeBox.contentTxtColor
+   const txtColor = themes[theme] && themes[theme].pokeBox.contentTxtColor
 
    //~ this was for the higher quality images that we are not using for the early release
    // useEffect(() => {
-      // useRenderImgsDynamically({ pokemon_id: uri,  setRenderPokemonImg })
+   // useRenderImgsDynamically({ pokemon_id: uri,  setRenderPokemonImg })
    // }, [uri])
 
    const interpolateTranslateY = {
       translateY: scrollAnimatedValue.interpolate({
          inputRange: [-IMAGE_HEIGHT, 0, IMAGE_HEIGHT],
          outputRange: [+IMAGE_HEIGHT / 2, 0, -IMAGE_HEIGHT / 2],
-         extrapolateRight: 'clamp'
+         extrapolateRight: 'clamp',
       })
    }
    const interpolateScale = {
       scale: scrollAnimatedValue.interpolate({
          inputRange: [-IMAGE_HEIGHT, 0],
          outputRange: [2, 1],
-         extrapolateRight: 'clamp'
+         extrapolateRight: 'clamp',
       })
    }
 
    return (
       <FlexContainer>
-         {/* <PokeTeamLimitMsg /> */}
+         <PokeTeamLimitMsg />
          <AnimatedImageBackground
             source={themes[theme].backgroundImage}
             style={{

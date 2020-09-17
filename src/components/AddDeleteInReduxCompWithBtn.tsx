@@ -20,15 +20,15 @@ const AddDeleteInReduxCompWithBtn = ({ payload, whatState, compareFromCluster, a
     else return cluster === payload
   })[0] : null)
   const dispatch = useDispatch()
-  
+
   useEffect(() => {
   }, [itemExists])
 
   const onPressStar = () => {
     if (!itemExists) dispatch({ type: addType, payload })
     else dispatch({ type: deleteType, payload })
-    
-    if (!itemExists && pokemonTeam.length === 6) {
+
+    if (whatState === 'pokemonTeam' && !itemExists && pokemonTeam.length === 6) {
       dispatch({ type: TOGGLE_POKE_MSG_TEAM_LIST })
     }
   }
