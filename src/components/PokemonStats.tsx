@@ -72,7 +72,7 @@ const PokemonStats = () => {
             scrollEventThrottle={8}
             contentContainerStyle={{ ...styles.scrollViewContentContainer, marginTop: IMAGE_HEIGHT }}>
             <LinearGradient colors={themes[theme].pokeBox.linearGradientColors} start={[1, .01]} end={[1, .4]}>
-               <View /* style={{ zIndex: 30 }} */>
+               <View>
                   <Tabs
                      btnStyle={{ backgroundColor: LightenDarkenColor(themes[theme].pokeBox.linearGradientColors[0], 30) }}
                      lineColor={LightenDarkenColor(themes[theme].pokeBox.linearGradientColors[1], 60)}

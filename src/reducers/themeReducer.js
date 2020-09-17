@@ -1,8 +1,6 @@
 import { FETCHED_SPECIFIC_POKEMON_DATA, SAVE_FROM_LOCALSTORAGE, SET_POKEMON_THEME } from "../actions/types"
 
-const initialState = {
-
-}
+const initialState = 'bug'
 
 export default (state = initialState, { type, payload }) => {
    switch (type) {
