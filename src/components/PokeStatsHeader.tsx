@@ -7,7 +7,6 @@ import { themes } from '../theming/themingStyles';
 import { HeaderText, PokeTypesText } from '../styles/textStyles';
 import { HeaderContainer } from '../styles/stylesTabs';
 import { JustifyContent } from '../styles/containerStyles';
-import Color from 'color';
 
 const PokeStatsHeader = () => {
    const types = useSelector(state => testObjEmptyFunc(state.fetchedSpecificPokemon) ? state.fetchedSpecificPokemon.pokemonInfo.types : {})
@@ -27,7 +26,9 @@ const PokeStatsHeader = () => {
                <HeaderText color={themes[theme].pokeBox.color}>{capitalizeFirstCharFunc(pokeName)}</HeaderText>
                <JustifyContent>
                   {Object.keys(types).length > 0 && types.map((cluster, index) =>
-                     <TouchableOpacity onPress={() => onPressHandler(cluster.type.name)}>
+                     <TouchableOpacity
+                        key={index}
+                        onPress={() => onPressHandler(cluster.type.name)}>
                         <PokeTypesText pokeStats
                            typeTxtColor={themes[cluster.type.name].pokeBox.typeTxtColor}
                            bgColor={themes[cluster.type.name].pokeBox.typeColor}

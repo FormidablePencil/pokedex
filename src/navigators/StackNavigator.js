@@ -47,6 +47,7 @@ const StackPokemon = () => {
                <Stack.Screen
                   options={{
                      headerStyle: { backgroundColor: '#212121' },
+                     headerTintColor: 'white',
                      title: 'Type Effectiveness',
                      headerTitleStyle: {
                         color: 'white'

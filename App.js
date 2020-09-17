@@ -4,12 +4,16 @@ import store from './src/store'
 import StackPokemon from './src/navigators/StackNavigator';
 import { UIManager, Text } from 'react-native';
 import * as Font from 'expo-font'
-
+import * as ScreenOrientation from 'expo-screen-orientation';
 
 export const PokemonContextProvider = createContext()
 
 const App = () => {
   const [fontsLoaded, setFontsLoaded] = useState(false)
+
+  async function changeScreenOrientation() {
+    await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
+  }
 
   if (Platform.OS === 'android') {
     if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -18,6 +22,7 @@ const App = () => {
   }
 
   useEffect(() => {
+    changeScreenOrientation()
     async function loadFonts() {
       await Font.loadAsync({
         'LemonadaLight': require('./src/assets/fonts/Lemonada/static/Lemonada-Light.ttf'),

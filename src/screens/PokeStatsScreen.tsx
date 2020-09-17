@@ -7,6 +7,9 @@ import PokeStatsHeader from '../components/PokeStatsHeader';
 import { testObjEmptyFunc } from '../logic/logic';
 import { CLEAR_SPECIFIC_POKEMON_DATA } from '../actions/types';
 import HeaderRightPokeStats from '../components/HeaderRightPokeStats';
+import { themes } from '../theming/themingStyles';
+import * as ScreenOrientation from 'expo-screen-orientation';
+
 
 export const PokeStatsContext = createContext()
 
@@ -16,11 +19,13 @@ export const PokeStatsScreen = ({ navigation }) => {
   const [uri, setUri] = useState()
   const dispatch = useDispatch()
   const customSpring = { duration: 300, create: { type: 'linear', property: 'opacity' }, update: { type: 'spring', springDamping: 0.4 }, delete: { type: 'linear', property: 'opacity' } }
+  const theme = useSelector(state => state.theme)
 
   navigation.setOptions({
     headerTransparent: true,
+    headerTintColor: themes[theme].pokeBox.color,
     headerTitle: () => <PokeStatsHeader />,
-    headerRight: () => <HeaderRightPokeStats isReady={isReady} pokemonId={testObjEmptyFunc(fetchedSpecificPokemon) ? fetchedSpecificPokemon.pokemonInfo.id : ''} navigation={navigation} />
+    headerRight: () => <HeaderRightPokeStats isReady={isReady} pokemonId={testObjEmptyFunc(fetchedSpecificPokemon) ? fetchedSpecificPokemon.pokemonInfo.id : ''} navigation={navigation} />,
   })
   useEffect(() => {
     return async () => {
