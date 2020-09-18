@@ -8,7 +8,7 @@
       "android",
       "web"
     ],
-    "version": "1.0.0",
+    "version": "1.0.1",
     "icon": "./assets/blackPokeball.png",
     "splash": {
       "image": "./assets/pokeballSplash.png",
@@ -29,7 +29,7 @@
       "backgroundColor": "#000000"
     },
     "android": {
-      "package": "com.smallfunall.simplepokedex",
+      "package": "com.smallfunapp.simplepokedex",
       "versionCode": 1,
       "permissions": [
         "VIBRATE"
