@@ -1,10 +1,6 @@
 import { AsyncStorage } from "react-native"
 
 export const cacheDataToAsyncStorageObj = {
-  getLocallyStoredData: async (getFrom) => {
-    const localStorageString = await AsyncStorage.getItem(getFrom)
-    return JSON.parse(localStorageString)
-  },
   storeToLocalStorage: async (storeTo, whatData) => {
     try {
       const stringifiedData = JSON.stringify(whatData)
@@ -12,6 +8,10 @@ export const cacheDataToAsyncStorageObj = {
     } catch (err) {
       console.warn(err)
     }
+  },
+  getLocallyStoredData: async (getFrom) => {
+    const localStorageString = await AsyncStorage.getItem(getFrom)
+    return JSON.parse(localStorageString)
   },
   validateAndUpdateData: async (data, dirName) => {
     const localStorageResponse = await cacheDataToAsyncStorageObj.getLocallyStoredData(dirName)
