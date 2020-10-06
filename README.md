@@ -26,9 +26,9 @@ Not available in play store
 
 **built features** 
 - Save Pokémon locally on the device so they were still there when app closes and opens again.
-- Images and basic pokémon data is already stored in app but extensive pokémon data is pulled from https://pogoapi.net/ and https://pokeapi.co.
+- Images and basic pokémon data are already stored in app but extensive pokémon data is pulled from https://pogoapi.net/ and https://pokeapi.co.
 - Built features search pokédex by name.
 - Save specific pokémon to team and favorite list.
-- Bouncing animation on long pressing pokeball in team screen.
+- Bouncing gesture animation on long pressing pokeball in team screen.
 - Replaced FlatList with a more performant flat lists [recyclerListView](https://github.com/Flipkart/recyclerlistview).
 - Every pokémon type has it's own theme; grass has a greenish theme, fire has has a reddish theme, etc.
