@@ -2,9 +2,13 @@
 
 Simple Pokémon is a catalog of all the Pokémon from the Pokémon franchise. You can find here status, special abilities, and evolutions of any pokémon.
 
-## Demo video
+## Demo
+Demo video: https://youtu.be/I5hN0ZjXz8g
 
-https://youtu.be/I5hN0ZjXz8g
+<img src="https://i.ibb.co/LJNfQxD/Screenshot-20200629-225350-Simple-Pokedex.jpg" width="200" title="app">.<img src="https://i.ibb.co/X8n8C1Q/Screenshot-20200629-225418-Simple-Pokedex.jpg" width="200" title="app">
+<img src="https://i.ibb.co/QM2HwDp/Screenshot-20200629-225357-Simple-Pokedex.jpg" width="200" title="app">
+<img src="https://i.ibb.co/q1fK8dC/Screenshot-20200629-225401-Simple-Pokedex.jpg" width="200" title="app">
+
 
 ## Technologies utilized
 
@@ -24,7 +28,7 @@ Not available in play store
 
 ## NOTES
 
-**built features** 
+**Features built** 
 - Save Pokémon locally on the device so they were still there when app closes and opens again.
 - Images and basic pokémon data are already stored in app but extensive pokémon data is pulled from https://pogoapi.net/ and https://pokeapi.co.
 - Built features search pokédex by name.
