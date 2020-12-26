@@ -5,20 +5,22 @@ Simple Pokémon is a catalog of all the Pokémon from the Pokémon franchise. Yo
 ## Demo
 Demo video: https://youtu.be/I5hN0ZjXz8g
 
-<img src="https://i.ibb.co/LJNfQxD/Screenshot-20200629-225350-Simple-Pokedex.jpg" width="200" title="app">.<img src="https://i.ibb.co/X8n8C1Q/Screenshot-20200629-225418-Simple-Pokedex.jpg" width="200" title="app">
-<img src="https://i.ibb.co/QM2HwDp/Screenshot-20200629-225357-Simple-Pokedex.jpg" width="200" title="app">
-<img src="https://i.ibb.co/q1fK8dC/Screenshot-20200629-225401-Simple-Pokedex.jpg" width="200" title="app">
+<img src="https://i.ibb.co/DGRG9sf/pokemon7.jpg" width="200" title="app">.<img src="https://i.ibb.co/HY6DHKR/pokemon6.jpg" width="200" title="app">
+<img src="https://i.ibb.co/vH3y6VW/pokemon5.jpg" width="200" title="app">
+<img src="https://i.ibb.co/9qGCH5t/pokemon4.jpg" width="200" title="app">
+<img src="https://i.ibb.co/Y36KrYX/pokemon3.jpg" width="200" title="app">
+<img src="https://i.ibb.co/9cjDb3W/pokemon2.jpg" width="200" title="app">
 
 
 ## Technologies utilized
 
 ### Fontend
 
-- Expo <img src="https://i.ibb.co/DpkVZxY/expo.png" width="20" title="hover text">
-- React Native <img src="https://i.ibb.co/0pNL1RX/react-Native-Logo.png" width="20" title="hover text">
-- TypeScript <img src="https://gist.githubusercontent.com/FormidablePencil/08767773b974a5e26f84ddb558cda01f/raw/441a3b040130c35e3892eb3c8c4fe273cf0347dd/typescript.svg" width="20" title="hover text">
-- styled components <img src="https://i.ibb.co/1z3NJM3/styled-Components.png" width="20" title="hover text">
-- Redux <img src="https://i.ibb.co/nDCsZTK/5848309bcef1014c0b5e4a9a.png" width="20" title="hover text">
+- Expo <img src="https://i.ibb.co/M73yQZt/expoLogo.png" width="20" title="hover text">
+- React Native <img src="https://i.ibb.co/nb965ST/react-Logo.png" width="20" title="hover text">
+- TypeScript <img src="https://i.ibb.co/RBfMh8f/typescript.png" width="20" title="hover text">
+- Styled components <img src="https://i.ibb.co/GdtGT3Y/styled-Components.png" width="20" title="hover text">
+- Redux <img src="https://i.ibb.co/dbQkwZM/redux.png" width="20" title="hover text">
 
 ## Download
 
