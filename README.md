@@ -26,7 +26,7 @@ Demo video: https://youtu.be/I5hN0ZjXz8g
 
 - Apk download: https://drive.google.com/file/d/1WEJJhjn-xP7WBLWQETKbOFl1xFp2ECYa/view?usp=sharing
 
-Not available in play store
+Not available in play store because of copyright infringement.
 
 ## NOTES
 
